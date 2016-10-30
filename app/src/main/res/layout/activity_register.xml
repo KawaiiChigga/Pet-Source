@@ -105,6 +105,7 @@
 
     <Button
         android:text="GO!"
+        android:onClick="gotoHome"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

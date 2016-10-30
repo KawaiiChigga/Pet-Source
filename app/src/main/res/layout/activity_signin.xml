@@ -41,7 +41,8 @@
         android:textSize="40dp"
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="gotoHome"/>
 
     <TextView
         android:layout_width="wrap_content"
