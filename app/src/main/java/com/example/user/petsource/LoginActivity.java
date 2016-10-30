@@ -11,13 +11,11 @@ public class LoginActivity extends AppCompatActivity {
     public void gotoSignin(View view) {
         Intent intent = new Intent(this, SigninActivity.class);
         startActivity(intent);
-        finish();
     }
 
     public void gotoRegister(View view) {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-        finish();
     }
 
     @Override

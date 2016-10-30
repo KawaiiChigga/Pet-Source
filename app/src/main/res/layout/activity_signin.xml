@@ -6,16 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.user.petsource.SigninActivity">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:id="@+id/imageView2"
-        android:layout_gravity="center"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"  />
+
+
 
     <ImageView
         android:layout_width="390dp"
@@ -39,54 +31,30 @@
         android:layout_alignParentStart="true"
         android:onClick="gotoLogin"/>
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="100dp"
-        android:id="@+id/imageView4"
-        android:src="@drawable/signin"
-        android:scaleType="fitCenter"
-        android:layout_marginLeft="-30dp"
-        android:layout_below="@+id/imageView3"
-        android:layout_toRightOf="@+id/imageButton"
-        android:layout_toEndOf="@+id/imageButton" />
+    <Button
+        android:text="GO!"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="65dp"
+        android:id="@+id/buttonGO"
+        android:textSize="40dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Email"
-        android:textSize="12pt"
-        android:textColor="#444545"
-        android:id="@+id/textView7"
-        android:layout_marginTop="35dp"
-        android:layout_below="@+id/imageView4"
-        android:layout_alignLeft="@+id/imageView4"
-        android:layout_alignStart="@+id/imageView4" />
-
-    <EditText
-        android:layout_width="310dp"
-        android:layout_height="35dp"
-        android:inputType="text"
-        android:background="#444545"
-        android:textColor="#FDBD15"
-        android:ems="10"
-        android:id="@+id/editText6"
-        android:layout_below="@+id/textView7"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
-
-    <TextView
-        android:layout_width="130dp"
-        android:layout_height="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Password"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:textColor="#444545"
         android:id="@+id/textView8"
-        android:layout_marginTop="27dp"
+        android:layout_marginTop="30dp"
         android:layout_below="@+id/editText6"
-        android:layout_alignLeft="@+id/editText6"
-        android:layout_alignStart="@+id/editText6" />
+        android:layout_alignLeft="@+id/editText7"
+        android:layout_alignStart="@+id/editText7" />
 
     <EditText
         android:layout_width="310dp"
@@ -96,18 +64,50 @@
         android:textColor="#FDBD15"
         android:ems="10"
         android:id="@+id/editText7"
+        android:layout_marginTop="5dp"
         android:layout_below="@+id/textView8"
+        android:layout_alignRight="@+id/buttonGO"
+        android:layout_alignEnd="@+id/buttonGO" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Email"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:id="@+id/textView7"
+        android:layout_marginTop="71dp"
+        android:layout_below="@+id/imageView3"
         android:layout_alignLeft="@+id/textView8"
         android:layout_alignStart="@+id/textView8" />
 
-    <ImageButton
+    <EditText
+        android:layout_width="310dp"
+        android:layout_height="35dp"
+        android:inputType="text"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:id="@+id/editText6"
+        android:layout_below="@+id/textView7"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <TextView
+        android:text="SIGN IN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:scaleType="fitCenter"
-        app:srcCompat="@drawable/go"
-        android:id="@+id/imageButton2"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/editText7" />
+        android:textSize="16pt"
+        android:textColor="@color/textColor"
+
+        android:id="@+id/textView5"
+        android:layout_alignBottom="@+id/imageButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="27dp"
+        android:layout_marginEnd="27dp" />
 
 
 </RelativeLayout>
