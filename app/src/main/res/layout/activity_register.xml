@@ -38,7 +38,7 @@
         android:layout_below="@+id/txtRegName"
         android:layout_alignLeft="@+id/txtRegName"
         android:layout_alignStart="@+id/txtRegName"
-        android:layout_marginTop="21dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/lblRegEmail" />
 
     <EditText
@@ -148,7 +148,7 @@
     <Button
         android:text="GO!"
         android:onClick="gotoHome"
-        android:layout_width="300dp"
+        android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="47dp"
         android:id="@+id/btnRegGO"
@@ -156,7 +156,8 @@
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/txtRegConfirm"
+        android:layout_alignStart="@+id/txtRegConfirm" />
 
 
 </RelativeLayout>
