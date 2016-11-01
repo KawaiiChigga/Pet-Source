@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.user.petsource.HomeActivity$PlaceholderFragment">
+    tools:context="com.example.user.petsource.homeFragments.HomeFragment">
 
     <TextView
         android:id="@+id/section_label"
@@ -14,12 +14,33 @@
         android:layout_height="wrap_content" />
 
     <Button
+        android:text="PetRescue"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:id="@+id/btnFHomePetRescue"
+        android:layout_below="@+id/btnFHomePetCare"
+        android:layout_alignLeft="@+id/btnFHomePetCare"
+        android:layout_alignStart="@+id/btnFHomePetCare"
+        android:layout_marginTop="35dp" />
+
+    <Button
+        android:text="PetCare"
+        android:layout_width="320dp"
+        android:layout_height="90dp"
+        android:id="@+id/btnFHomePetCare"
+        android:layout_marginTop="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnFHomePetSalon"
+        android:layout_alignLeft="@+id/btnFHomePetSalon"
+        android:layout_alignStart="@+id/btnFHomePetSalon"/>
+
+    <Button
         android:text="PetSalon"
         android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:layout_marginBottom="123dp"
+        android:layout_height="90dp"
         android:id="@+id/btnFHomePetSalon"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/section_label"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp" />
 
 </RelativeLayout>
