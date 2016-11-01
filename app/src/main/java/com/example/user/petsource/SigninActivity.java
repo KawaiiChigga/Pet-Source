@@ -6,14 +6,24 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.user.petsource.network.API;
+import com.example.user.petsource.users.User;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SigninActivity extends AppCompatActivity {
 
@@ -44,6 +54,34 @@ public class SigninActivity extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
+
+//    public boolean checkSign(){
+//        Call<List<User>> dataUser = API.Factory.getInstance().getUser(0);
+//
+//        dataUser.enqueue(new Callback<List<User>>() {
+//            @Override
+//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                List<User> User = response.body();
+//
+//                for (User u : User) {
+//                    Log.i("TAG", "Insert data " + u.getEmail());
+//                    data.add(u.getEmail());
+//                }
+//
+//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+//                        getBaseContext(), android.R.layout.simple_list_item_1,
+//                        android.R.id.text1, data
+//                );
+//                mList.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<User>> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
+//
+//    }
 
 
     public void gotoLogin(View view) {
