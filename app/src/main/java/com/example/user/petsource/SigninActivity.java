@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,7 +18,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class SigninActivity extends AppCompatActivity {
 
     Button buttonGO;
-    TextView textView5;
+    TextView lblSignTitle;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -28,13 +29,17 @@ public class SigninActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
         buttonGO = (Button) findViewById(R.id.btnSignGo);
         buttonGO.setTypeface(typeface);
 
-        textView5 = (TextView) findViewById(R.id.textView5);
-        textView5.setTypeface(typeface);
+        lblSignTitle = (TextView) findViewById(R.id.lblSignTitle);
+        lblSignTitle.setTypeface(typeface);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
