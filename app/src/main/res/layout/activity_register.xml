@@ -31,15 +31,15 @@
     <TextView
         android:text="Email"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText6"
-        android:layout_alignLeft="@+id/editText6"
-        android:layout_alignStart="@+id/editText6"
+        android:layout_below="@+id/txtRegName"
+        android:layout_alignLeft="@+id/txtRegName"
+        android:layout_alignStart="@+id/txtRegName"
         android:layout_marginTop="21dp"
-        android:id="@+id/textView" />
+        android:id="@+id/lblRegEmail" />
 
     <EditText
         android:layout_width="310dp"
@@ -48,22 +48,22 @@
         android:textColor="#FDBD15"
         android:inputType="textEmailAddress"
         android:ems="10"
-        android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:id="@+id/editText2" />
+        android:layout_below="@+id/lblRegEmail"
+        android:layout_alignLeft="@+id/lblRegEmail"
+        android:layout_alignStart="@+id/lblRegEmail"
+        android:id="@+id/txtRegEmail" />
 
     <TextView
         android:text="Password"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/editText2"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:id="@+id/lblRegPassword"
+        android:layout_below="@+id/txtRegEmail"
+        android:layout_alignLeft="@+id/txtRegEmail"
+        android:layout_alignStart="@+id/txtRegEmail" />
 
 
 
@@ -74,21 +74,21 @@
         android:textColor="#FDBD15"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/textView2"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignStart="@+id/textView2"
-        android:id="@+id/editText4" />
+        android:layout_below="@+id/lblRegPassword"
+        android:layout_alignLeft="@+id/lblRegPassword"
+        android:layout_alignStart="@+id/lblRegPassword"
+        android:id="@+id/txtRegPassword" />
 
     <TextView
         android:text="Confirm Password"
-        android:textSize="12pt"
+        android:textSize="10pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/editText4"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
+        android:id="@+id/lblRegConfirm"
+        android:layout_below="@+id/txtRegPassword"
+        android:layout_alignLeft="@+id/txtRegPassword"
+        android:layout_alignStart="@+id/txtRegPassword"
         android:layout_marginTop="12dp" />
 
     <EditText
@@ -98,23 +98,10 @@
         android:textColor="#FDBD15"
         android:inputType="textPassword"
         android:ems="10"
-        android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
-        android:id="@+id/editText5" />
-
-    <Button
-        android:text="GO!"
-        android:onClick="gotoHome"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="13dp"
-        android:id="@+id/button3"
-        android:textSize="40dp"
-        android:textColor="@color/textColor"
-        android:background="@color/colorPrimary" />
+        android:layout_below="@+id/lblRegConfirm"
+        android:layout_alignLeft="@+id/lblRegConfirm"
+        android:layout_alignStart="@+id/lblRegConfirm"
+        android:id="@+id/txtRegConfirm" />
 
     <EditText
         android:inputType="text"
@@ -123,27 +110,12 @@
         android:background="#444545"
         android:textColor="#FDBD15"
         android:ems="10"
-        android:id="@+id/editText6"
+        android:id="@+id/txtRegName"
 
         android:layout_marginTop="78dp"
         android:layout_below="@+id/imageView3"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
-
-    <TextView
-        android:layout_width="80dp"
-        android:layout_height="40dp"
-        android:text="Name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="12pt"
-        android:textColor="#444545"
-        android:id="@+id/textView7"
-        android:layout_marginLeft="30dp"
-        android:layout_marginStart="30dp"
-        android:layout_above="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="28dp" />
+        android:layout_alignLeft="@+id/lblRegName"
+        android:layout_alignStart="@+id/lblRegName" />
 
     <TextView
         android:text="REGISTER"
@@ -151,12 +123,40 @@
         android:layout_height="wrap_content"
         android:textSize="16pt"
         android:textColor="@color/textColor"
-        android:id="@+id/textView4"
+        android:id="@+id/lblRegTitle"
         android:layout_marginRight="19dp"
         android:layout_marginEnd="19dp"
         android:layout_alignBottom="@+id/imageButton"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:id="@+id/lblRegName"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="37dp"
+        android:layout_above="@+id/lblRegEmail"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="GO!"
+        android:onClick="gotoHome"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="47dp"
+        android:id="@+id/btnRegGO"
+        android:textSize="40dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

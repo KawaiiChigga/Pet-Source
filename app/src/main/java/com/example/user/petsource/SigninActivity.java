@@ -30,7 +30,7 @@ public class SigninActivity extends AppCompatActivity {
         setContentView(R.layout.activity_signin);
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
-        buttonGO = (Button) findViewById(R.id.buttonGO);
+        buttonGO = (Button) findViewById(R.id.btnSignGo);
         buttonGO.setTypeface(typeface);
 
         textView5 = (TextView) findViewById(R.id.textView5);
