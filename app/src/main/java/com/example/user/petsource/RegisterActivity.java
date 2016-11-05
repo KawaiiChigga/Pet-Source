@@ -1,17 +1,33 @@
 package com.example.user.petsource;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.user.petsource.model.User;
+import com.example.user.petsource.network.API;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    Button btnRegGo;
-    TextView lblRegTitle;
+    private Button btnRegGo;
+    private TextView lblRegTitle;
+    private EditText txtEmail;
+    private EditText txtName;
+    private EditText txtPassword;
+
+    SharedPreferences shared;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,12 +40,41 @@ public class RegisterActivity extends AppCompatActivity {
 
         lblRegTitle = (TextView) findViewById(R.id.lblRegTitle);
         lblRegTitle.setTypeface(typeface);
+
+        txtEmail = (EditText) findViewById(R.id.txtRegEmail);
+        txtName = (EditText) findViewById(R.id.txtRegName);
+        txtPassword = (EditText) findViewById(R.id.txtRegPassword);
+
+        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
     }
 
 
-    public void gotoLogin(View view) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+    public void gotoHome(View view) {
+        Call<User> register = API.Factory.getInstance().register(txtEmail.getText().toString(),
+                txtPassword.getText().toString(), txtName.getText().toString(), "");
+        register.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                SharedPreferences.Editor editor = shared.edit();
+                editor.putString("idKEY", response.body().getId().toString());
+                editor.putString("emailKEY", response.body().getUsername().toString());
+                editor.putString("nameKEY", response.body().getName().toString());
+                editor.putString("phoneKEY", response.body().getPhonenum().toString());
+                editor.commit();
+
+                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                startActivity(intent);
+                LoginActivity.firstActivity.finish();
+                finish();
+
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+
+            }
+        });
+
     }
 
     //    public void gotoHome(View view) {

@@ -1,6 +1,7 @@
 package com.example.user.petsource.homeFragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,7 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.user.petsource.PetListActivity;
 import com.example.user.petsource.R;
+import com.example.user.petsource.RegisterActivity;
 
 public class HomeFragment extends Fragment{
     public HomeFragment() {
