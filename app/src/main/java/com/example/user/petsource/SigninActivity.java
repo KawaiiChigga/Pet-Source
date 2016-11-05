@@ -1,25 +1,26 @@
 package com.example.user.petsource;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.user.petsource.model.Login;
+import com.example.user.petsource.model.User;
 import com.example.user.petsource.network.API;
-import com.example.user.petsource.users.User;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -27,13 +28,13 @@ import retrofit2.Response;
 
 public class SigninActivity extends AppCompatActivity {
 
-    Button buttonGO;
-    TextView lblSignTitle;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+    private Button buttonGO;
+    private TextView lblSignTitle;
+    
+    private EditText txtEmail;
+    private EditText txtPassword;
+
+    public SharedPreferences shared;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,84 +51,58 @@ public class SigninActivity extends AppCompatActivity {
 
         lblSignTitle = (TextView) findViewById(R.id.lblSignTitle);
         lblSignTitle.setTypeface(typeface);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        
+        txtEmail = (EditText) findViewById(R.id.txtSignEmail);
+        txtPassword = (EditText) findViewById(R.id.txtSignPassword);
+
+        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
     }
 
-//    public boolean checkSign(){
-//        Call<List<User>> dataUser = API.Factory.getInstance().getUser(0);
-//
-//        dataUser.enqueue(new Callback<List<User>>() {
-//            @Override
-//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-//                List<User> User = response.body();
-//
-//                for (User u : User) {
-//                    Log.i("TAG", "Insert data " + u.getEmail());
-//                    data.add(u.getEmail());
-//                }
-//
-//                ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-//                        getBaseContext(), android.R.layout.simple_list_item_1,
-//                        android.R.id.text1, data
-//                );
-//                mList.setAdapter(adapter);
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<User>> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
-//
-//    }
+    public void gotoHome(View view) {
+        Call<Login> login = API.Factory.getInstance().logIn(txtEmail.getText().toString(), txtPassword.getText().toString());
+        login.enqueue(new Callback<Login>() {
+            @Override
+            public void onResponse(Call<Login> call, Response<Login> response) {
+                if (response.body() != null) {
+                    Call<User> user = API.Factory.getInstance().getUser(response.body().getUid());
+                    user.enqueue(new Callback<User>() {
+                        @Override
+                        public void onResponse(Call<User> call, Response<User> response) {
+                            SharedPreferences.Editor editor = shared.edit();
 
+                            editor.putString("idKEY", response.body().getId().toString());
+                            editor.putString("emailKEY", response.body().getUsername().toString());
+                            editor.putString("nameKEY", response.body().getName().toString());
+                            editor.putString("phoneKEY", response.body().getPhonenum().toString());
+                            editor.commit();
+
+                            Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
+                            startActivity(intent);
+                            LoginActivity.firstActivity.finish();
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<User> call, Throwable t) {
+
+                        }
+                    });
+                } else {
+                    Toast.makeText(SigninActivity.this, "Please check your username or password", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Login> call, Throwable t) {
+                Toast.makeText(SigninActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+            }
+        });
+        
+        
+    }
 
     public void gotoLogin(View view) {
         Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("Signin Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
-
-    public void gotoHome(View view) {
-        Intent intent = new Intent(this, HomeActivity.class);
         startActivity(intent);
     }
 }

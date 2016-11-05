@@ -16,7 +16,8 @@
     </string>
     <string name="title_activity_tab">TabActivity</string>
     <string name="action_settings">Settings</string>
-    <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_teest">Sign in</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_pet_list">PetListActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
 </resources>

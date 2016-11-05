@@ -1,18 +1,35 @@
 package com.example.user.petsource.homeFragments;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.user.petsource.HomeActivity;
 import com.example.user.petsource.R;
+import com.example.user.petsource.model.Login;
+import com.example.user.petsource.network.API;
+import com.example.user.petsource.model.User;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AccountFragment extends Fragment{
-    public AccountFragment() {
+    private TextView lblName;
+    private TextView lblEmail;
+    private TextView lblPhone;
 
+    private Call<Login> login;
+
+    public AccountFragment() {
     }
 
     @Nullable
@@ -24,5 +41,27 @@ public class AccountFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
+        lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
+        lblPhone = (TextView) getActivity().findViewById(R.id.lblFAccountPhoneNum);
+
+        lblName.setText(HomeActivity.shared.getString("nameKEY", null));
+        lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
+        lblPhone.setText(HomeActivity.shared.getString("phoneKEY", null));
+
+//        Call<User> user = API.Factory.getInstance().getUser("83793961e3aa3924");
+//        user.enqueue(new Callback<User>() {
+//            @Override
+//            public void onResponse(Call<User> call, Response<User> response) {
+//                lblName.setText(response.body().getName());
+//                lblEmail.setText(response.body().getUsername());
+//                lblPhone.setText(response.body().getPhonenum());
+//            }
+//
+//            @Override
+//            public void onFailure(Call<User> call, Throwable t) {
+//                t.printStackTrace();
+//            }
+//        });
     }
 }
