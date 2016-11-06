@@ -30,7 +30,6 @@ public class SplashActivity extends AppCompatActivity {
                 /* Create an Intent that will start the Menu-Activity. */
                 Intent start;
                 String s = shared.getAll().toString();
-                Log.d("HALO", ">>> " + s);
                 if (s.contains("idKEY")) {
                     start = new Intent(SplashActivity.this, HomeActivity.class);
                 } else {

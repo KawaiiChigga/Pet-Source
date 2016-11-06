@@ -70,10 +70,10 @@ public class SigninActivity extends AppCompatActivity {
                         public void onResponse(Call<User> call, Response<User> response) {
                             SharedPreferences.Editor editor = shared.edit();
 
-                            editor.putString("idKEY", response.body().getId().toString());
-                            editor.putString("emailKEY", response.body().getUsername().toString());
-                            editor.putString("nameKEY", response.body().getName().toString());
-                            editor.putString("phoneKEY", response.body().getPhonenum().toString());
+                            editor.putString("idKEY", response.body().getId());
+                            editor.putString("emailKEY", response.body().getUsername());
+                            editor.putString("nameKEY", response.body().getName());
+                            editor.putString("phoneKEY", response.body().getPhonenum());
                             editor.commit();
 
                             Intent intent = new Intent(SigninActivity.this, HomeActivity.class);
