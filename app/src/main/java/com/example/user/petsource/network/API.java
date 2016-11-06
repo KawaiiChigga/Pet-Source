@@ -1,6 +1,7 @@
 package com.example.user.petsource.network;
 
 import com.example.user.petsource.model.Login;
+import com.example.user.petsource.model.Pet;
 import com.example.user.petsource.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -26,6 +27,12 @@ public interface API {
     @GET("users/{id}")
     Call<User> getUser(@Path("id") String id);
 
+    @GET("pets/")
+    Call<List<Pet>> getPets(@Query("userid") String userid);
+
+    @GET("pets/{id}")
+    Call<Pet> getPet(@Path("id") String id);
+
     @FormUrlEncoded
     @POST("users/login")
     Call<Login> logIn(@Field("username") String email, @Field("password") String password);
@@ -34,6 +41,12 @@ public interface API {
     @POST("users/")
     Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
                          @Field("phonenum") String phonenum);
+
+    @FormUrlEncoded
+    @POST("pets/")
+    Call<Pet> registerPet(@Field("name") String name, @Field("birthdate") String birthdate, @Field("race") String race,
+                          @Field("userid") String userid, @Field("isMale") boolean isMale, @Field("isDog") boolean isDog,
+                          @Field("isCertified") boolean isCertified);
 
     class Factory{
 
