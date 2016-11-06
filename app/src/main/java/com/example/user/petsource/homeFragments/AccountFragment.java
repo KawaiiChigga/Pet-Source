@@ -30,9 +30,7 @@ public class AccountFragment extends Fragment{
     private Call<Login> login;
 
     public AccountFragment() {
-        lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
-        lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
-        lblPhone = (TextView) getActivity().findViewById(R.id.lblFAccountPhoneNum);
+
     }
 
     @Nullable
@@ -44,6 +42,10 @@ public class AccountFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
+        lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
+        lblPhone = (TextView) getActivity().findViewById(R.id.lblFAccountPhoneNum);
 
         lblName.setText(HomeActivity.shared.getString("nameKEY", null));
         lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));

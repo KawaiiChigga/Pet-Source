@@ -12,7 +12,7 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:srcCompat="@color/common_google_signin_btn_text_dark_focused"
+        app:srcCompat="@drawable/userpicture_black"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"

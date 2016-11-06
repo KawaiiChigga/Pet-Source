@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        app:srcCompat="@drawable/petpicture_black"
+        android:id="@+id/petpicture" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblPetListYears"
+        android:textSize="12sp"
+        android:layout_alignBottom="@+id/petpicture"
+        android:layout_alignLeft="@+id/lblPetListRace"
+        android:layout_alignStart="@+id/lblPetListRace" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lblPetListRace"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:layout_above="@+id/lblPetListYears"
+        android:layout_alignLeft="@+id/lblPetListName"
+        android:layout_alignStart="@+id/lblPetListName" />
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:id="@+id/lblPetListName"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textSize="21sp"
+        android:layout_above="@+id/lblPetListRace"
+        android:layout_toRightOf="@+id/petpicture"
+        android:layout_toEndOf="@+id/petpicture"
+        android:layout_marginLeft="12dp"
+        android:layout_marginStart="12dp"
+        android:layout_width="250dp" />
+</RelativeLayout>
