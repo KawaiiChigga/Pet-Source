@@ -30,6 +30,9 @@ public class AccountFragment extends Fragment{
     private Call<Login> login;
 
     public AccountFragment() {
+        lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
+        lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
+        lblPhone = (TextView) getActivity().findViewById(R.id.lblFAccountPhoneNum);
     }
 
     @Nullable
@@ -41,27 +44,10 @@ public class AccountFragment extends Fragment{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
-        lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
-        lblPhone = (TextView) getActivity().findViewById(R.id.lblFAccountPhoneNum);
 
         lblName.setText(HomeActivity.shared.getString("nameKEY", null));
         lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
         lblPhone.setText(HomeActivity.shared.getString("phoneKEY", null));
 
-//        Call<User> user = API.Factory.getInstance().getUser("83793961e3aa3924");
-//        user.enqueue(new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                lblName.setText(response.body().getName());
-//                lblEmail.setText(response.body().getUsername());
-//                lblPhone.setText(response.body().getPhonenum());
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                t.printStackTrace();
-//            }
-//        });
     }
 }
