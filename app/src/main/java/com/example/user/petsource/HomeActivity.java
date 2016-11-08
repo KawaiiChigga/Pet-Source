@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.example.user.petsource.homeFragments.AccountFragment;
 import com.example.user.petsource.homeFragments.HistoryFragment;
 import com.example.user.petsource.homeFragments.HomeFragment;
+import com.google.android.gms.maps.SupportMapFragment;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -97,4 +98,10 @@ public class HomeActivity extends AppCompatActivity {
             return null;
         }
     }
+
+    public void gotoPetSalon(View view){
+        Intent intent = new Intent(HomeActivity.this, MapsActivity.class);
+        startActivity(intent);
+    }
+
 }
