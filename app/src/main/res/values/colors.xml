@@ -4,4 +4,5 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#444545</color>
     <color name="textColor">#FDBD15</color>
+    <color name="hyperlinkColor">#0202ff</color>
 </resources>

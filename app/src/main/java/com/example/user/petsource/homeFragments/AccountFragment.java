@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.petsource.HomeActivity;
 import com.example.user.petsource.R;
@@ -26,6 +27,7 @@ public class AccountFragment extends Fragment{
     private TextView lblName;
     private TextView lblEmail;
     private TextView lblPhone;
+    private TextView lblUpdate;
 
     private Call<Login> login;
 
@@ -51,5 +53,12 @@ public class AccountFragment extends Fragment{
         lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
         lblPhone.setText(HomeActivity.shared.getString("phoneKEY", null));
 
+        lblUpdate = (TextView) getActivity().findViewById(R.id.lblUpdateAccount);
+        lblUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "Update Account?", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
