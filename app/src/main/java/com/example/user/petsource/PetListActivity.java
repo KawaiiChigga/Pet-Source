@@ -24,6 +24,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PetListActivity extends AppCompatActivity {
+    public static final int REQUEST_PET = 1000;
+
     private List<Pet> data;
     private RecyclerView petRV;
 
@@ -36,6 +38,21 @@ public class PetListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
+
+        refresh();
+
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PetListActivity.this, AddPetActivity.class);
+                startActivityForResult(intent, REQUEST_PET);
+//                startActivity     (intent);
+            }
+        });
+    }
+
+    public void refresh(){
         prepareData();
 
         PetListAdapter adapter = new PetListAdapter(data);
@@ -43,16 +60,6 @@ public class PetListActivity extends AppCompatActivity {
         petRV.setHasFixedSize(true);
         petRV.setLayoutManager(new LinearLayoutManager(this));
         petRV.setAdapter(adapter);
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PetListActivity.this, AddPetActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     public void prepareData() {
@@ -72,6 +79,36 @@ public class PetListActivity extends AppCompatActivity {
                 Toast.makeText(PetListActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_PET) {
+            if (resultCode == RESULT_OK) {
+                Call<Pet> addPet = API.Factory.getInstance().registerPet(
+                    data.getStringExtra(AddPetActivity.KET_PETNAME),
+                    data.getStringExtra(AddPetActivity.KET_BIRTHDATE),
+                    data.getStringExtra(AddPetActivity.KET_PETRACE),
+                    data.getStringExtra(AddPetActivity.KET_IDUSER),
+                    data.getIntExtra(AddPetActivity.KET_ISMALE, 0),
+                    data.getIntExtra(AddPetActivity.KET_ISDOG, 0),
+                    data.getIntExtra(AddPetActivity.KET_ISCERTIFIED, 0)
+                );
+                addPet.enqueue(new Callback<Pet>() {
+                    @Override
+                    public void onResponse(Call<Pet> call, Response<Pet> response) {
+                        refresh();
+                    }
+
+                    @Override
+                    public void onFailure(Call<Pet> call, Throwable t) {
+
+                    }
+                });
+            } else if (resultCode == RESULT_CANCELED) {
+
+            }
+        }
     }
 
 }
