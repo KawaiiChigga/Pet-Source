@@ -34,10 +34,10 @@
         android:text="Sign Out"
         android:layout_width="320dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="80dp"
+        android:layout_above="@+id/lblUpdateAccount"
         android:id="@+id/btnFAccountSignOut"
+        android:layout_marginBottom="25dp"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
         android:onClick="signOut"/>
 
     <Button
@@ -78,4 +78,18 @@
         android:layout_toEndOf="@+id/profilepicture"
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp" />
+
+    <TextView
+        android:text="love this service? be the one now!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/lblUpdateAccount"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Menu"
+        android:textColor="@color/hyperlinkColor"
+        android:textAllCaps="false"
+        android:onClick="updateAccount"
+        android:clickable="true"/>
 </RelativeLayout>

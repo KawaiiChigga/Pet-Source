@@ -189,7 +189,7 @@
     <Switch
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/switch2"
+        android:id="@+id/switchCertified"
         android:layout_alignBaseline="@+id/textView7"
         android:layout_alignBottom="@+id/textView7"
         android:layout_alignRight="@+id/radioPet"
@@ -212,15 +212,16 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="GO!"
+        android:text="Add Pet"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:textSize="40dp"
         android:layout_marginTop="15dp"
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"
-        android:id="@+id/button"
-        android:layout_below="@+id/switch2"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/btnAddPet"
+        android:layout_below="@+id/switchCertified"
+        android:layout_centerHorizontal="true"
+        android:onClick="addpet"/>
 
 </RelativeLayout>

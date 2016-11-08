@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.user.petsource.model.User;
 import com.example.user.petsource.network.API;
@@ -71,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(RegisterActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
 
             }
         });

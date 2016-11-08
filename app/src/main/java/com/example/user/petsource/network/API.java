@@ -45,8 +45,8 @@ public interface API {
     @FormUrlEncoded
     @POST("pets/")
     Call<Pet> registerPet(@Field("name") String name, @Field("birthdate") String birthdate, @Field("race") String race,
-                          @Field("userid") String userid, @Field("isMale") boolean isMale, @Field("isDog") boolean isDog,
-                          @Field("isCertified") boolean isCertified);
+                          @Field("userid") String userid, @Field("isMale") int isMale, @Field("isDog") int isDog,
+                          @Field("isCertified") int isCertified);
 
     class Factory{
 
