@@ -17,9 +17,9 @@ import android.widget.Toast;
 import com.example.user.petsource.model.Login;
 import com.example.user.petsource.model.User;
 import com.example.user.petsource.network.API;
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
+//import com.google.android.gms.appindexing.Action;
+//import com.google.android.gms.appindexing.AppIndex;
+//import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import retrofit2.Call;
