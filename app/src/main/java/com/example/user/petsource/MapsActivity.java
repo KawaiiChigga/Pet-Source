@@ -48,7 +48,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .compassEnabled(true)
                 .rotateGesturesEnabled(true)
                 .tiltGesturesEnabled(true)
-                .mapToolbarEnabled(true);
+                .mapToolbarEnabled(true)
+                ;
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -65,9 +67,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-        LatLng sydney = new LatLng(-6.889094, 107.615934);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney, 16.0f));
+        LatLng ithb = new LatLng(-6.889094, 107.615934);
+        LatLng dimana = new LatLng(-6.889094, 107.655934);
+     //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
+        mMap.addMarker(new MarkerOptions().position(dimana).title("fak"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
     }
 
