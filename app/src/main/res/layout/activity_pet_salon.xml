@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.example.user.petsource.AddPetActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/appbar_padding_top">
+
+        <TextView
+            android:text="Pet Salon"
+            android:textSize="16pt"
+            android:textColor="@color/textColor"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="220dp"
+            android:id="@+id/textView8" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <Spinner
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/spinner"
+        android:layout_centerVertical="true"
+        />
+
+    <CheckBox
+        android:text="Nail Clipping"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox"
+        android:layout_alignLeft="@+id/checkBox"
+        android:layout_alignStart="@+id/checkBox"
+        android:layout_marginTop="16dp"
+        android:id="@+id/checkBox2" />
+
+    <CheckBox
+        android:text="Trimming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkBox2"
+        android:layout_alignLeft="@+id/checkBox2"
+        android:layout_alignStart="@+id/checkBox2"
+        android:layout_marginTop="19dp"
+        android:id="@+id/checkBox3" />
+
+    <Button
+        android:text="Search"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:textSize="40dp"
+        android:layout_marginLeft="-80dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/checkBox3"
+        android:layout_alignStart="@+id/checkBox3"
+        android:layout_marginBottom="21dp"
+        android:id="@+id/button" />
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:srcCompat="@drawable/paw"
+        android:layout_marginTop="29dp"
+        android:id="@+id/imageView5"
+        android:layout_below="@+id/appbar"
+        android:layout_alignLeft="@+id/spinner"
+        android:layout_alignStart="@+id/spinner"
+        android:layout_marginLeft="91dp"
+        android:layout_marginStart="91dp" />
+
+    <CheckBox
+        android:text="Washing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/checkBox"
+        android:layout_below="@+id/spinner"
+        android:layout_alignRight="@+id/imageView5"
+        android:layout_alignEnd="@+id/imageView5"
+        android:layout_marginRight="28dp"
+        android:layout_marginEnd="28dp" />
+
+
+</RelativeLayout>

@@ -21,4 +21,9 @@
     <string name="title_activity_pet_list">PetListActivity</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_add_pet">AddPetActivity</string>
+    <string name="title_activity_maps">Map</string>
+=======
+    <string name="title_activity_pet_salon">PetSalonActivity</string>
+    <string name="title_activity_pet_care">PetCareActivity</string>
+    <string name="title_activity_update_acc">UpdateAccActivity</string>
 </resources>
