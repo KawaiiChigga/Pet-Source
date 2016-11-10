@@ -10,9 +10,9 @@ public class Pet {
     private String birthdate;
     private String race;
     private String userid;
-    private boolean isMale;
-    private boolean isDog;
-    private boolean isCertified;
+    private int isMale;
+    private int isDog;
+    private int isCertified;
 
     public Pet() {
 
@@ -58,27 +58,27 @@ public class Pet {
         this.userid = userid;
     }
 
-    public boolean isMale() {
+    public int isMale() {
         return isMale;
     }
 
-    public void setMale(boolean male) {
+    public void setMale(int male) {
         isMale = male;
     }
 
-    public boolean isDog() {
+    public int isDog() {
         return isDog;
     }
 
-    public void setDog(boolean dog) {
+    public void setDog(int dog) {
         isDog = dog;
     }
 
-    public boolean isCertified() {
+    public int isCertified() {
         return isCertified;
     }
 
-    public void setCertified(boolean certified) {
+    public void setCertified(int certified) {
         isCertified = certified;
     }
 }
