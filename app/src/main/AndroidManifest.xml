@@ -48,6 +48,7 @@
             android:name=".AddPetActivity"
             android:label="@string/title_activity_add_pet"
             android:theme="@style/AppTheme.NoActionBar" />
+<<<<<<< HEAD
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -65,6 +66,20 @@
             android:label="@string/title_activity_maps">
 
         </activity>
+=======
+        <activity
+            android:name=".PetSalonActivity"
+            android:label="@string/title_activity_pet_salon"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".PetCareActivity"
+            android:label="@string/title_activity_pet_care"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".UpdateAccActivity"
+            android:label="@string/title_activity_update_acc"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+>>>>>>> refs/remotes/origin/master
     </application>
 
 </manifest>
