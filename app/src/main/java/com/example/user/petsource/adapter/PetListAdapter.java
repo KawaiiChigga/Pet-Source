@@ -22,6 +22,16 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.MyViewHo
         this.data = data;
     }
 
+    public void swap(List<Pet> list) {
+        if (data != null) {
+            data.clear();
+            data.addAll(list);
+        } else {
+            data = list;
+        }
+        notifyDataSetChanged();
+    }
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_pet, parent, false);
