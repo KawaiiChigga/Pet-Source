@@ -15,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -41,6 +42,12 @@ public interface API {
     @POST("users/")
     Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
                          @Field("phonenum") String phonenum);
+
+    @FormUrlEncoded
+    @PUT("users/{id}")
+    Call<User> updateAccount(@Path("id") String userid, @Field("isStaff") int isStaff, @Field("isApprove") int isApprove,
+                             @Field("joinDate") String joinDate, @Field("address") String address, @Field("city") String city,
+                             @Field("birthday") String birthday, @Field("job") String job);
 
     @FormUrlEncoded
     @POST("pets/")

@@ -1,6 +1,8 @@
 package com.example.user.petsource;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,13 +25,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddPetActivity extends AppCompatActivity {
-    public static final String KET_PETNAME = "PETNAME";
-    public static final String KET_BIRTHDATE = "BIRTHDATE";
-    public static final String KET_PETRACE = "PETRACE";
-    public static final String KET_IDUSER = "IDUSER";
-    public static final String KET_ISMALE = "ISMALE";
-    public static final String KET_ISDOG = "ISDOG";
-    public static final String KET_ISCERTIFIED = "ISCERTIFIED";
 
     private EditText txtName;
     private EditText txtBirthdate;
@@ -41,10 +36,14 @@ public class AddPetActivity extends AppCompatActivity {
     private int isMale;
     private int isDog;
     private int certified;
+
+    public SharedPreferences shared;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+
+        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
         txtName = (EditText) findViewById(R.id.txtPetName);
         txtBirthdate = (EditText) findViewById(R.id.txtPetBirthdate);
@@ -68,15 +67,25 @@ public class AddPetActivity extends AppCompatActivity {
         } else {
             certified = 0;
         }
-        Intent intent = new Intent(this, AddPetActivity.class);
-        intent.putExtra(KET_PETNAME, txtName.getText().toString());
-        intent.putExtra(KET_BIRTHDATE, txtBirthdate.getText().toString());
-        intent.putExtra(KET_PETRACE, txtRace.getText().toString());
-        intent.putExtra(KET_IDUSER, HomeActivity.shared.getString("idKEY", null));
-        intent.putExtra(KET_ISMALE, isMale);
-        intent.putExtra(KET_ISDOG, isDog);
-        intent.putExtra(KET_ISCERTIFIED, certified);
-        setResult(RESULT_OK, intent);
-        finish();
+        Call<Pet> add_pet = API.Factory.getInstance().registerPet(
+                txtName.getText().toString(),
+                txtBirthdate.getText().toString(),
+                txtRace.getText().toString(),
+                shared.getString("idKEY", null),
+                isMale,
+                isDog,
+                certified
+        );
+        add_pet.enqueue(new Callback<Pet>() {
+            @Override
+            public void onResponse(Call<Pet> call, Response<Pet> response) {
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Pet> call, Throwable t) {
+                Toast.makeText(AddPetActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

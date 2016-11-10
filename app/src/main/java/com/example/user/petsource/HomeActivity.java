@@ -20,10 +20,14 @@ import android.widget.Toast;
 import com.example.user.petsource.homeFragments.AccountFragment;
 import com.example.user.petsource.homeFragments.HistoryFragment;
 import com.example.user.petsource.homeFragments.HomeFragment;
+import com.example.user.petsource.upHomeFragments.UpAccountFragment;
+import com.example.user.petsource.upHomeFragments.UpHistoryFragment;
+import com.example.user.petsource.upHomeFragments.UpHomeFragment;
 
-public class HomeActivity extends AppCompatActivity {
+    public class HomeActivity extends AppCompatActivity {
 
-    private SectionsPagerAdapter mSectionsPagerAdapter;
+    private CustomerSectionsPagerAdapter mSectionsPagerAdapter;
+    private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TextView lblName;
 
@@ -35,15 +39,21 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
+
+        if (shared.getInt("isStaffKEY", 0) == 1 && shared.getInt("isApproveKEY", 0) == 1) {
+            mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
+            mViewPager = (ViewPager) findViewById(R.id.container);
+            mViewPager.setAdapter(mCSectionsPagerAdapter);
+        } else {
+            mSectionsPagerAdapter = new CustomerSectionsPagerAdapter(getSupportFragmentManager());
+            mViewPager = (ViewPager) findViewById(R.id.container);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
+        }
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
     }
 
     public void gotoPetList(View view) {
@@ -60,9 +70,9 @@ public class HomeActivity extends AppCompatActivity {
         finish();
     }
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+    public class CustomerSectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public CustomerSectionsPagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
@@ -76,6 +86,45 @@ public class HomeActivity extends AppCompatActivity {
                     fragment = new HistoryFragment(); break;
                 case 2 :
                     fragment = new AccountFragment(); break;
+            }
+            return fragment;
+        }
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "HOME";
+                case 1:
+                    return "HISTORY";
+                case 2:
+                    return "MY PROFILE";
+            }
+            return null;
+        }
+    }
+
+    public class StaffSectionsPagerAdapter extends FragmentPagerAdapter {
+        public StaffSectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        Fragment fragment;
+
+        @Override
+        public Fragment getItem(int position) {
+            switch(position) {
+                case 0 :
+                    fragment = new UpHomeFragment(); break;
+                case 1 :
+                    fragment = new UpHistoryFragment(); break;
+                case 2 :
+                    fragment = new UpAccountFragment(); break;
             }
             return fragment;
         }

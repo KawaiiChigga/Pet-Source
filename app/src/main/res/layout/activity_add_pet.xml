@@ -111,21 +111,13 @@
             android:id="@+id/radioDog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Dog"
-            android:layout_alignBaseline="@+id/lblPetSpecies"
-            android:layout_alignBottom="@+id/lblPetSpecies"
-            android:layout_toRightOf="@+id/lblPetBirthdate"
-            android:layout_toEndOf="@+id/lblPetBirthdate" />
+            android:text="Dog"/>
 
         <RadioButton
             android:id="@+id/radioCat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cat"
-            android:layout_alignBaseline="@+id/lblPetSpecies"
-            android:layout_alignBottom="@+id/lblPetSpecies"
-            android:layout_toRightOf="@+id/lblPetBirthdate"
-            android:layout_toEndOf="@+id/lblPetBirthdate" />
+            android:text="Cat"/>
 
     </RadioGroup>
 
@@ -141,21 +133,13 @@
             android:id="@+id/radioMale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Male"
-            android:layout_alignBaseline="@+id/lblPetSpecies"
-            android:layout_alignBottom="@+id/lblPetSpecies"
-            android:layout_toRightOf="@+id/lblPetBirthdate"
-            android:layout_toEndOf="@+id/lblPetBirthdate" />
+            android:text="Male"/>
 
         <RadioButton
-        android:id="@+id/radioFemale"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Female"
-        android:layout_alignBaseline="@+id/lblPetSpecies"
-        android:layout_alignBottom="@+id/lblPetSpecies"
-        android:layout_toRightOf="@+id/lblPetBirthdate"
-        android:layout_toEndOf="@+id/lblPetBirthdate" />
+            android:id="@+id/radioFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female"/>
 
     </RadioGroup>
 

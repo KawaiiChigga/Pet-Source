@@ -57,7 +57,8 @@ public class AccountFragment extends Fragment{
         lblUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Update Account?", Toast.LENGTH_SHORT).show();
+                //change database
+                Toast.makeText(getActivity(), "Thank You!", Toast.LENGTH_SHORT).show();
             }
         });
     }

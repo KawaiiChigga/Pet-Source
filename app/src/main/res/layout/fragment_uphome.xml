@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.user.petsource.upHomeFragments.UpHomeFragment">
+
+    <Button
+        android:text="MySalon"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:id="@+id/btnFUpHomeMyCare"
+        android:layout_below="@+id/btnFUpHomeMySalon"
+        android:layout_alignLeft="@+id/btnFUpHomeMySalon"
+        android:layout_alignStart="@+id/btnFUpHomeMySalon"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:text="MySalon"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:id="@+id/btnFUpHomeMySalon"
+        android:layout_below="@+id/btnFUpHomePetRescue"
+        android:layout_alignLeft="@+id/btnFUpHomePetRescue"
+        android:layout_alignStart="@+id/btnFUpHomePetRescue"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:text="PetRescue"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:id="@+id/btnFUpHomePetRescue"
+        android:layout_below="@+id/btnFUpHomePetCare"
+        android:layout_alignLeft="@+id/btnFUpHomePetCare"
+        android:layout_alignStart="@+id/btnFUpHomePetCare"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:text="PetCare"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:id="@+id/btnFUpHomePetCare"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/btnFUpHomePetSalon"
+        android:layout_alignLeft="@+id/btnFUpHomePetSalon"
+        android:layout_alignStart="@+id/btnFUpHomePetSalon"/>
+
+    <Button
+        android:text="PetSalon"
+        android:layout_width="320dp"
+        android:layout_height="70dp"
+        android:id="@+id/btnFUpHomePetSalon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp" />
+
+</RelativeLayout>
