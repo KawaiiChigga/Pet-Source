@@ -1,6 +1,8 @@
 package com.example.user.petsource;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +25,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class AddPetActivity extends AppCompatActivity {
+
     private EditText txtName;
     private EditText txtBirthdate;
     private EditText txtRace;
@@ -33,10 +36,14 @@ public class AddPetActivity extends AppCompatActivity {
     private int isMale;
     private int isDog;
     private int certified;
+
+    public SharedPreferences shared;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+
+        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
         txtName = (EditText) findViewById(R.id.txtPetName);
         txtBirthdate = (EditText) findViewById(R.id.txtPetBirthdate);
@@ -47,46 +54,37 @@ public class AddPetActivity extends AppCompatActivity {
     }
 
     public void addpet(View view) {
-        rbtGender.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioMale : isMale = 1; break;
-                    case R.id.radioFemale : isMale = 0; break;
-                }
-            }
-        });
-        rbtSpecies.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId) {
-                    case R.id.radioDog : isDog = 1; break;
-                    case R.id.radioCat : isDog = 0; break;
-                }
-            }
-        });
-        isCertified.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    certified = 1;
-                } else {
-                    certified = 0;
-                }
-            }
-        });
-        Call<Pet> addPet = API.Factory.getInstance().registerPet(txtName.getText().toString(), txtBirthdate.getText().toString(),
-                txtRace.getText().toString(), HomeActivity.shared.getString("idKEY", null).toString(), isMale, isDog, certified);
-        addPet.enqueue(new Callback<Pet>() {
+        switch (rbtGender.getCheckedRadioButtonId()) {
+            case R.id.radioMale : isMale = 1; break;
+            case R.id.radioFemale : isMale = 0; break;
+        }
+        switch (rbtSpecies.getCheckedRadioButtonId()) {
+            case R.id.radioDog : isDog = 1; break;
+            case R.id.radioCat : isDog = 0; break;
+        }
+        if (isCertified.isChecked()) {
+            certified = 1;
+        } else {
+            certified = 0;
+        }
+        Call<Pet> add_pet = API.Factory.getInstance().registerPet(
+                txtName.getText().toString(),
+                txtBirthdate.getText().toString(),
+                txtRace.getText().toString(),
+                shared.getString("idKEY", null),
+                isMale,
+                isDog,
+                certified
+        );
+        add_pet.enqueue(new Callback<Pet>() {
             @Override
             public void onResponse(Call<Pet> call, Response<Pet> response) {
-                //startactivitfor result aja, trus buat refresh()
                 finish();
             }
 
             @Override
             public void onFailure(Call<Pet> call, Throwable t) {
-                Toast.makeText(AddPetActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddPetActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
             }
         });
     }
