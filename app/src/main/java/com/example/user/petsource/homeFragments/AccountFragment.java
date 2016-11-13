@@ -2,6 +2,7 @@ package com.example.user.petsource.homeFragments;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.user.petsource.HomeActivity;
 import com.example.user.petsource.R;
+import com.example.user.petsource.UpdateAccActivity;
 import com.example.user.petsource.model.Login;
 import com.example.user.petsource.network.API;
 import com.example.user.petsource.model.User;
@@ -28,8 +30,6 @@ public class AccountFragment extends Fragment{
     private TextView lblEmail;
     private TextView lblPhone;
     private TextView lblUpdate;
-
-    private Call<Login> login;
 
     public AccountFragment() {
 
@@ -57,8 +57,8 @@ public class AccountFragment extends Fragment{
         lblUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //change database
-                Toast.makeText(getActivity(), "Thank You!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(), UpdateAccActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -29,7 +29,7 @@ import com.example.user.petsource.upHomeFragments.UpHomeFragment;
     private CustomerSectionsPagerAdapter mSectionsPagerAdapter;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private TextView lblName;
+    private TextView lblUpdate;
 
     public static SharedPreferences shared;
     @Override
