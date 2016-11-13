@@ -56,6 +56,22 @@ import com.example.user.petsource.upHomeFragments.UpHomeFragment;
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+
+        public void gotoPetSalon(View view) {
+            Intent intent = new Intent(this, PetSalonActivity.class);
+            startActivity(intent);
+        }
+
+        public void gotoPetCare(View view) {
+            Intent intent = new Intent(this, PetCareActivity.class);
+            startActivity(intent);
+        }
+
+//        public void gotoPetRescue(View view) {
+//            Intent intent = new Intent(this, PetRescueActivity.class);
+//            startActivity(intent);
+//        }
+
     public void gotoPetList(View view) {
         Intent intent = new Intent(this, PetListActivity.class);
         startActivity(intent);
