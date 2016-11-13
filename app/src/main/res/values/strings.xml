@@ -26,4 +26,5 @@
     <string name="title_activity_pet_salon">PetSalonActivity</string>
     <string name="title_activity_pet_care">PetCareActivity</string>
     <string name="title_activity_update_acc">UpdateAccActivity</string>
+    <string name="title_activity_maps2">Map</string>
 </resources>

@@ -58,7 +58,7 @@ import com.example.user.petsource.upHomeFragments.UpHomeFragment;
 
 
         public void gotoPetSalon(View view) {
-            Intent intent = new Intent(this, PetSalonActivity.class);
+            Intent intent = new Intent(this, MapsActivity.class);
             startActivity(intent);
         }
 

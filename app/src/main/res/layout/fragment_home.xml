@@ -22,7 +22,8 @@
         android:layout_below="@+id/imageView8"
         android:layout_toRightOf="@+id/section_label"
         android:layout_toEndOf="@+id/section_label"
-        android:layout_marginTop="36dp" />
+        android:layout_marginTop="36dp"
+        android:onClick="gotoPetSalon"/>
 
     <ImageView
         android:layout_width="wrap_content"
