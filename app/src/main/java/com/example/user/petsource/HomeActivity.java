@@ -1,6 +1,5 @@
     package com.example.user.petsource;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,11 +14,12 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.user.petsource.homeFragments.AccountFragment;
 import com.example.user.petsource.homeFragments.HistoryFragment;
 import com.example.user.petsource.homeFragments.HomeFragment;
+import com.example.user.petsource.petCare.PetCareActivity;
+import com.example.user.petsource.petSalon.PetSalonActivity;
 import com.example.user.petsource.upHomeFragments.UpAccountFragment;
 import com.example.user.petsource.upHomeFragments.UpHistoryFragment;
 import com.example.user.petsource.upHomeFragments.UpHomeFragment;
@@ -56,21 +56,6 @@ import com.example.user.petsource.upHomeFragments.UpHomeFragment;
         tabLayout.setupWithViewPager(mViewPager);
     }
 
-
-        public void gotoPetSalon(View view) {
-            Intent intent = new Intent(this, PetSalonActivity.class);
-            startActivity(intent);
-        }
-
-        public void gotoPetCare(View view) {
-            Intent intent = new Intent(this, PetCareActivity.class);
-            startActivity(intent);
-        }
-
-//        public void gotoPetRescue(View view) {
-//            Intent intent = new Intent(this, PetRescueActivity.class);
-//            startActivity(intent);
-//        }
 
     public void gotoPetList(View view) {
         Intent intent = new Intent(this, PetListActivity.class);

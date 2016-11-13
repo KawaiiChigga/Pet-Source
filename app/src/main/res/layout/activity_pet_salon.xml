@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.user.petsource.AddPetActivity">
+    tools:context="com.example.user.petsource.petSalon.PetSalonActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -28,8 +28,11 @@
         android:layout_width="300dp"
         android:layout_height="30dp"
         android:layout_marginLeft="40dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:id="@+id/spinner"
         android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         />
 
     <CheckBox
@@ -61,8 +64,7 @@
         android:textSize="40dp"
         android:layout_marginLeft="-80dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/checkBox3"
-        android:layout_alignStart="@+id/checkBox3"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
         android:id="@+id/button" />
 
@@ -73,10 +75,7 @@
         android:layout_marginTop="29dp"
         android:id="@+id/imageView5"
         android:layout_below="@+id/appbar"
-        android:layout_alignLeft="@+id/spinner"
-        android:layout_alignStart="@+id/spinner"
-        android:layout_marginLeft="91dp"
-        android:layout_marginStart="91dp" />
+        android:layout_centerHorizontal="true" />
 
     <CheckBox
         android:text="Washing"
