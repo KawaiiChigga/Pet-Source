@@ -1,4 +1,5 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,36 +14,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <Button
-        android:text="PetRescue"
-        android:layout_width="320dp"
-        android:layout_height="90dp"
-        android:id="@+id/btnFHomePetRescue"
-        android:layout_below="@+id/btnFHomePetCare"
-        android:layout_alignLeft="@+id/btnFHomePetCare"
-        android:layout_alignStart="@+id/btnFHomePetCare"
-        android:layout_marginTop="35dp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/petrescue"
+        android:id="@+id/imageView9"
+        android:layout_below="@+id/imageView8"
+        android:layout_toRightOf="@+id/section_label"
+        android:layout_toEndOf="@+id/section_label"
+        android:layout_marginTop="36dp" />
 
-    <Button
-        android:text="PetCare"
-        android:layout_width="320dp"
-        android:layout_height="90dp"
-        android:id="@+id/btnFHomePetCare"
-        android:layout_marginTop="35dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/btnFHomePetSalon"
-        android:layout_alignLeft="@+id/btnFHomePetSalon"
-        android:layout_alignStart="@+id/btnFHomePetSalon"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/petcare"
+        android:id="@+id/imageView8"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/imageView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="gotoPetCare"/>
 
-    <Button
-        android:text="PetSalon"
-        android:layout_width="320dp"
-        android:layout_height="90dp"
-        android:id="@+id/btnFHomePetSalon"
-        android:layout_below="@+id/section_label"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="37dp"
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/petsalon"
+        android:id="@+id/imageView7"
+        android:layout_marginTop="30dp"
         android:onClick="gotoPetSalon"
-        />
+        android:layout_below="@+id/section_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
