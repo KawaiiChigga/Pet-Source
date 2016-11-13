@@ -57,7 +57,7 @@ public interface API {
 
     class Factory{
 
-        public static final String BASE_URL = "http://192.168.32.1:2403/";
+        public static final String BASE_URL = "https://petsource.herokuapp.com/";
         public static API service;
 
         public static API getInstance(){
