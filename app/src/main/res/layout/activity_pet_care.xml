@@ -15,12 +15,12 @@
 
         <TextView
             android:text="Pet Care"
-            android:textSize="16pt"
+            android:textSize="20pt"
             android:textColor="@color/textColor"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:layout_marginLeft="230dp"
-            android:id="@+id/textView8" />
+            android:layout_marginLeft="200dp"
+            android:id="@+id/lblCareTitle" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -38,6 +38,7 @@
     <Spinner
         android:layout_width="300dp"
         android:layout_height="30dp"
+        android:backgroundTint="@color/textColor"
         android:layout_marginLeft="40dp"
         android:layout_below="@+id/imageView6"
         android:layout_centerHorizontal="true"
@@ -53,7 +54,7 @@
         android:layout_below="@+id/spinner2"
         android:layout_alignLeft="@+id/spinner2"
         android:layout_alignStart="@+id/spinner2"
-        android:layout_marginTop="37dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/textView" />
 
     <EditText
@@ -75,7 +76,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/textView2"
         android:layout_below="@+id/editText"
         android:layout_alignLeft="@+id/editText"
@@ -100,11 +101,12 @@
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"
         android:textSize="40dp"
-        android:id="@+id/button2"
-        android:layout_marginBottom="12dp"
+        android:id="@+id/btnCare"
+        android:layout_marginBottom="22dp"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2" />
+        android:layout_alignStart="@+id/editText2"
+        android:onClick="gotoMaps"/>
 
 
 </RelativeLayout>

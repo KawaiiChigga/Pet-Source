@@ -81,4 +81,8 @@ public class Pet {
     public void setCertified(int certified) {
         isCertified = certified;
     }
+
+    public String toString() {
+        return name;
+    }
 }

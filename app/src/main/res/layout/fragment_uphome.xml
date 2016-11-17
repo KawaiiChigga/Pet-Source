@@ -9,7 +9,9 @@
     tools:context="com.petsource.upHomeFragments.UpHomeFragment">
 
     <Button
-        android:text="MySalon"
+        android:text="My Care"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:id="@+id/btnFUpHomeMyCare"
@@ -19,7 +21,9 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:text="MySalon"
+        android:text="My Salon"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:id="@+id/btnFUpHomeMySalon"
@@ -29,7 +33,9 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:text="PetRescue"
+        android:text="Pet Rescue"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:id="@+id/btnFUpHomePetRescue"
@@ -39,7 +45,9 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:text="PetCare"
+        android:text="Pet Care"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:id="@+id/btnFUpHomePetCare"
@@ -50,11 +58,14 @@
         android:layout_alignStart="@+id/btnFUpHomePetSalon"/>
 
     <Button
-        android:text="PetSalon"
+        android:text="Pet Salon"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="70dp"
         android:id="@+id/btnFUpHomePetSalon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        />
 
 </RelativeLayout>
