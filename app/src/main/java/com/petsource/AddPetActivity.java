@@ -2,12 +2,15 @@ package com.petsource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.petsource.R;
@@ -31,11 +34,22 @@ public class AddPetActivity extends AppCompatActivity {
     private int isDog;
     private int certified;
 
+    private Button btnAddPet;
+    private TextView lblAddTitle;
+
     public SharedPreferences shared;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        btnAddPet = (Button) findViewById(R.id.btnAddPet);
+        btnAddPet.setTypeface(typeface);
+
+        lblAddTitle = (TextView) findViewById(R.id.lblAddTitle);
+        lblAddTitle.setTypeface(typeface);
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 

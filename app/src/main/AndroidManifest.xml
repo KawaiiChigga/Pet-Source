@@ -66,7 +66,7 @@
 
         <activity
             android:name="com.petsource.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
         <activity
             android:name="com.petsource.petSalon.PetSalonActivity"
             android:label="@string/title_activity_pet_salon"
@@ -85,7 +85,7 @@
         <activity
             android:name="com.petsource.petRescue.PetRescueActivity"
             android:label="@string/title_activity_pet_rescue"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

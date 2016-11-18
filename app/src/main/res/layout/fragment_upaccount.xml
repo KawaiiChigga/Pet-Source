@@ -23,6 +23,8 @@
 
     <Button
         android:text="Settings"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_above="@+id/btnFUpAccountSignOut"
@@ -32,6 +34,8 @@
 
     <Button
         android:text="Sign Out"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_above="@+id/lblUpdateAccount"
@@ -43,6 +47,8 @@
 
     <Button
         android:text="My Pets"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_width="320dp"
         android:layout_height="50dp"
         android:layout_below="@+id/profilepicture"

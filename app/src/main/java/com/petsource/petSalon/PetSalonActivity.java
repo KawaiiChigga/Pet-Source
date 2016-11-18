@@ -1,15 +1,45 @@
 package com.petsource.petSalon;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
+<<<<<<< HEAD
 import com.petsource.R;
+=======
+import com.example.user.petsource.R;
+import com.petsource.HomeActivity;
+import com.petsource.MapsActivity;
+import com.petsource.model.Pet;
+import com.petsource.network.API;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+>>>>>>> refs/remotes/origin/master
 
 public class PetSalonActivity extends AppCompatActivity {
+    List<Pet> mypet;
+    Spinner staticSpinner;
+
+    private Button btnSalon;
+    private TextView lblSalonTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +47,65 @@ public class PetSalonActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pet_salon);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        btnSalon = (Button) findViewById(R.id.btnSalon);
+        btnSalon.setTypeface(typeface);
+
+        lblSalonTitle = (TextView) findViewById(R.id.lblSalonTitle);
+        lblSalonTitle.setTypeface(typeface);
+
+        staticSpinner = (Spinner) findViewById(R.id.spinnerONE);
+
+        mypet = new ArrayList<Pet>();
+
+        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(HomeActivity.shared.getString("idKEY", null));
+        getpet.enqueue(new Callback<List<Pet>>() {
+            @Override
+            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+                for (Pet p : response.body() ) {
+                    Log.d("DATAS", p.getName());
+                    mypet.add(p);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Pet>> call, Throwable t) {
+
+            }
+        });
+        // Create an ArrayAdapter using the string array and a default spinner
+//        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
+//                .createFromResource(this, R.array.spinner,
+//                R.layout.spinner_layout);
+
+        ArrayAdapter<Pet> petAdapter = new ArrayAdapter<Pet>(this, R.layout.spinner_layout, mypet);
+
+        // Specify the layout to use when the list of choices appears
+        petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        staticSpinner.setAdapter(petAdapter);
+
+        staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(PetSalonActivity.this, parent.getItemAtPosition(position) + "", Toast.LENGTH_SHORT);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
+
+
+    public void gotoMaps(View view) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        startActivity(intent);
+    }
+
 
 }
