@@ -14,7 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.adapter.PetListAdapter;
 import com.petsource.model.Pet;
 import com.petsource.network.API;

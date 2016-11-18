@@ -15,7 +15,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.petsource.R;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.homeFragments.AccountFragment;
 import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
@@ -29,6 +32,9 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TextView lblUpdate;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+    private GoogleApiClient mGoogleApiClient;
 
     public static SharedPreferences shared;
     @Override
@@ -38,6 +44,9 @@ import com.petsource.upHomeFragments.UpHomeFragment;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
@@ -62,12 +71,14 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     }
 
     public void signOut(View view) {
-        SharedPreferences.Editor editor = shared.edit();
-        editor.clear();
-        editor.commit();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
+//        SharedPreferences.Editor editor = shared.edit();
+//        editor.clear();
+//        editor.commit();
+//        Intent intent = new Intent(this, LoginActivity.class);
+//        startActivity(intent);
+//        finish();
+        mFirebaseAuth.signOut();
+        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
     }
 
     public class CustomerSectionsPagerAdapter extends FragmentPagerAdapter {

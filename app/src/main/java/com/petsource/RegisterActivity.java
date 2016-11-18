@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.model.User;
 import com.petsource.network.API;
 

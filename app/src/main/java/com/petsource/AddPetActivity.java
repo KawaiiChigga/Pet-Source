@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
