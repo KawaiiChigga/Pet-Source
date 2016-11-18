@@ -17,10 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import com.petsource.R;
-=======
-import com.example.user.petsource.R;
 import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
 import com.petsource.model.Pet;
@@ -32,7 +29,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
->>>>>>> refs/remotes/origin/master
 
 public class PetSalonActivity extends AppCompatActivity {
     List<Pet> mypet;

@@ -1,5 +1,7 @@
 package com.petsource.model;
 
+import android.net.Uri;
+
 /**
  * Created by USER on 01/11/2016.
  */
@@ -8,7 +10,6 @@ public class User {
 
     private String id;
     private String username;
-    private String phonenum;
     private String name;
 
     private int isStaff;
@@ -19,6 +20,7 @@ public class User {
     private String city;
     private String birthday;
     private String job;
+    private Uri url;
 
     public User() {
     }
@@ -37,14 +39,6 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPhonenum() {
-        return phonenum;
-    }
-
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
     }
 
     public String getName() {
@@ -109,5 +103,27 @@ public class User {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public Uri getUrl() {
+        return url;
+    }
+
+    public void setUrl(Uri url) {
+        this.url = url;
+    }
+
+    public User(String id, String username, String name, int isStaff, int isApprove, String joinDate, String address, String city, String birthday, String job, Uri url) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.isStaff = isStaff;
+        this.isApprove = isApprove;
+        this.joinDate = joinDate;
+        this.address = address;
+        this.city = city;
+        this.birthday = birthday;
+        this.job = job;
+        this.url = url;
     }
 }

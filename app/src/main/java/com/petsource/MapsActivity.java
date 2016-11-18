@@ -1,13 +1,13 @@
-//package com.petsource;
-//
-//import android.Manifest;
-//import android.content.pm.PackageManager;
-//import android.support.v4.app.ActivityCompat;
-//import android.support.v4.app.FragmentActivity;
-//import android.os.Bundle;
-//import android.util.Log;
-//
-//import com.example.user.petsource.R;
+package com.petsource;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
+import android.os.Bundle;
+import android.util.Log;
+
+//import com.petsource.R;
 //import com.google.android.gms.maps.CameraUpdateFactory;
 //import com.google.android.gms.maps.GoogleMap;
 //import com.google.android.gms.maps.GoogleMapOptions;
@@ -16,7 +16,7 @@
 //import com.google.android.gms.maps.model.LatLng;
 //import com.google.android.gms.maps.model.MarkerOptions;
 //
-//public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity /*implements OnMapReadyCallback*/ {
 //
 //    private GoogleMap mMap;
 //    GoogleMapOptions options = new GoogleMapOptions();
@@ -75,5 +75,5 @@
 //        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 //
 //    }
-//
-//}
+
+}

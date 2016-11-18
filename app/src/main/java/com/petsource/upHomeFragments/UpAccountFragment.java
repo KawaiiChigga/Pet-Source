@@ -36,11 +36,9 @@ public class UpAccountFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         lblName = (TextView) getActivity().findViewById(R.id.lblFUpAccountName);
         lblEmail = (TextView) getActivity().findViewById(R.id.lblFUpAccountEmail);
-        lblPhone = (TextView) getActivity().findViewById(R.id.lblFUpAccountPhoneNum);
 
         lblName.setText(HomeActivity.shared.getString("nameKEY", null));
         lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
-        lblPhone.setText(HomeActivity.shared.getString("phoneKEY", null));
 
 
     }

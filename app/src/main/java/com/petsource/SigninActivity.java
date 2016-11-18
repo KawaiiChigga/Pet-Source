@@ -72,7 +72,6 @@ public class SigninActivity extends AppCompatActivity {
                             editor.putString("idKEY", response.body().getId());
                             editor.putString("emailKEY", response.body().getUsername());
                             editor.putString("nameKEY", response.body().getName());
-                            editor.putString("phoneKEY", response.body().getPhonenum());
                             editor.putInt("isStaffKEY", response.body().getIsStaff());
                             editor.putInt("isApproveKEY", response.body().getIsApprove());
                             editor.commit();

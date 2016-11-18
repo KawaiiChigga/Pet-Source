@@ -2,6 +2,7 @@ package com.petsource;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -24,6 +25,9 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.petsource.model.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
@@ -35,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mFirebaseAuth;
+    private DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         firstActivity = this;
 
         mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
-        mSignInButton.setStyle(SignInButton.SIZE_STANDARD, SignInButton.COLOR_DARK);
+        mSignInButton.setStyle(SignInButton.SIZE_STANDARD, SignInButton.COLOR_AUTO);
 
         mSignInButton.setOnClickListener(this);
 
@@ -58,6 +63,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .build();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
     }
 
     private void handleFirebaseAuthResult(AuthResult authResult) {
@@ -109,6 +115,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
+
+                // Put in SharedPreferences
+                SharedPreferences.Editor editor = SplashActivity.shared.edit();
+
+                editor.putString("idKEY", account.getId());
+                editor.putString("emailKEY", account.getEmail());
+                editor.putString("nameKEY", account.getDisplayName());
+                editor.putInt("isStaffKEY", 0);
+                editor.putInt("isApproveKEY", 0);
+                editor.putString("joinDateKEY", "2016-11-19");
+                editor.putString("addressKEY", "");
+                editor.putString("cityKEY", "");
+                editor.putString("birthdayKEY", "");
+                editor.putString("jobKEY", "");
+                editor.putString("urlKEY", account.getPhotoUrl().toString());
+                editor.commit();
             } else {
                 // Google Sign In failed
                 Log.e(TAG, "Google Sign In failed.");

@@ -10,21 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 
-<<<<<<< HEAD
 import com.petsource.R;
-=======
-import com.example.user.petsource.R;
 import com.petsource.petCare.PetCareActivity;
 import com.petsource.petRescue.PetRescueActivity;
 import com.petsource.petSalon.PetSalonActivity;
-
-import static com.example.user.petsource.R.drawable.petsalon;
-
->>>>>>> refs/remotes/origin/master
-
-/**
- * Created by Daniel on 11/9/2016.
- */
 
 public class UpHomeFragment extends Fragment{
 

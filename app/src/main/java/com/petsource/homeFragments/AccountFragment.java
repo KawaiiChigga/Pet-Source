@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.petsource.HomeActivity;
@@ -17,7 +18,6 @@ import com.petsource.UpdateAccActivity;
 public class AccountFragment extends Fragment{
     private TextView lblName;
     private TextView lblEmail;
-    private TextView lblPhone;
     private TextView lblUpdate;
 
     public AccountFragment() {
@@ -36,11 +36,9 @@ public class AccountFragment extends Fragment{
 
         lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
         lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
-        lblPhone = (TextView) getActivity().findViewById(R.id.lblFAccountPhoneNum);
 
         lblName.setText(HomeActivity.shared.getString("nameKEY", null));
         lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
-        lblPhone.setText(HomeActivity.shared.getString("phoneKEY", null));
 
         lblUpdate = (TextView) getActivity().findViewById(R.id.lblUpdateAccount);
         lblUpdate.setOnClickListener(new View.OnClickListener() {
@@ -50,5 +48,6 @@ public class AccountFragment extends Fragment{
                 startActivity(intent);
             }
         });
+
     }
 }
