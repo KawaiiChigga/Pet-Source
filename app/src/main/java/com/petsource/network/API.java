@@ -1,5 +1,6 @@
 package com.petsource.network;
 
+import com.petsource.model.Info;
 import com.petsource.model.Login;
 import com.petsource.model.Pet;
 import com.petsource.model.User;
@@ -31,6 +32,9 @@ public interface API {
     @GET("pets/")
     Call<List<Pet>> getPets(@Query("userid") String userid);
 
+    @GET("infouser/")
+    Call<Info> checkAccount(@Query("userid") String userid);
+
     @GET("pets/{id}")
     Call<Pet> getPet(@Path("id") String id);
 
@@ -42,6 +46,10 @@ public interface API {
     @POST("users/")
     Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
                          @Field("phonenum") String phonenum);
+
+    @FormUrlEncoded
+    @POST("infouser/")
+    Call<Info> registerAccount(@Field("userid") String uid, @Field("isStaff") int isStaff, @Field("isApproved") int isApproved);
 
     @FormUrlEncoded
     @PUT("users/{id}")

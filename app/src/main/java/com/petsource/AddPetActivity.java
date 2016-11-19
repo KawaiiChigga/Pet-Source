@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,22 +14,27 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddPetActivity extends AppCompatActivity {
+public class AddPetActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private EditText txtName;
-    private EditText txtBirthdate;
+    private TextView txtBirthdate;
     private EditText txtRace;
     private RadioGroup rbtGender;
     private RadioGroup rbtSpecies;
     private Switch isCertified;
+    private FirebaseAuth mFirebaseAuth;
 
     private int isMale;
     private int isDog;
@@ -54,11 +60,27 @@ public class AddPetActivity extends AppCompatActivity {
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
         txtName = (EditText) findViewById(R.id.txtPetName);
-        txtBirthdate = (EditText) findViewById(R.id.txtPetBirthdate);
+        txtBirthdate = (TextView) findViewById(R.id.txtPetBirthdate);
         txtRace = (EditText) findViewById(R.id.txtPetRace);
         rbtGender = (RadioGroup) findViewById(R.id.radioSex);
         rbtSpecies = (RadioGroup) findViewById(R.id.radioPet);
         isCertified = (Switch) findViewById(R.id.switchCertified);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        txtBirthdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        AddPetActivity.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.vibrate(false);
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
     }
 
     public void addpet(View view) {
@@ -79,7 +101,7 @@ public class AddPetActivity extends AppCompatActivity {
                 txtName.getText().toString(),
                 txtBirthdate.getText().toString(),
                 txtRace.getText().toString(),
-                shared.getString("idKEY", null),
+                mFirebaseAuth.getCurrentUser().getUid(),
                 isMale,
                 isDog,
                 certified
@@ -95,5 +117,11 @@ public class AddPetActivity extends AppCompatActivity {
                 Toast.makeText(AddPetActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        txtBirthdate.setText(date);
     }
 }

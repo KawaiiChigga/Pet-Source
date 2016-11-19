@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
 import com.petsource.adapter.PetListAdapter;
 import com.petsource.model.Pet;
@@ -30,6 +31,7 @@ public class PetListActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
+    private FirebaseAuth mFirebaseAuth;
 
     public PetListAdapter adapter;
     public static SharedPreferences shared;
@@ -44,7 +46,7 @@ public class PetListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
-
+        mFirebaseAuth = FirebaseAuth.getInstance();
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
@@ -52,23 +54,18 @@ public class PetListActivity extends AppCompatActivity {
         prepareData();
 
         adapter = new PetListAdapter(data);
+        LinearLayoutManager manager = new LinearLayoutManager(this);
         petRV.setHasFixedSize(true);
-        petRV.setLayoutManager(new LinearLayoutManager(this));
+        petRV.setLayoutManager(manager);
         petRV.setAdapter(adapter);
 
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.d("DATAS", ">>> REFRESH!");
-//                data.clear();
                 prepareData();
-                adapter.notifyDataSetChanged();
-
-//                petRV.setAdapter(adapter);
-//                adapter.swap(data);
             }
         });
-
+        swipeRefresh.setRefreshing(true);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,26 +75,32 @@ public class PetListActivity extends AppCompatActivity {
             }
         });
 
+
     }
 
     public void prepareData() {
-        Log.d("DATAS", ">>>>>>>>>>>>>PREPARE DATA");
-        Call<List<Pet>> p = API.Factory.getInstance().getPets(shared.getString("idKEY", null));
+        Call<List<Pet>> p = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
         p.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+                swipeRefresh.setRefreshing(false);
+                data.clear();
                 for (Pet p : response.body() ) {
-                    Log.d("DATAS", p.getName());
                     data.add(p);
                 }
+                adapter = new PetListAdapter(data);
+                LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
+                petRV.setHasFixedSize(true);
+                petRV.setLayoutManager(manager);
+                petRV.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<List<Pet>> call, Throwable t) {
+                swipeRefresh.setRefreshing(false);
                 Toast.makeText(PetListActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
             }
         });
-        Log.d("DATAS", "TOTAL : " + data.size());
     }
 
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "347080129856-56c94mphqv2hvta1rhtc9aq32f39h515.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.petsource",
+            "certificate_hash": "7E20AA9FEC5CDCF5C8982348821324CDB581E4AF"
+          }
+        },
+        {
           "client_id": "347080129856-5um4grf6dm2t35jijspjpdqkomjji0p5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "347080129856-5um4grf6dm2t35jijspjpdqkomjji0p5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

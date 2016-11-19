@@ -41,8 +41,7 @@
         android:layout_above="@+id/lblUpdateAccount"
         android:id="@+id/btnFAccountSignOut"
         android:layout_marginBottom="25dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="signOut"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:text="My Pets"
