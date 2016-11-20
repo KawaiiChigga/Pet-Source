@@ -23,10 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.petsource.LoginActivity" />
-        <activity
-            android:name="com.petsource.RegisterActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.petsource.SigninActivity" />
         <activity android:name="com.petsource.HomeActivity" />
         <activity android:name="com.petsource.PetListActivity" />
         <activity

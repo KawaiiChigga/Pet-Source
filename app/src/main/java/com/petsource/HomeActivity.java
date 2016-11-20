@@ -20,11 +20,6 @@ import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.petsource.homeFragments.AccountFragment;
 import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
@@ -46,7 +41,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     public static Activity homeActivity;
     public static SharedPreferences shared;
 
-    private DatabaseReference mDatabase;
     private int isStaff;
     private int isApprove;
     public HomeActivity() {
@@ -63,21 +57,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        FirebaseDatabase.getInstance().getReference().child("users").child(mFirebaseUser.getUid())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        User u = dataSnapshot.getValue(User.class);
-//                        isStaff = u.getIsStaff();
-//                        isApprove = u.getIsApprove();
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-//                        isStaff = 0;
-//                        isApprove = 0;
-                    }
-                });
 
 //        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
         if (isStaff == 1 && isApprove == 1) {
@@ -99,17 +78,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
         Intent intent = new Intent(this, PetListActivity.class);
         startActivity(intent);
     }
-
-//    public void signOut(View view) {
-////        SharedPreferences.Editor editor = shared.edit();
-////        editor.clear();
-////        editor.commit();
-//        Intent intent = new Intent(this, LoginActivity.class);
-//        startActivity(intent);
-//        finish();
-//        mFirebaseAuth.signOut();
-////        Auth.GoogleSignInApi.signOut(mGoogleApiClient);
-//    }
 
     public class CustomerSectionsPagerAdapter extends FragmentPagerAdapter {
 

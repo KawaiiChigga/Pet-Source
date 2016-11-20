@@ -1,25 +1,31 @@
 package com.petsource.upHomeFragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.HomeActivity;
+import com.petsource.LoginActivity;
 import com.petsource.R;
 import com.petsource.model.Login;
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 
 public class UpAccountFragment extends Fragment {
     private TextView lblName;
     private TextView lblEmail;
-    private TextView lblPhone;
-
-    private Call<Login> login;
+    private FirebaseAuth mFirebaseAuth;
+    private ImageView imgProfile;
+    private Button btnSignout;
 
     public UpAccountFragment() {
 
@@ -34,12 +40,25 @@ public class UpAccountFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        mFirebaseAuth = FirebaseAuth.getInstance();
         lblName = (TextView) getActivity().findViewById(R.id.lblFUpAccountName);
         lblEmail = (TextView) getActivity().findViewById(R.id.lblFUpAccountEmail);
 
         lblName.setText(HomeActivity.shared.getString("nameKEY", null));
         lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
 
+        btnSignout = (Button) getActivity().findViewById(R.id.btnFAccountSignOut);
+        btnSignout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mFirebaseAuth.signOut();
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                HomeActivity.homeActivity.finish();
+            }
+        });
 
+        imgProfile = (ImageView) getActivity().findViewById(R.id.profilepicture);
+        Picasso.with(imgProfile.getContext()).load(mFirebaseAuth.getCurrentUser().getPhotoUrl()).into(imgProfile);
     }
 }

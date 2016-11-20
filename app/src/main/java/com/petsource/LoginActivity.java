@@ -26,9 +26,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.petsource.network.API;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -44,9 +46,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mFirebaseAuth;
-    private DatabaseReference mDatabase;
 
     private String userid;
+
+    private Calendar c;
+    private String currentDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +74,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 .build();
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+        c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        currentDate = df.format(c.getTime());
     }
 
     private void handleFirebaseAuthResult(AuthResult authResult) {
@@ -98,13 +104,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (task.isSuccessful()) {
                             onAuthSuccess(task.getResult().getUser());
-//                            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-//                            finish();
                         } else {
                             Log.w(TAG, "signInWithCredential", task.getException());
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
@@ -116,13 +117,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void onAuthSuccess(FirebaseUser user) {
         userid = user.getUid();
-        Call<Info> checkData = API.Factory.getInstance().checkAccount(user.getUid());
-        checkData.enqueue(new Callback<Info>() {
+        Call<List<Info>> checkData = API.Factory.getInstance().checkAccount(userid);
+        checkData.enqueue(new Callback<List<Info>>() {
             @Override
-            public void onResponse(Call<Info> call, Response<Info> response) {
-                if (response == null) {
+            public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                if (response.body().size() == 0) {
                     Call<Info> info = API.Factory.getInstance().registerAccount(
                             userid,
+                            currentDate,
                             0,
                             0
                     );
@@ -141,17 +143,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             @Override
-            public void onFailure(Call<Info> call, Throwable t) {
+            public void onFailure(Call<List<Info>> call, Throwable t) {
 
             }
         });
 
-//        User u = new User(
-//               user.getEmail(),
-//               user.getDisplayName(),
-//               user.getPhotoUrl().toString()
-//        );
-//        mDatabase.child("users").child(user.getUid()).setValue(u);
         startActivity(new Intent(LoginActivity.this, HomeActivity.class));
         finish();
     }
