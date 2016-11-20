@@ -90,6 +90,10 @@
         <activity
             android:name=".mysalon.MySalonActivity"
             android:label="@string/title_activity_my_salon"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".mycare.MyCareActivity"
+            android:label="@string/title_activity_my_care"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
