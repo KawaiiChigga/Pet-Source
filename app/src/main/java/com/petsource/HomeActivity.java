@@ -23,10 +23,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.petsource.homeFragments.AccountFragment;
 import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
+import com.petsource.model.Info;
 import com.petsource.model.User;
+import com.petsource.network.API;
 import com.petsource.upHomeFragments.UpAccountFragment;
 import com.petsource.upHomeFragments.UpHistoryFragment;
 import com.petsource.upHomeFragments.UpHomeFragment;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
     public class HomeActivity extends AppCompatActivity {
 
@@ -52,6 +60,9 @@ import com.petsource.upHomeFragments.UpHomeFragment;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        isStaff = 1;
+        isApprove = 1;
 
         if (isStaff == 1 && isApprove == 1) {
             mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());

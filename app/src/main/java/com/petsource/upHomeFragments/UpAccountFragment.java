@@ -43,10 +43,10 @@ public class UpAccountFragment extends Fragment {
         lblName = (TextView) getActivity().findViewById(R.id.lblFUpAccountName);
         lblEmail = (TextView) getActivity().findViewById(R.id.lblFUpAccountEmail);
 
-        lblName.setText(HomeActivity.shared.getString("nameKEY", null));
-        lblEmail.setText(HomeActivity.shared.getString("emailKEY", null));
+        lblName.setText(SplashActivity.mFirebaseAuth.getCurrentUser().getDisplayName());
+        lblEmail.setText(SplashActivity.mFirebaseAuth.getCurrentUser().getEmail());
 
-        btnSignout = (Button) getActivity().findViewById(R.id.btnFAccountSignOut);
+        btnSignout = (Button) getActivity().findViewById(R.id.btnFUpAccountSignOut);
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
