@@ -1,5 +1,6 @@
 package com.petsource.petRescue;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.petsource.R;
+import com.petsource.petSalon.ListSalonActivity;
 
 public class PetRescueActivity extends AppCompatActivity {
 
@@ -30,4 +32,8 @@ public class PetRescueActivity extends AppCompatActivity {
 
     }
 
+    public void check(View view) {
+        Intent intent = new Intent(this, ListSalonActivity.class);
+        startActivity(intent);
+    }
 }

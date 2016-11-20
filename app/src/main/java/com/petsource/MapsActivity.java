@@ -1,6 +1,7 @@
 package com.petsource;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
@@ -10,7 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
@@ -18,6 +19,8 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.petsource.petSalon.ListSalonActivity;
+import com.petsource.petSalon.PetSalonActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -83,7 +86,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double latitude = findme.getLatitude();
         double longitude = findme.getLongitude();
         LatLng latLng = new LatLng(latitude, longitude);
-        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(this, PetSalonActivity.class);
+        intent.putExtra("LA", latitude);
+        intent.putExtra("LO", longitude);
+        setResult(RESULT_OK, intent);
+        finish();
+
+
     }
 
 }

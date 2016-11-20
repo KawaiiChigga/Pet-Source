@@ -3,6 +3,7 @@ package com.petsource.network;
 import com.petsource.model.Info;
 import com.petsource.model.Login;
 import com.petsource.model.Pet;
+import com.petsource.model.Shop;
 import com.petsource.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,6 +39,9 @@ public interface API {
     @GET("pets/{id}")
     Call<Pet> getPet(@Path("id") String id);
 
+    @GET("shop/")
+    Call<List<Shop>> getSalon(@Query("isWash") int isWash, @Query("isTrim") int isTrim, @Query("isClip") int isClip);
+
 //    @FormUrlEncoded
 //    @POST("users/login")
 //    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
@@ -46,6 +50,13 @@ public interface API {
 //    @POST("users/")
 //    Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
 //                         @Field("phonenum") String phonenum);
+
+    @FormUrlEncoded
+    @POST("shop/")
+    Call<Shop> addShop(@Field("userid") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
+                       @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") int latitude,
+                       @Field("longitude") int longitude, @Field("isWash") int isWash, @Field("isTrim") int isTrim,
+                       @Field("isClip") int isClip, @Field("isCare") int isCare, @Field("price") String price);
 
     @FormUrlEncoded
     @POST("infouser/")
