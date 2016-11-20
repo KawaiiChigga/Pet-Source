@@ -41,8 +41,7 @@
         android:layout_above="@+id/lblUpdateAccount"
         android:id="@+id/btnFAccountSignOut"
         android:layout_marginBottom="25dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="signOut"/>
+        android:layout_centerHorizontal="true"/>
 
     <Button
         android:text="My Pets"
@@ -64,15 +63,6 @@
         android:layout_alignLeft="@+id/lblFAccountName"
         android:layout_alignStart="@+id/lblFAccountName"
         android:id="@+id/lblFAccountEmail" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:id="@+id/lblFAccountPhoneNum"
-        android:layout_alignBottom="@+id/profilepicture"
-        android:layout_alignLeft="@+id/lblFAccountEmail"
-        android:layout_alignStart="@+id/lblFAccountEmail" />
 
     <TextView
         android:layout_width="225dp"

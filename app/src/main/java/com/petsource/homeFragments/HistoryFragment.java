@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 
 public class HistoryFragment extends Fragment{
     private RecyclerView rvhistory;

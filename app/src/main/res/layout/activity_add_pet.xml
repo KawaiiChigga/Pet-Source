@@ -32,8 +32,7 @@
         android:ems="10"
         android:id="@+id/txtPetName"
         android:layout_below="@+id/lblPetName"
-        android:layout_alignLeft="@+id/lblPetName"
-        android:layout_alignStart="@+id/lblPetName" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="Birthdate"
@@ -48,17 +47,17 @@
         android:layout_marginTop="24dp"
         android:id="@+id/lblPetBirthdate" />
 
-    <EditText
+    <TextView
         android:layout_width="310dp"
         android:layout_height="35dp"
         android:background="#444545"
         android:textColor="#FDBD15"
-        android:inputType="date"
-        android:ems="10"
+        android:paddingTop="3pt"
+        android:textSize="8pt"
         android:layout_below="@+id/lblPetBirthdate"
         android:layout_alignLeft="@+id/lblPetBirthdate"
         android:layout_alignStart="@+id/lblPetBirthdate"
-        android:id="@+id/txtPetBirthdate" />
+        android:id="@+id/txtPetBirthdate"/>
 
     <EditText
         android:layout_width="310dp"
@@ -180,21 +179,6 @@
         android:layout_alignEnd="@+id/radioPet"
         android:switchTextAppearance="@style/TextAppearance.AppCompat" />
 
-    <TextView
-        android:text="Name"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textSize="10pt"
-        android:textColor="#444545"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="23dp"
-        android:id="@+id/lblPetName"
-        android:layout_below="@+id/appbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Add Pet"
         android:layout_width="310dp"
@@ -207,5 +191,18 @@
         android:layout_below="@+id/switchCertified"
         android:layout_centerHorizontal="true"
         android:onClick="addpet"/>
+
+    <TextView
+        android:text="Name"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:id="@+id/lblPetName"
+        android:layout_below="@+id/appbar"
+        android:layout_alignLeft="@+id/txtPetName"
+        android:layout_alignStart="@+id/txtPetName" />
 
 </RelativeLayout>

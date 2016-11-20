@@ -1,15 +1,11 @@
 package com.petsource.model;
 
 /**
- * Created by USER on 01/11/2016.
+ * Created by Daniel on 11/20/2016.
  */
 
-public class User {
-
+public class Info {
     private String id;
-    private String username;
-    private String name;
-
     private int isStaff;
     private int isApprove;
     private String joinDate;
@@ -18,10 +14,6 @@ public class User {
     private String city;
     private String birthday;
     private String job;
-    private String url;
-
-    public User() {
-    }
 
     public String getId() {
         return id;
@@ -29,22 +21,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getIsStaff() {
@@ -101,27 +77,5 @@ public class User {
 
     public void setJob(String job) {
         this.job = job;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public User(String id, String username, String name, int isStaff, int isApprove, String joinDate, String address, String city, String birthday, String job, String url) {
-        this.id = id;
-        this.username = username;
-        this.name = name;
-        this.isStaff = isStaff;
-        this.isApprove = isApprove;
-        this.joinDate = joinDate;
-        this.address = address;
-        this.city = city;
-        this.birthday = birthday;
-        this.job = job;
-        this.url = url;
     }
 }

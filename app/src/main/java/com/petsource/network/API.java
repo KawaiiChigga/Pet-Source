@@ -1,5 +1,6 @@
 package com.petsource.network;
 
+import com.petsource.model.Info;
 import com.petsource.model.Login;
 import com.petsource.model.Pet;
 import com.petsource.model.User;
@@ -25,29 +26,37 @@ import retrofit2.http.Query;
 
 public interface API {
 
-    @GET("users/{id}")
-    Call<User> getUser(@Path("id") String id);
+//    @GET("users/{id}")
+//    Call<User> getUser(@Path("id") String id);
 
     @GET("pets/")
     Call<List<Pet>> getPets(@Query("userid") String userid);
 
+    @GET("infouser/")
+    Call<List<Info>> checkAccount(@Query("userid") String userid);
+
     @GET("pets/{id}")
     Call<Pet> getPet(@Path("id") String id);
 
-    @FormUrlEncoded
-    @POST("users/login")
-    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
+//    @FormUrlEncoded
+//    @POST("users/login")
+//    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
+
+//    @FormUrlEncoded
+//    @POST("users/")
+//    Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
+//                         @Field("phonenum") String phonenum);
 
     @FormUrlEncoded
-    @POST("users/")
-    Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
-                         @Field("phonenum") String phonenum);
+    @POST("infouser/")
+    Call<Info> registerAccount(@Field("userid") String uid, @Field("joindate") String date,
+                               @Field("isStaff") int isStaff, @Field("isApprove") int isApprove);
 
     @FormUrlEncoded
-    @PUT("users/{id}")
-    Call<User> updateAccount(@Path("id") String userid, @Field("isStaff") int isStaff, @Field("isApprove") int isApprove,
-                             @Field("joinDate") String joinDate, @Field("address") String address, @Field("city") String city,
-                             @Field("birthday") String birthday, @Field("job") String job);
+    @PUT("users/")
+    Call<Info> updateAccount(@Query("userid") String userid, @Field("address") String address, @Field("city") String city,
+                             @Field("birthday") String birthday, @Field("job") String job, @Field("isStaff") int isStaff,
+                             @Field("isApprove") int isApprove);
 
     @FormUrlEncoded
     @POST("pets/")
