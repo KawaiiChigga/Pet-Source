@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.petCare.PetCareActivity;
 import com.petsource.petRescue.PetRescueActivity;
 import com.petsource.petSalon.PetSalonActivity;

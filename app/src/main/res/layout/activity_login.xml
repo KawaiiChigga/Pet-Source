@@ -26,28 +26,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
         android:layout_width="320dp"
         android:layout_height="60dp"
-        android:text="SIGN IN"
-        android:onClick="gotoSignin"
-        android:background="@drawable/mybutton"
-        android:id="@+id/btnLoginSignIn"
-        android:layout_marginTop="153dp"
-        android:layout_below="@+id/imageView"
+        android:layout_marginBottom="150dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        android:text="REGISTER"
-        android:onClick="gotoRegister"
-        android:background="@drawable/mybutton"
-        android:id="@+id/btnLoginRegister"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/btnLoginSignIn"
-        android:layout_alignLeft="@+id/btnLoginSignIn"
-        android:layout_alignStart="@+id/btnLoginSignIn" />
 
 
 </RelativeLayout>
