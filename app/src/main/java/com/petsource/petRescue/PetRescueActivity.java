@@ -40,13 +40,13 @@ public class PetRescueActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pet_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Pet List");
+        setContentView(R.layout.activity_pet_rescue);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
+        toolbar.setTitle("Pet Rescue");
         setSupportActionBar(toolbar);
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
-        petRV = (RecyclerView) findViewById(R.id.rvpetlist);
+        petRV = (RecyclerView) findViewById(R.id.rvpetrescue);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
         data = new ArrayList<>();
