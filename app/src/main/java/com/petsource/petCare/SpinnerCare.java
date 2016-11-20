@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 
 /**
  * Created by USER on 20/11/2016.

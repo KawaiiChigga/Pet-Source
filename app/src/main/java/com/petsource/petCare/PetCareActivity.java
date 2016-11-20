@@ -16,7 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
 import com.petsource.model.Pet;
