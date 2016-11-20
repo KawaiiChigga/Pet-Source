@@ -15,12 +15,32 @@
       },
       "oauth_client": [
         {
+          "client_id": "347080129856-fjle2s116e7geqrepu0m21nrgfmhkdpg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.petsource",
+            "certificate_hash": "05A65A7D1CA4B30D67B8A77B081762894850FC80"
+          }
+        },
+        {
+          "client_id": "347080129856-fc4omu0b5h44tb6e9lp59jq5f7bhbr5i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.petsource",
+            "certificate_hash": "FF60BF0B2F16D347C2C091F7F34685FAFD23FDD4"
+          }
+        },
+        {
           "client_id": "347080129856-56c94mphqv2hvta1rhtc9aq32f39h515.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.petsource",
             "certificate_hash": "7E20AA9FEC5CDCF5C8982348821324CDB581E4AF"
           }
+        },
+        {
+          "client_id": "347080129856-g8mtvdlmia1psinhng4s1qp2tbvqbr2q.apps.googleusercontent.com",
+          "client_type": 3
         },
         {
           "client_id": "347080129856-5um4grf6dm2t35jijspjpdqkomjji0p5.apps.googleusercontent.com",
@@ -40,7 +60,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "347080129856-5um4grf6dm2t35jijspjpdqkomjji0p5.apps.googleusercontent.com",
+              "client_id": "347080129856-g8mtvdlmia1psinhng4s1qp2tbvqbr2q.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

@@ -55,9 +55,9 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.MyViewHo
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.lblPetListName);
-            txtRace = (TextView) itemView.findViewById(R.id.lblPetListRace);
-            txtYear = (TextView) itemView.findViewById(R.id.lblPetListYears);
+            txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
+            txtRace = (TextView) itemView.findViewById(R.id.lblListSalonJob);
+            txtYear = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
         }
 
         public void bind(Pet user) {

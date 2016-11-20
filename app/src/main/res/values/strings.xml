@@ -27,4 +27,5 @@
     <string name="title_activity_update_acc">UpdateAccActivity</string>
     <string name="title_activity_pet_rescue">PetRescueActivity</string>
     <string name="server_client_id">347080129856-5um4grf6dm2t35jijspjpdqkomjji0p5.apps.googleusercontent.com</string>
+    <string name="title_activity_list_salon">ListSalonActivity</string>
 </resources>

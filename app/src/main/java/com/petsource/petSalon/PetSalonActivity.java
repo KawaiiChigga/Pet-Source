@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.petsource.R;
 import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
+import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
@@ -31,11 +32,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PetSalonActivity extends AppCompatActivity {
+
+    public static final int REQ_MAPS = 100;
+
     List<Pet> mypet;
     Spinner staticSpinner;
+    double latitude, longtitude;
 
     private Button btnSalon;
     private TextView lblSalonTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +62,7 @@ public class PetSalonActivity extends AppCompatActivity {
 
         mypet = new ArrayList<Pet>();
 
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(HomeActivity.shared.getString("idKEY", null));
+        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
         getpet.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
@@ -102,9 +108,25 @@ public class PetSalonActivity extends AppCompatActivity {
 
 
     public void gotoMaps(View view) {
+
         Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQ_MAPS);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == REQ_MAPS){
+            if(resultCode == RESULT_OK){
+                latitude = data.getDoubleExtra("LA", 0);
+                longtitude = data.getDoubleExtra("LO", 0);
+
+                Intent intent2 = new Intent(this, ListSalonActivity.class);
+                startActivity(intent2);
+                finish();
+
+            }else if(resultCode == RESULT_CANCELED);
+        }
+    }
 }

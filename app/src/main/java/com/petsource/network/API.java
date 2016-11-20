@@ -3,6 +3,7 @@ package com.petsource.network;
 import com.petsource.model.Info;
 import com.petsource.model.Login;
 import com.petsource.model.Pet;
+import com.petsource.model.Shop;
 import com.petsource.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -37,6 +38,9 @@ public interface API {
 
     @GET("pets/{id}")
     Call<Pet> getPet(@Path("id") String id);
+
+    @GET("shop?isWash:{isWash}&isTrim:{isTrim}&isClip:{isClip}")
+    Call<List<Info>> getSalon(@Path("isWash") int isWash, @Path("isTrim") int isTrim, @Path("isClip") int isClip);
 
 //    @FormUrlEncoded
 //    @POST("users/login")
