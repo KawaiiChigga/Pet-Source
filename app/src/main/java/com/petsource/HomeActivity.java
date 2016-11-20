@@ -25,7 +25,11 @@ import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
 import com.petsource.model.Info;
 import com.petsource.model.User;
+import com.petsource.mycare.MyCareActivity;
+import com.petsource.mysalon.MySalonActivity;
 import com.petsource.network.API;
+import com.petsource.petCare.PetCareActivity;
+import com.petsource.petSalon.PetSalonActivity;
 import com.petsource.upHomeFragments.UpAccountFragment;
 import com.petsource.upHomeFragments.UpHistoryFragment;
 import com.petsource.upHomeFragments.UpHomeFragment;
@@ -60,9 +64,9 @@ import retrofit2.Response;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//
-//        isStaff = 0;
-//        isApprove = 0;
+
+        isStaff = 1;
+        isApprove = 1;
 
         if (isStaff == 1 && isApprove == 1) {
             mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
@@ -78,11 +82,38 @@ import retrofit2.Response;
         tabLayout.setupWithViewPager(mViewPager);
     }
 
+        public void gotoPetSalon(View view) {
+            Intent intent = new Intent(this, PetSalonActivity.class);
+            startActivity(intent);
+        }
+
+        public void gotoPetCare(View view) {
+            Intent intent = new Intent(this, PetCareActivity.class);
+            startActivity(intent);
+        }
+
+//        public void gotoPetRescue(View view) {
+//            Intent intent = new Intent(this, PetRescueActivity.class);
+//            startActivity(intent);
+//        }
+
+        public void gotoMySalon(View view) {
+            Intent intent = new Intent(this, MySalonActivity.class);
+            startActivity(intent);
+        }
+
+        public void gotoMycare(View view) {
+            Intent intent = new Intent(this, MyCareActivity.class);
+            startActivity(intent);
+        }
+
 
     public void gotoPetList(View view) {
         Intent intent = new Intent(this, PetListActivity.class);
         startActivity(intent);
     }
+
+
 
     public class CustomerSectionsPagerAdapter extends FragmentPagerAdapter {
 
