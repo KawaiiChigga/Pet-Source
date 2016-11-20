@@ -71,6 +71,8 @@ public class PetSalonActivity extends AppCompatActivity {
 
             }
         });
+
+
         // Create an ArrayAdapter using the string array and a default spinner
 //        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
 //                .createFromResource(this, R.array.spinner,
@@ -83,16 +85,17 @@ public class PetSalonActivity extends AppCompatActivity {
 
         // Apply the adapter to the spinner
         staticSpinner.setAdapter(petAdapter);
-
         staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(PetSalonActivity.this, parent.getItemAtPosition(position) + "", Toast.LENGTH_SHORT);
-            }
+                Log.d("FAK", position +"");
+
+                }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-
+                Log.d("FAK", "kosong");
             }
         });
     }

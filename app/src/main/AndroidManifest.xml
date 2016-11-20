@@ -86,6 +86,7 @@
             android:name="com.petsource.petRescue.PetRescueActivity"
             android:label="@string/title_activity_pet_rescue"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.petsource.petSalon.SpinnerActivity"></activity>
     </application>
 
 </manifest>
