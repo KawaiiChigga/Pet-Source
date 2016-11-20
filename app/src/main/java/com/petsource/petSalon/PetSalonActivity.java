@@ -32,11 +32,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class PetSalonActivity extends AppCompatActivity {
+
+    public static final int REQ_MAPS = 100;
+
     List<Pet> mypet;
     Spinner staticSpinner;
+    double latitude, longtitude;
 
     private Button btnSalon;
     private TextView lblSalonTitle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,9 +108,25 @@ public class PetSalonActivity extends AppCompatActivity {
 
 
     public void gotoMaps(View view) {
+
         Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, REQ_MAPS);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if(requestCode == REQ_MAPS){
+            if(resultCode == RESULT_OK){
+                latitude = data.getDoubleExtra("LA", 0);
+                longtitude = data.getDoubleExtra("LO", 0);
+
+                Intent intent2 = new Intent(this, ListSalonActivity.class);
+                startActivity(intent2);
+                finish();
+
+            }else if(resultCode == RESULT_CANCELED);
+        }
+    }
 }
