@@ -15,25 +15,27 @@
 
         <TextView
             android:text="Pet Salon"
-            android:textSize="16pt"
+            android:textSize="20pt"
             android:textColor="@color/textColor"
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:layout_marginLeft="220dp"
-            android:id="@+id/textView8" />
+            android:layout_marginLeft="200dp"
+            android:id="@+id/lblSalonTitle" />
 
     </android.support.design.widget.AppBarLayout>
 
     <Spinner
-        android:layout_width="300dp"
+        android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginLeft="40dp"
-        android:textColor="@color/textColor"
-        android:background="@color/colorPrimary"
-        android:id="@+id/spinner"
+
+        android:backgroundTint="@color/textColor"
+        android:id="@+id/spinnerONE"
+
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         />
+
 
     <CheckBox
         android:text="Nail Clipping"
@@ -66,7 +68,8 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
-        android:id="@+id/button" />
+        android:id="@+id/btnSalon"
+        android:onClick="gotoMaps"/>
 
     <ImageView
         android:layout_width="100dp"
@@ -83,7 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:id="@+id/checkBox"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/spinnerONE"
         android:layout_alignRight="@+id/imageView5"
         android:layout_alignEnd="@+id/imageView5"
         android:layout_marginRight="28dp"

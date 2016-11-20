@@ -2,12 +2,14 @@ package com.petsource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.user.petsource.R;
@@ -25,6 +27,9 @@ public class UpdateAccActivity extends AppCompatActivity {
     private EditText txtStreet;
     private Button btnOK;
 
+    private Button btnUpAccountGo;
+    private TextView lblUpdateTitle;
+
     public static SharedPreferences shared;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,14 @@ public class UpdateAccActivity extends AppCompatActivity {
         setContentView(R.layout.activity_update_acc);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        btnUpAccountGo = (Button) findViewById(R.id.btnUpAccountGo);
+        btnUpAccountGo.setTypeface(typeface);
+
+        lblUpdateTitle = (TextView) findViewById(R.id.lblUpdateTitle);
+        lblUpdateTitle.setTypeface(typeface);
 
         txtCity = (EditText) findViewById(R.id.txtUpAccountCity);
         txtBirthdate = (EditText) findViewById(R.id.txtUpAccountBirthdate);
