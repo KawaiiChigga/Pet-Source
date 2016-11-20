@@ -52,6 +52,13 @@ public interface API {
 //                         @Field("phonenum") String phonenum);
 
     @FormUrlEncoded
+    @POST("shop/")
+    Call<Shop> addShop(@Field("userid") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
+                       @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") int latitude,
+                       @Field("longitude") int longitude, @Field("isWash") int isWash, @Field("isTrim") int isTrim,
+                       @Field("isClip") int isClip, @Field("isCare") int isCare, @Field("price") String price);
+
+    @FormUrlEncoded
     @POST("infouser/")
     Call<Info> registerAccount(@Field("userid") String uid, @Field("joindate") String date,
                                @Field("isStaff") int isStaff, @Field("isApprove") int isApprove);

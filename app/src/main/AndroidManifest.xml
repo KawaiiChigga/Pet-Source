@@ -24,6 +24,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".UpdateHomeActivity" />
         <activity android:name=".PetListActivity" />
         <activity
             android:name=".SplashActivity"
@@ -82,7 +83,6 @@
             android:name=".petRescue.PetRescueActivity"
             android:label="@string/title_activity_pet_rescue"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".petSalon.SpinnerActivity" />
         <activity
             android:name=".petSalon.ListSalonActivity"
             android:label="@string/title_activity_list_salon"
