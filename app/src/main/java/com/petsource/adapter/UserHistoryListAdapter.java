@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 
 /**
  * Created by Daniel on 11/7/2016.

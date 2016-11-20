@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.user.petsource">
+    package="com.petsource">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -23,10 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name="com.petsource.LoginActivity" />
-        <activity
-            android:name="com.petsource.RegisterActivity"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.petsource.SigninActivity" />
         <activity android:name="com.petsource.HomeActivity" />
         <activity android:name="com.petsource.PetListActivity" />
         <activity

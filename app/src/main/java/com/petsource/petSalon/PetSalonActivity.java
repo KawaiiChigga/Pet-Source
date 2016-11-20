@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
 import com.petsource.model.Pet;

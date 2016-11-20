@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.MapsActivity;
 
 public class PetCareActivity extends AppCompatActivity {

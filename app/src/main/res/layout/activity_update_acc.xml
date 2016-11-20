@@ -51,13 +51,13 @@
         android:layout_alignLeft="@+id/textView3"
         android:layout_alignStart="@+id/textView3" />
 
-    <EditText
+    <TextView
         android:layout_width="310dp"
         android:layout_height="35dp"
         android:background="#444545"
         android:textColor="#FDBD15"
-        android:inputType="date"
-        android:ems="10"
+        android:paddingTop="3pt"
+        android:textSize="8pt"
         android:layout_below="@+id/textView4"
         android:layout_alignLeft="@+id/textView4"
         android:layout_alignStart="@+id/textView4"
