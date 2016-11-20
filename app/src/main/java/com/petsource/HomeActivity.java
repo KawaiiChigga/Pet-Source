@@ -60,9 +60,9 @@ import retrofit2.Response;
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        isStaff = 1;
-        isApprove = 1;
+//
+//        isStaff = 0;
+//        isApprove = 0;
 
         if (isStaff == 1 && isApprove == 1) {
             mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());

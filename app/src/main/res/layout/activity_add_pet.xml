@@ -47,18 +47,6 @@
         android:layout_marginTop="24dp"
         android:id="@+id/lblPetBirthdate" />
 
-    <TextView
-        android:layout_width="310dp"
-        android:layout_height="35dp"
-        android:background="#444545"
-        android:textColor="#FDBD15"
-        android:paddingTop="3pt"
-        android:textSize="8pt"
-        android:layout_below="@+id/lblPetBirthdate"
-        android:layout_alignLeft="@+id/lblPetBirthdate"
-        android:layout_alignStart="@+id/lblPetBirthdate"
-        android:id="@+id/txtPetBirthdate"/>
-
     <EditText
         android:layout_width="310dp"
         android:layout_height="35dp"
@@ -204,5 +192,17 @@
         android:layout_below="@+id/appbar"
         android:layout_alignLeft="@+id/txtPetName"
         android:layout_alignStart="@+id/txtPetName" />
+
+    <TextView
+        android:layout_width="310dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:paddingTop="3pt"
+        android:textSize="8pt"
+        android:id="@+id/txtPetBirthdate"
+        android:layout_below="@+id/lblPetBirthdate"
+        android:layout_alignLeft="@+id/lblPetBirthdate"
+        android:layout_alignStart="@+id/lblPetBirthdate" />
 
 </RelativeLayout>
