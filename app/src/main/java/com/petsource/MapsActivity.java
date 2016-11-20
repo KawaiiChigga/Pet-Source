@@ -2,10 +2,13 @@ package com.petsource;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
+import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.user.petsource.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -69,11 +72,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
         LatLng ithb = new LatLng(-6.889094, 107.615934);
-        LatLng dimana = new LatLng(-6.889094, 107.655934);
      //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.addMarker(new MarkerOptions().position(dimana).title("fak"));
+        mMap.addMarker(new MarkerOptions().position(ithb).title("fak"));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
+
+    }
+    public void testToast(View view) {
+        Location findme = mMap.getMyLocation();
+        double latitude = findme.getLatitude();
+        double longitude = findme.getLongitude();
+        LatLng latLng = new LatLng(latitude, longitude);
+        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
     }
 
 }

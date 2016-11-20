@@ -1,26 +1,45 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.petsource.MapsActivity">
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:map="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/map"
-    android:name="com.google.android.gms.maps.SupportMapFragment"
-    android:layout_width="500px"
-    android:layout_height="500px"
-    tools:context="com.petsource.MapsActivity" />
 
-    <Button
-        android:text="Button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/map"
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_width="match_parent"
+        android:paddingTop="@dimen/appbar_padding_top">
+
+        <TextView
+            android:text="Location"
+            android:textSize="20pt"
+            android:textColor="@color/textColor"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_marginLeft="200dp"
+            android:id="@+id/lblCareTitle" />
+
+
+    </android.support.design.widget.AppBarLayout>
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        tools:context="com.petsource.MapsActivity"
+        android:layout_below="@+id/appbar"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="78dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginTop="51dp"
-        android:id="@+id/button3" />
+        android:layout_height="match_parent" />
+
+    <Button
+        android:text="Next"
+        android:layout_height="wrap_content"
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:onClick="testToast"/>
 </RelativeLayout>
