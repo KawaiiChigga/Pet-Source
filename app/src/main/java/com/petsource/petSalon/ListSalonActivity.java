@@ -69,7 +69,7 @@ public class ListSalonActivity extends AppCompatActivity {
     }
 
     public void prepareData() {
-        Call<List<Shop>> p = API.Factory.getInstance().getSalon(0, 0, 0);
+        Call<List<Shop>> p = API.Factory.getInstance().getSalon(1, 1, 0);
         p.enqueue(new Callback<List<Shop>>() {
             @Override
             public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
