@@ -16,9 +16,10 @@ import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
+import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
@@ -48,7 +49,7 @@ public class PetCareActivity extends AppCompatActivity {
 
         mypet = new ArrayList<String>();
 
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(HomeActivity.shared.getString("idKEY", null));
+        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
         getpet.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {

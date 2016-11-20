@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.petsource.R;
 import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
+import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
@@ -56,7 +57,7 @@ public class PetSalonActivity extends AppCompatActivity {
 
         mypet = new ArrayList<Pet>();
 
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(HomeActivity.shared.getString("idKEY", null));
+        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
         getpet.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {

@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.user.petsource.R;
+import com.petsource.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
@@ -79,11 +79,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     public void testToast(View view) {
-        Location findme = mMap.getMyLocation();
-        double latitude = findme.getLatitude();
-        double longitude = findme.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
-        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+        try {
+            Location findme = mMap.getMyLocation();
+            double latitude = findme.getLatitude();
+            double longitude = findme.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
+            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
+            Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 }
