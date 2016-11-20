@@ -23,10 +23,18 @@ import com.google.firebase.auth.FirebaseUser;
 import com.petsource.homeFragments.AccountFragment;
 import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
+import com.petsource.model.Info;
 import com.petsource.model.User;
+import com.petsource.network.API;
 import com.petsource.upHomeFragments.UpAccountFragment;
 import com.petsource.upHomeFragments.UpHistoryFragment;
 import com.petsource.upHomeFragments.UpHomeFragment;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
     public class HomeActivity extends AppCompatActivity {
 
@@ -34,8 +42,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TextView lblUpdate;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
 
     public static Activity homeActivity;
@@ -55,10 +61,9 @@ import com.petsource.upHomeFragments.UpHomeFragment;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+        isStaff = 1;
+        isApprove = 1;
 
-//        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
         if (isStaff == 1 && isApprove == 1) {
             mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
             mViewPager = (ViewPager) findViewById(R.id.container);

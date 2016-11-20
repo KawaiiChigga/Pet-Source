@@ -10,15 +10,25 @@ import android.support.v7.app.AppCompatActivity;
 import com.petsource.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.petsource.model.Info;
+import com.petsource.network.API;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class SplashActivity extends AppCompatActivity {
 
     private final int SPLASH_DISPLAY_LENGTH = 2000;
 
     public static SharedPreferences shared;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
+    public static FirebaseAuth mFirebaseAuth;
+    public static FirebaseUser mFirebaseUser;
 
+    private int isStaff;
+    private int isApprove;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +47,25 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     finish();
                 } else {
-                    startActivity(new Intent(SplashActivity.this, HomeActivity.class));
-                    finish();
+                    Call<List<Info>> getType = API.Factory.getInstance().checkAccount(mFirebaseUser.getUid());
+                    getType.enqueue(new Callback<List<Info>>() {
+                        @Override
+                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                            isApprove = response.body().get(0).getIsApprove();
+                            isStaff = response.body().get(0).getIsStaff();
+                            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                            intent.putExtra("isApprove", isApprove);
+                            intent.putExtra("isStaff", isStaff);
+
+                            startActivity(intent);
+                            finish();
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                        }
+                    });
                 }
             }
         }, SPLASH_DISPLAY_LENGTH);

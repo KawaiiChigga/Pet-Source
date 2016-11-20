@@ -31,7 +31,6 @@ public class PetListActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
-    private FirebaseAuth mFirebaseAuth;
 
     public PetListAdapter adapter;
     public static SharedPreferences shared;
@@ -46,7 +45,6 @@ public class PetListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
-        mFirebaseAuth = FirebaseAuth.getInstance();
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
@@ -79,7 +77,7 @@ public class PetListActivity extends AppCompatActivity {
     }
 
     public void prepareData() {
-        Call<List<Pet>> p = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
+        Call<List<Pet>> p = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
         p.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
