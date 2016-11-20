@@ -1,5 +1,6 @@
     package com.petsource;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,10 +16,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.user.petsource.R;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.homeFragments.AccountFragment;
 import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
+import com.petsource.model.User;
 import com.petsource.upHomeFragments.UpAccountFragment;
 import com.petsource.upHomeFragments.UpHistoryFragment;
 import com.petsource.upHomeFragments.UpHomeFragment;
@@ -29,8 +34,17 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TextView lblUpdate;
+    private GoogleApiClient mGoogleApiClient;
 
+    public static Activity homeActivity;
     public static SharedPreferences shared;
+
+    private int isStaff;
+    private int isApprove;
+    public HomeActivity() {
+        homeActivity = this;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +53,7 @@ import com.petsource.upHomeFragments.UpHomeFragment;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
-
-        if (shared.getInt("isStaffKEY", 0) == 1 && shared.getInt("isApproveKEY", 0) == 1) {
+        if (isStaff == 1 && isApprove == 1) {
             mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
             mViewPager = (ViewPager) findViewById(R.id.container);
             mViewPager.setAdapter(mCSectionsPagerAdapter);
@@ -59,15 +71,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     public void gotoPetList(View view) {
         Intent intent = new Intent(this, PetListActivity.class);
         startActivity(intent);
-    }
-
-    public void signOut(View view) {
-        SharedPreferences.Editor editor = shared.edit();
-        editor.clear();
-        editor.commit();
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-        finish();
     }
 
     public class CustomerSectionsPagerAdapter extends FragmentPagerAdapter {

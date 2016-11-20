@@ -67,15 +67,6 @@
         android:id="@+id/lblFUpAccountEmail" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15dp"
-        android:id="@+id/lblFUpAccountPhoneNum"
-        android:layout_alignBottom="@+id/profilepicture"
-        android:layout_alignLeft="@+id/lblFUpAccountEmail"
-        android:layout_alignStart="@+id/lblFUpAccountEmail" />
-
-    <TextView
         android:layout_width="225dp"
         android:layout_height="wrap_content"
         android:textSize="24dp"
