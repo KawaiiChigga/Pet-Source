@@ -34,8 +34,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TextView lblUpdate;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
     private GoogleApiClient mGoogleApiClient;
 
     public static Activity homeActivity;
@@ -55,10 +53,6 @@ import com.petsource.upHomeFragments.UpHomeFragment;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-
-//        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
         if (isStaff == 1 && isApprove == 1) {
             mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
             mViewPager = (ViewPager) findViewById(R.id.container);

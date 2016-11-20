@@ -34,7 +34,6 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
     private RadioGroup rbtGender;
     private RadioGroup rbtSpecies;
     private Switch isCertified;
-    private FirebaseAuth mFirebaseAuth;
 
     private int isMale;
     private int isDog;
@@ -66,7 +65,6 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
         rbtSpecies = (RadioGroup) findViewById(R.id.radioPet);
         isCertified = (Switch) findViewById(R.id.switchCertified);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
         txtBirthdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,7 +99,7 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
                 txtName.getText().toString(),
                 txtBirthdate.getText().toString(),
                 txtRace.getText().toString(),
-                mFirebaseAuth.getCurrentUser().getUid(),
+                SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
                 isMale,
                 isDog,
                 certified
