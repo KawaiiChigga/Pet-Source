@@ -18,6 +18,11 @@
     import com.petsource.homeFragments.AccountFragment;
     import com.petsource.homeFragments.HistoryFragment;
     import com.petsource.homeFragments.HomeFragment;
+    import com.petsource.mycare.MyCareActivity;
+    import com.petsource.mysalon.MySalonActivity;
+    import com.petsource.petCare.PetCareActivity;
+    import com.petsource.petRescue.PetRescueActivity;
+    import com.petsource.petSalon.PetSalonActivity;
     import com.petsource.upHomeFragments.UpAccountFragment;
     import com.petsource.upHomeFragments.UpHistoryFragment;
     import com.petsource.upHomeFragments.UpHomeFragment;
@@ -50,10 +55,36 @@
     }
 
 
-    public void gotoPetList(View view) {
-        Intent intent = new Intent(this, PetListActivity.class);
-        startActivity(intent);
-    }
+        public void gotoPetSalon(View view) {
+            Intent intent = new Intent(this, PetSalonActivity.class);
+            startActivity(intent);
+        }
+
+        public void gotoPetCare(View view) {
+            Intent intent = new Intent(this, PetCareActivity.class);
+            startActivity(intent);
+        }
+
+        public void gotoPetRescue(View view) {
+            Intent intent = new Intent(this, PetRescueActivity.class);
+            startActivity(intent);
+        }
+
+        public void gotoMySalon(View view) {
+            Intent intent = new Intent(this, MySalonActivity.class);
+            startActivity(intent);
+        }
+
+        public void Mycare(View view) {
+            Intent intent = new Intent(this, MyCareActivity.class);
+            startActivity(intent);
+        }
+
+
+        public void gotoPetList(View view) {
+            Intent intent = new Intent(this, PetListActivity.class);
+            startActivity(intent);
+        }
 
     public class StaffSectionsPagerAdapter extends FragmentPagerAdapter {
         public StaffSectionsPagerAdapter(FragmentManager fm) {
