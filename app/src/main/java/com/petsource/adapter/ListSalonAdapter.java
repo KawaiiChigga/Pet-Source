@@ -53,8 +53,6 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
 
         public void bind(Shop user) {
             txtName.setText(user.getIduser());
-            txtJob.setText(user.getJob());
-            txtAlamat.setText(user.getAddress());
         }
     }
 }
