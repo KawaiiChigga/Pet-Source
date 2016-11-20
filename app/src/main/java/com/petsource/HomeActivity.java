@@ -39,16 +39,11 @@ import retrofit2.Response;
     public class HomeActivity extends AppCompatActivity {
 
     private CustomerSectionsPagerAdapter mSectionsPagerAdapter;
-    private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TextView lblUpdate;
     private GoogleApiClient mGoogleApiClient;
 
     public static Activity homeActivity;
-    public static SharedPreferences shared;
-
-    private int isStaff;
-    private int isApprove;
     public HomeActivity() {
         homeActivity = this;
     }
@@ -61,18 +56,9 @@ import retrofit2.Response;
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        isStaff = 1;
-        isApprove = 1;
-
-        if (isStaff == 1 && isApprove == 1) {
-            mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
-            mViewPager = (ViewPager) findViewById(R.id.container);
-            mViewPager.setAdapter(mCSectionsPagerAdapter);
-        } else {
-            mSectionsPagerAdapter = new CustomerSectionsPagerAdapter(getSupportFragmentManager());
-            mViewPager = (ViewPager) findViewById(R.id.container);
-            mViewPager.setAdapter(mSectionsPagerAdapter);
-        }
+        mSectionsPagerAdapter = new CustomerSectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -100,45 +86,6 @@ import retrofit2.Response;
                     fragment = new HistoryFragment(); break;
                 case 2 :
                     fragment = new AccountFragment(); break;
-            }
-            return fragment;
-        }
-
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "HOME";
-                case 1:
-                    return "HISTORY";
-                case 2:
-                    return "MY PROFILE";
-            }
-            return null;
-        }
-    }
-
-    public class StaffSectionsPagerAdapter extends FragmentPagerAdapter {
-        public StaffSectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        Fragment fragment;
-
-        @Override
-        public Fragment getItem(int position) {
-            switch(position) {
-                case 0 :
-                    fragment = new UpHomeFragment(); break;
-                case 1 :
-                    fragment = new UpHistoryFragment(); break;
-                case 2 :
-                    fragment = new UpAccountFragment(); break;
             }
             return fragment;
         }

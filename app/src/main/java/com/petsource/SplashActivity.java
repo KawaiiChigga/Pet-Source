@@ -53,10 +53,12 @@ public class SplashActivity extends AppCompatActivity {
                         public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
                             isApprove = response.body().get(0).getIsApprove();
                             isStaff = response.body().get(0).getIsStaff();
-                            Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                            intent.putExtra("isApprove", isApprove);
-                            intent.putExtra("isStaff", isStaff);
-
+                            Intent intent;
+                            if (isApprove == 1 && isStaff == 1) {
+                                intent = new Intent(SplashActivity.this, UpdateHomeActivity.class);
+                            } else {
+                                intent = new Intent(SplashActivity.this, HomeActivity.class);
+                            }
                             startActivity(intent);
                             finish();
                         }

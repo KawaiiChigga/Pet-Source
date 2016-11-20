@@ -39,8 +39,8 @@ public interface API {
     @GET("pets/{id}")
     Call<Pet> getPet(@Path("id") String id);
 
-    @GET("shop?isWash:{isWash}&isTrim:{isTrim}&isClip:{isClip}")
-    Call<List<Info>> getSalon(@Path("isWash") int isWash, @Path("isTrim") int isTrim, @Path("isClip") int isClip);
+    @GET("shop/")
+    Call<List<Shop>> getSalon(@Query("isWash") int isWash, @Query("isTrim") int isTrim, @Query("isClip") int isClip);
 
 //    @FormUrlEncoded
 //    @POST("users/login")
