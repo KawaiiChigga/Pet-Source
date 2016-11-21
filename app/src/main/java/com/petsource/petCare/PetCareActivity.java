@@ -35,7 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetCareActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+public class PetCareActivity extends AppCompatActivity {
 
     private Button btnCare;
     private TextView lblCareTitle;
@@ -79,14 +79,20 @@ public class PetCareActivity extends AppCompatActivity implements DatePickerDial
 
 
         txtFrom = (TextView) findViewById(R.id.txtFrom);
-        txtTo = (TextView) findViewById(R.id.txtFrom);
+        txtTo = (TextView) findViewById(R.id.txtTo);
 
         txtFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Calendar now = Calendar.getInstance();
                 DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        PetCareActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+                                txtFrom.setText(date);
+                            }
+                        },
                         now.get(Calendar.YEAR),
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
@@ -101,7 +107,13 @@ public class PetCareActivity extends AppCompatActivity implements DatePickerDial
             public void onClick(View v) {
                 Calendar now = Calendar.getInstance();
                 DatePickerDialog dpd = DatePickerDialog.newInstance(
-                        PetCareActivity.this,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+                                String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+                                txtTo.setText(date);
+                            }
+                        },
                         now.get(Calendar.YEAR),
                         now.get(Calendar.MONTH),
                         now.get(Calendar.DAY_OF_MONTH)
@@ -149,12 +161,6 @@ public class PetCareActivity extends AppCompatActivity implements DatePickerDial
         startActivity(intent);
     }
 
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
-        txtFrom.setText(date);
-        txtTo.setText(date);
-    }
 }
 
 
