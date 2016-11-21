@@ -107,10 +107,10 @@ public class PetSalonActivity extends AppCompatActivity {
     }
 
 
-    public void gotoMaps(View view) {
+    public void gotoListSalon(View view) {
 
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivityForResult(intent, REQ_MAPS);
+        Intent intent = new Intent(this, ListSalonActivity.class);
+        startActivity(intent);
     }
 
     @Override

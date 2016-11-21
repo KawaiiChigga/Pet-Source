@@ -40,8 +40,10 @@ public interface API {
     Call<Pet> getPet(@Path("id") String id);
 
     @GET("shop/")
-    Call<List<Shop>> getSalon(@Query("isWash") int isWash, @Query("isTrim") int isTrim, @Query("isClip") int isClip);
+    Call<List<Shop>> getSalon();
 
+    @GET("shop/")
+    Call<List<Shop>> getSalon(@Query("iduser") String iduser);
 //    @FormUrlEncoded
 //    @POST("users/login")
 //    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
