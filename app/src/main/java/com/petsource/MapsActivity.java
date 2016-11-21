@@ -1,7 +1,6 @@
 package com.petsource;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -23,20 +22,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petSalon.FinalSalonActivity;
-import com.petsource.petSalon.ListSalonActivity;
-import com.petsource.petSalon.PetSalonActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-
     public static String idStaff = new String();
     public static String nameStaff;
-    public static String addressStaff;
-    public static String jobStaff;
-    public static String cityStaff;
-    public static String priceStaff;
     public static double latitudeStaff;
     public static double longtitudeStaff;
 
@@ -108,14 +99,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     public void testToast(View view) {
+        try {
+            Location findme = mMap.getMyLocation();
+            double latitude = findme.getLatitude();
+            double longitude = findme.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
+            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
+            Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+        }
 
-        Location findme = mMap.getMyLocation();
-        double latitude = findme.getLatitude();
-        double longitude = findme.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
-
-        Intent intent = new Intent(this, FinalSalonActivity.class);
-        startActivity(intent);
     }
 
 }
