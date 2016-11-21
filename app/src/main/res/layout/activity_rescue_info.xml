@@ -25,41 +25,9 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/paw"
-        android:layout_below="@+id/appbar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="29dp"
-        android:layout_marginLeft="91dp"
-        android:id="@+id/imageView6" />
-
-    <Spinner
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/textColor"
-        android:layout_marginLeft="40dp"
-        android:layout_below="@+id/imageView6"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:id="@+id/spinner2" />
-
-    <TextView
-        android:text="To"
-        android:textSize="10pt"
-        android:textColor="#444545"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginTop="20dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
 
     <Button
-        android:text="Search"
+        android:text="Next"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:textColor="@color/textColor"
@@ -69,8 +37,68 @@
         android:layout_marginBottom="25dp"
         android:onClick="gotoMaps"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/spinner2"
-        android:layout_alignStart="@+id/spinner2" />
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textName"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:layout_alignBottom="@+id/textRace"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textRace"
+        android:textSize="18dp"
+        android:layout_alignBottom="@+id/textisMale"
+        android:textAlignment="center"
+        android:layout_marginBottom="35dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textisMale"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/textisCertified"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"/>
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:id="@+id/textdescription"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_width="350dp"
+        android:layout_above="@+id/btnCare"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textBirthdate"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/textdescription"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:id="@+id/textisCertified"
+        android:textSize="18dp"
+        android:textAlignment="center"
+        android:layout_centerHorizontal="true"
+        android:layout_alignBottom="@+id/textBirthdate"
+        android:layout_marginBottom="35dp"/>
 
 
 </RelativeLayout>

@@ -49,6 +49,9 @@ public interface API {
     @GET("rescue/")
     Call<List<Rescue>> getRescue();
 
+    @GET("rescue/{id}")
+    Call<Rescue> getRescueUser(@Path("id") String id);
+
 //    @FormUrlEncoded
 //    @POST("users/login")
 //    Call<Login> logIn(@Field("username") String email, @Field("password") String password);

@@ -64,6 +64,9 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".MapsRescueActivity"
+            android:label="@string/title_activity_maps" />
+        <activity
             android:name=".mycare.MyCareMapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
@@ -109,6 +112,10 @@
             android:name=".mysalon.MySalonMapsActivity"
             android:label="MySalonActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".petRescue.RescueInfoActivity"
+            android:label="MySalonActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

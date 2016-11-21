@@ -5,11 +5,20 @@ package com.petsource.model;
  */
 
 public class Rescue {
+    private String id;
     private String petid;
     private String userid;
     private double latitude;
     private double longitude;
     private String description;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getPetid() {
         return petid;
