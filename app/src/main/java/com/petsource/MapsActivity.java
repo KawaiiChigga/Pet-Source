@@ -109,15 +109,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng latLng = new LatLng(latitude, longitude);
 //        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
 
-<<<<<<< HEAD
-
-=======
-//        Intent intent = new Intent(this, PetSalonActivity.class);
-//        intent.putExtra("LA", latitude);
-//        intent.putExtra("LO", longitude);
-//        setResult(RESULT_OK, intent);
-//        finish();
->>>>>>> refs/remotes/origin/master
 
 
     }
