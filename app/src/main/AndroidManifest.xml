@@ -98,6 +98,10 @@
             android:name=".petSalon.FinalSalonActivity"
             android:label="@string/title_activity_final_salon"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".UpdateHomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

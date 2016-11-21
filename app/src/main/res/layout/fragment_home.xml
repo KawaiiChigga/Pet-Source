@@ -17,16 +17,6 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/petrescue"
-        android:id="@+id/btnFHomeRescue"
-        android:layout_below="@+id/btnFHomeCare"
-        android:layout_toRightOf="@+id/section_label"
-        android:layout_toEndOf="@+id/section_label"
-        android:layout_marginTop="36dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:srcCompat="@drawable/petcare"
         android:id="@+id/btnFHomeCare"
         android:layout_marginTop="31dp"
@@ -41,6 +31,16 @@
         android:id="@+id/btnFHomeSalon"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/section_label"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/petrescue"
+        android:id="@+id/btnFHomeRescue"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/btnFHomeCare"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
