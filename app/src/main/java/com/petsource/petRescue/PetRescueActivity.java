@@ -19,7 +19,6 @@ import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.adapter.PetListAdapter;
 import com.petsource.adapter.RescueListAdapter;
-import com.petsource.interfaces.RecyclerViewClickListener;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
@@ -30,7 +29,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetRescueActivity extends AppCompatActivity implements RecyclerViewClickListener{
+public class PetRescueActivity extends AppCompatActivity{
 
     private List<Pet> data;
     private RecyclerView petRV;
@@ -89,7 +88,7 @@ public class PetRescueActivity extends AppCompatActivity implements RecyclerView
                 for (Pet p : response.body() ) {
                     data.add(p);
                 }
-                adapter = new RescueListAdapter(data, this);
+                adapter = new RescueListAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
                 petRV.setHasFixedSize(true);
                 petRV.setLayoutManager(manager);
@@ -104,8 +103,4 @@ public class PetRescueActivity extends AppCompatActivity implements RecyclerView
         });
     }
 
-    @Override
-    public void recyclerViewListClicked(View v, int position) {
-        Log.d("FAK", "" + position);
-   }
 }

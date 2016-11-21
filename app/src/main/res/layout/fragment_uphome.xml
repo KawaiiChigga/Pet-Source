@@ -18,7 +18,8 @@
         android:layout_below="@+id/btnFUpHomeMySalon"
         android:layout_alignLeft="@+id/btnFUpHomeMySalon"
         android:layout_alignStart="@+id/btnFUpHomeMySalon"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:onClick="gotoMycare"/>
 
     <Button
         android:text="My Salon"
@@ -30,7 +31,8 @@
         android:layout_below="@+id/btnFUpHomePetRescue"
         android:layout_alignLeft="@+id/btnFUpHomePetRescue"
         android:layout_alignStart="@+id/btnFUpHomePetRescue"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:onClick="gotoMySalon"/>
 
     <Button
         android:text="Pet Rescue"
@@ -66,6 +68,7 @@
         android:id="@+id/btnFUpHomePetSalon"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:onClick="gotoPetSalon"
         />
 
 </RelativeLayout>

@@ -167,19 +167,6 @@
         android:layout_alignEnd="@+id/radioPet"
         android:switchTextAppearance="@style/TextAppearance.AppCompat" />
 
-    <Button
-        android:text="Add Pet"
-        android:layout_width="310dp"
-        android:layout_height="wrap_content"
-        android:textSize="40dp"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/textColor"
-        android:background="@color/colorPrimary"
-        android:id="@+id/btnAddPet"
-        android:layout_below="@+id/switchCertified"
-        android:layout_centerHorizontal="true"
-        android:onClick="addpet"/>
-
     <TextView
         android:text="Name"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -204,5 +191,18 @@
         android:layout_below="@+id/lblPetBirthdate"
         android:layout_alignLeft="@+id/lblPetBirthdate"
         android:layout_alignStart="@+id/lblPetBirthdate" />
+
+    <Button
+        android:text="Add Pet"
+        android:layout_width="310dp"
+        android:layout_height="wrap_content"
+        android:textSize="40dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:id="@+id/btnAddPet"
+        android:onClick="addpet"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
 
 </RelativeLayout>
