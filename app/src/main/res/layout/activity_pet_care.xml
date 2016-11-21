@@ -57,17 +57,18 @@
         android:layout_marginTop="20dp"
         android:id="@+id/textView" />
 
-    <EditText
+    <TextView
         android:layout_width="310dp"
         android:layout_height="35dp"
         android:background="#444545"
         android:textColor="#FDBD15"
         android:inputType="date"
         android:ems="10"
+        android:textSize="10pt"
         android:layout_below="@+id/textView"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
-        android:id="@+id/editText" />
+        android:id="@+id/txtFrom" />
 
     <TextView
         android:text="To"
@@ -75,24 +76,24 @@
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginTop="20dp"
         android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
+        android:layout_below="@+id/txtFrom"
+        android:layout_alignLeft="@+id/txtFrom"
+        android:layout_alignStart="@+id/txtFrom" />
 
-    <EditText
+    <TextView
         android:layout_width="310dp"
         android:layout_height="35dp"
         android:background="#444545"
         android:textColor="#FDBD15"
         android:inputType="date"
         android:ems="10"
+        android:textSize="10pt"
         android:layout_below="@+id/textView2"
         android:layout_alignLeft="@+id/textView2"
         android:layout_alignStart="@+id/textView2"
-        android:id="@+id/editText2" />
+        android:id="@+id/txtTo" />
 
     <Button
         android:text="Search"
@@ -104,9 +105,9 @@
         android:id="@+id/btnCare"
         android:layout_marginBottom="22dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_alignStart="@+id/editText2"
-        android:onClick="gotoMaps"/>
+        android:layout_alignLeft="@+id/txtTo"
+        android:layout_alignStart="@+id/txtTo"
+        android:onClick="gotoListSalon"/>
 
 
 </RelativeLayout>

@@ -85,6 +85,21 @@
         <activity
             android:name=".petSalon.ListSalonActivity"
             android:label="@string/title_activity_list_salon"
+<<<<<<< HEAD
+=======
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".mysalon.MySalonActivity"
+            android:label="@string/title_activity_my_salon"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".mycare.MyCareActivity"
+            android:label="@string/title_activity_my_care"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".petSalon.FinalSalonActivity"
+            android:label="@string/title_activity_final_salon"
+>>>>>>> refs/remotes/origin/master
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

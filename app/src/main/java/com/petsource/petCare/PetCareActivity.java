@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -21,19 +22,24 @@ import com.petsource.HomeActivity;
 import com.petsource.MapsActivity;
 import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
+import com.petsource.mysalon.MySalonActivity;
 import com.petsource.network.API;
+import com.petsource.petSalon.ListSalonActivity;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetCareActivity extends AppCompatActivity {
+public class PetCareActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
     private Button btnCare;
     private TextView lblCareTitle;
+    private TextView txtFrom, txtTo;
     private Spinner spinner;
     List<String> mypet;
 
@@ -72,6 +78,40 @@ public class PetCareActivity extends AppCompatActivity {
         lblCareTitle.setTypeface(typeface);
 
 
+        txtFrom = (TextView) findViewById(R.id.txtFrom);
+        txtTo = (TextView) findViewById(R.id.txtFrom);
+
+        txtFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        PetCareActivity.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.vibrate(false);
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
+
+        txtTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar now = Calendar.getInstance();
+                DatePickerDialog dpd = DatePickerDialog.newInstance(
+                        PetCareActivity.this,
+                        now.get(Calendar.YEAR),
+                        now.get(Calendar.MONTH),
+                        now.get(Calendar.DAY_OF_MONTH)
+                );
+                dpd.vibrate(false);
+                dpd.show(getFragmentManager(), "Datepickerdialog");
+            }
+        });
+
+
         // Create an ArrayAdapter using the string array and a default spinner layout
 
 //        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -104,11 +144,17 @@ public class PetCareActivity extends AppCompatActivity {
 
     }
 
-    public void gotoMaps(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
+    public void gotoListSalon(View view) {
+        Intent intent = new Intent(this, ListSalonActivity.class);
         startActivity(intent);
     }
 
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+        txtFrom.setText(date);
+        txtTo.setText(date);
+    }
 }
 
 

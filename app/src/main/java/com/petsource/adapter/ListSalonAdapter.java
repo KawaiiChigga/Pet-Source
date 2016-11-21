@@ -81,6 +81,9 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
             {
                 MapsActivity.idStaff = data.get(itemView.getId()+1).getUserid();
                 MapsActivity.nameStaff = data.get(itemView.getId()+1).getName();
+                MapsActivity.addressStaff = data.get(itemView.getId()+1).getAddress();
+                MapsActivity.cityStaff = data.get(itemView.getId()+1).getCity();
+                MapsActivity.jobStaff = data.get(itemView.getId()+1).getJob();
 
                 Call<List<Shop>> a = API.Factory.getInstance().getSalon(data.get(itemView.getId()+1).getUserid());
                 a.enqueue(new Callback<List<Shop>>() {
@@ -88,6 +91,7 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
                     public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
                         MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
                         MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
+                        MapsActivity.priceStaff = response.body().get(0).getPrice();
                     }
 
                     @Override
