@@ -181,9 +181,6 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
                         txtEndTime.getText().toString(),
                         latitude,
                         longitude,
-                        isWash,
-                        isTrim,
-                        isNail,
                         0,
                         txtSetPrice.getText().toString()
 

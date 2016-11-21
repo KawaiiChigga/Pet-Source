@@ -30,6 +30,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static String nameStaff;
     public static double latitudeStaff;
     public static double longtitudeStaff;
+    public static String addressStaff;
+    public static String cityStaff;
+    public static String jobStaff;
+    public static String priceStaff;
 
     GoogleMapOptions options = new GoogleMapOptions();
 

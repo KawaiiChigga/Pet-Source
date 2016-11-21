@@ -62,8 +62,7 @@ public interface API {
     @POST("shop/")
     Call<Shop> addShop(@Field("userid") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
                        @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") double latitude,
-                       @Field("longitude") double longitude, @Field("isWash") int isWash, @Field("isTrim") int isTrim,
-                       @Field("isClip") int isClip, @Field("isCare") int isCare, @Field("price") String price);
+                       @Field("longitude") double longitude, @Field("isCare") int isCare, @Field("price") String price);
 
     @FormUrlEncoded
     @POST("infouser/")

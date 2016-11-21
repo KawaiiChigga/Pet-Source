@@ -89,9 +89,9 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
                 a.enqueue(new Callback<List<Shop>>() {
                     @Override
                     public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-                        MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
-                        MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
-                        MapsActivity.priceStaff = response.body().get(0).getPrice();
+                        MapsActivity.latitudeStaff = response.body().get(itemView.getId()+1).getLatitude();
+                        MapsActivity.longtitudeStaff = response.body().get(itemView.getId()+1).getLongitude();
+                        MapsActivity.priceStaff = response.body().get(itemView.getId()+1).getPrice();
                     }
 
                     @Override

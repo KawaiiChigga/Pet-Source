@@ -86,11 +86,11 @@ public class ListSalonActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
                 for (Shop s : response.body()) {
+                    data.clear();
                     Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
                     itemCall.enqueue(new Callback<List<Info>>() {
                         @Override
                         public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
-                            data.clear();
                             for (Info i : response.body()) {
                                 data.add(i);
                             }
