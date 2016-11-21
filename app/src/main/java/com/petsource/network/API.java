@@ -44,6 +44,10 @@ public interface API {
 
     @GET("shop/")
     Call<List<Shop>> getSalon(@Query("iduser") String iduser);
+
+    //@GET("rescue/")
+    //Call<List<Rescue>>
+
 //    @FormUrlEncoded
 //    @POST("users/login")
 //    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
