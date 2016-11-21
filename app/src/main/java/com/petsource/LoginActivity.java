@@ -48,9 +48,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private FirebaseAuth mFirebaseAuth;
 
     private String userid;
+    private String name;
+    private String email;
+    private String url;
 
     private Calendar c;
     private String currentDate;
+
+    private int isStaff;
+    private int isApprove;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,6 +123,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private void onAuthSuccess(FirebaseUser user) {
         userid = user.getUid();
+        name = user.getDisplayName();
+        email = user.getEmail();
+        url = user.getPhotoUrl().toString();
         Call<List<Info>> checkData = API.Factory.getInstance().checkAccount(userid);
         checkData.enqueue(new Callback<List<Info>>() {
             @Override
@@ -124,6 +133,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body().size() == 0) {
                     Call<Info> info = API.Factory.getInstance().registerAccount(
                             userid,
+                            name,
+                            email,
+                            url,
                             currentDate,
                             0,
                             0
@@ -140,6 +152,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     });
                 }
+                Call<List<Info>> getType = API.Factory.getInstance().checkAccount(userid);
+                getType.enqueue(new Callback<List<Info>>() {
+                    @Override
+                    public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                        isApprove = response.body().get(0).getIsApprove();
+                        isStaff = response.body().get(0).getIsStaff();
+                        Intent intent;
+                        if (isApprove == 1 && isStaff == 1) {
+                            intent = new Intent(LoginActivity.this, UpdateHomeActivity.class);
+                        } else {
+                            intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        }
+                        startActivity(intent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                    }
+                });
             }
 
             @Override
@@ -148,8 +181,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-        finish();
+//
+//        startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+//        finish();
     }
 
     @Override
