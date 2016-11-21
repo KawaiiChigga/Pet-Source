@@ -1,4 +1,4 @@
-package com.petsource.petSalon;
+package com.petsource.petCare;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -16,10 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import com.petsource.MapsActivity;
+import com.petsource.Maps2Activity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
-import com.petsource.adapter.ListSalonAdapter;
+import com.petsource.adapter.ListCareAdapter;
+
 import com.petsource.model.Info;
 import com.petsource.model.Pet;
 import com.petsource.model.Shop;
@@ -33,38 +34,38 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
+import static com.petsource.petCare.PetCareActivity.REQ_MAPS2;
 
-public class ListSalonActivity extends AppCompatActivity {
+public class ListCareActivity extends AppCompatActivity {
 
     public static String idStaff;
     private List<Info> data;
     private RecyclerView petRV;
 
-    public ListSalonAdapter adapter;
+    public ListCareAdapter adapter;
     public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
-    public static Activity listSalonActivity;
+    public static Activity listCareActivity;
 
-    public ListSalonActivity() {
-        listSalonActivity = this;
+    public ListCareActivity() {
+        listCareActivity = this;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_salon);
+        setContentView(R.layout.activity_list_care);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
-        petRV = (RecyclerView) findViewById(R.id.rvListSalon);
+        petRV = (RecyclerView) findViewById(R.id.rvListCare);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
         data = new ArrayList<>();
         prepareData();
 
-        adapter = new ListSalonAdapter(data);
+        adapter = new ListCareAdapter(data);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         petRV.setHasFixedSize(true);
         petRV.setLayoutManager(manager);
@@ -81,7 +82,7 @@ public class ListSalonActivity extends AppCompatActivity {
     }
 
     public void prepareData() {
-        Call<List<Shop>> p = API.Factory.getInstance().getSalon(0);
+        Call<List<Shop>> p = API.Factory.getInstance().getCare(1);
         p.enqueue(new Callback<List<Shop>>() {
             @Override
             public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
@@ -94,7 +95,7 @@ public class ListSalonActivity extends AppCompatActivity {
                             for (Info i : response.body()) {
                                 data.add(i);
                             }
-                            adapter = new ListSalonAdapter(data);
+                            adapter = new ListCareAdapter(data);
                             LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
                             petRV.setHasFixedSize(true);
                             petRV.setLayoutManager(manager);
@@ -103,7 +104,7 @@ public class ListSalonActivity extends AppCompatActivity {
 
                         @Override
                         public void onFailure(Call<List<Info>> call, Throwable t) {
-                            Toast.makeText(ListSalonActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ListCareActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -112,9 +113,9 @@ public class ListSalonActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Shop>> call, Throwable t) {
                 swipeRefresh.setRefreshing(false);
-                Toast.makeText(ListSalonActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ListCareActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    }
+}

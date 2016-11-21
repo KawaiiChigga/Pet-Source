@@ -41,10 +41,16 @@ public interface API {
     Call<Pet> getPet(@Path("id") String id);
 
     @GET("shop/")
-    Call<List<Shop>> getSalon();
+    Call<List<Shop>> getSalon(@Query("isCare") int isCare);
 
     @GET("shop/")
-    Call<List<Shop>> getSalon(@Query("iduser") String iduser);
+    Call<List<Shop>> getSalonStaff(@Query("idUser") String idUser);
+
+    @GET("shop/")
+    Call<List<Shop>> getCare(@Query("isCare") int isCare);
+
+    @GET("shop/")
+    Call<List<Shop>> getCareStaff(@Query("idUser") String idUser);
 
     @GET("rescue/")
     Call<List<Rescue>> getRescue();

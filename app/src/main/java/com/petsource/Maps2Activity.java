@@ -24,10 +24,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petSalon.FinalSalonActivity;
-import com.petsource.petSalon.ListSalonActivity;
+import com.petsource.petCare.FinalCareActivity;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class Maps2Activity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     public static String idStaff = new String();
@@ -38,10 +37,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static String cityStaff;
     public static String jobStaff;
     public static String priceStaff;
-    public static Activity mapsActivity;
+    public static Activity maps2Activity;
 
-    public MapsActivity() {
-        mapsActivity = this;
+    public Maps2Activity() {
+        maps2Activity = this;
     }
 
     GoogleMapOptions options = new GoogleMapOptions();
@@ -85,7 +84,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .rotateGesturesEnabled(true)
                 .tiltGesturesEnabled(true)
                 .mapToolbarEnabled(true)
-                ;
+        ;
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -104,24 +103,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
         LatLng ithb = new LatLng(latitudeStaff, longtitudeStaff);
-     //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
+        //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
         mMap.addMarker(new MarkerOptions().position(ithb).title(nameStaff));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
 
     }
-    public void testToast(View view) {
+    public void testToast2(View view) {
         try {
             Location findme = mMap.getMyLocation();
             double latitude = findme.getLatitude();
             double longitude = findme.getLongitude();
             LatLng latLng = new LatLng(latitude, longitude);
-//            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(this, FinalSalonActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(this, FinalCareActivity.class);
+            startActivity(intent);
         }
         catch(Exception e){
-            Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Maps2Activity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
         }
 
     }

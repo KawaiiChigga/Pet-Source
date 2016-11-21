@@ -1,10 +1,13 @@
     package com.petsource;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.graphics.Typeface;
+import android.location.Location;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -13,32 +16,28 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.GoogleMapOptions;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.petsource.homeFragments.AccountFragment;
 import com.petsource.homeFragments.HistoryFragment;
 import com.petsource.homeFragments.HomeFragment;
-import com.petsource.model.Info;
-import com.petsource.model.User;
-import com.petsource.mycare.MyCareActivity;
-import com.petsource.mysalon.MySalonActivity;
-import com.petsource.network.API;
 import com.petsource.petCare.PetCareActivity;
+import com.petsource.petSalon.FinalSalonActivity;
 import com.petsource.petSalon.PetSalonActivity;
 import com.petsource.upHomeFragments.UpAccountFragment;
 import com.petsource.upHomeFragments.UpHistoryFragment;
 import com.petsource.upHomeFragments.UpHomeFragment;
-
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
     public class HomeActivity extends AppCompatActivity {
 
@@ -166,4 +165,6 @@ import retrofit2.Response;
             return null;
         }
     }
-}
+
+
+    }
