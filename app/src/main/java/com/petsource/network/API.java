@@ -60,7 +60,7 @@ public interface API {
 
     @FormUrlEncoded
     @POST("shop/")
-    Call<Shop> addShop(@Field("userid") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
+    Call<Shop> addShop(@Field("iduser") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
                        @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") double latitude,
                        @Field("longitude") double longitude, @Field("isCare") int isCare, @Field("price") String price);
 
