@@ -22,7 +22,7 @@ import com.petsource.adapter.ListSalonAdapter;
 import com.petsource.adapter.RescueListAdapter;
 import com.petsource.model.Info;
 import com.petsource.model.Pet;
-import com.petsource.model.Shop;
+import com.petsource.model.Rescue;
 import com.petsource.model.User;
 import com.petsource.network.API;
 
@@ -38,7 +38,7 @@ import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 public class PetRescueActivity extends AppCompatActivity {
 
     public static String idStaff;
-    private List<Info> data;
+    private List<Pet> data;
     private RecyclerView petRV;
 
     public RescueListAdapter adapter;
@@ -77,19 +77,17 @@ public class PetRescueActivity extends AppCompatActivity {
 
 
     public void prepareData() {
-        Call<List<Shop>> p = API.Factory.getInstance().getSalon();
-        p.enqueue(new Callback<List<Shop>>() {
+        Call<List<Rescue>> p = API.Factory.getInstance().getRescue();
+        p.enqueue(new Callback<List<Rescue>>() {
             @Override
-            public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-                for (Shop s : response.body()) {
-                    Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
-                    itemCall.enqueue(new Callback<List<Info>>() {
+            public void onResponse(Call<List<Rescue>> call, Response<List<Rescue>> response) {
+                for (Rescue s : response.body()) {
+                    Call<Pet> itemCall = API.Factory.getInstance().getPet(s.getPetid());
+                    itemCall.enqueue(new Callback<Pet>() {
                         @Override
-                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                        public void onResponse(Call<Pet> call, Response<Pet> response) {
                             data.clear();
-                            for (Info i : response.body()) {
-                                data.add(i);
-                            }
+                            data.add(response.body());
                             adapter = new RescueListAdapter(data);
                             LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
                             petRV.setHasFixedSize(true);
@@ -98,7 +96,7 @@ public class PetRescueActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void onFailure(Call<List<Info>> call, Throwable t) {
+                        public void onFailure(Call<Pet> call, Throwable t) {
                             Toast.makeText(PetRescueActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -106,7 +104,7 @@ public class PetRescueActivity extends AppCompatActivity {
 
             }
             @Override
-            public void onFailure(Call<List<Shop>> call, Throwable t) {
+            public void onFailure(Call<List<Rescue>> call, Throwable t) {
                 swipeRefresh.setRefreshing(false);
                 Toast.makeText(PetRescueActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
             }

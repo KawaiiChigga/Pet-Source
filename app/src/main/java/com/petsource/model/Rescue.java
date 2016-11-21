@@ -7,8 +7,8 @@ package com.petsource.model;
 public class Rescue {
     private String petid;
     private String userid;
-    private String latitude;
-    private String longitude;
+    private double latitude;
+    private double longitude;
     private String description;
 
     public String getPetid() {
@@ -27,19 +27,19 @@ public class Rescue {
         this.userid = userid;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 

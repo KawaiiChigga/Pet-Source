@@ -110,13 +110,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
         }
 
-
-        Location findme = mMap.getMyLocation();
-        double latitude = findme.getLatitude();
-        double longitude = findme.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
-
-
     }
 
 }
