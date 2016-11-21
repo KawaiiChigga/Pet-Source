@@ -22,6 +22,7 @@ import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
+import com.petsource.petRescue.RescueInfoActivity;
 import com.petsource.petSalon.ListSalonActivity;
 
 import java.util.List;
@@ -82,18 +83,17 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if(v.getId()==itemView.getId())
             {
-                MapsActivity.idStaff = data.get(itemView.getId()+1).getUserid();
-                MapsActivity.nameStaff = data.get(itemView.getId()+1).getName();
-
                 Call<List<Rescue>> a = API.Factory.getInstance().getRescue();
                 a.enqueue(new Callback<List<Rescue>>() {
                     @Override
                     public void onResponse(Call<List<Rescue>> call, Response<List<Rescue>> response) {
-                        MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
-                        MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
+                        RescueInfoActivity.idRescue = response.body().get(Integer.valueOf(getAdapterPosition())).getId();
+
+                        Intent intent = new Intent(v.getContext(), RescueInfoActivity.class);
+                        v.getContext().startActivity(intent);
                     }
 
                     @Override
@@ -103,8 +103,6 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
                 });
 
 
-                Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                v.getContext().startActivity(intent);
             }
         }
     }
