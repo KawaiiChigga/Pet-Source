@@ -99,7 +99,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     public void testToast(View view) {
-<<<<<<< HEAD
         try {
             Location findme = mMap.getMyLocation();
             double latitude = findme.getLatitude();
@@ -110,21 +109,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         catch(Exception e){
             Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
         }
-=======
+
 
         Location findme = mMap.getMyLocation();
         double latitude = findme.getLatitude();
         double longitude = findme.getLongitude();
         LatLng latLng = new LatLng(latitude, longitude);
-//        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
 
-//        Intent intent = new Intent(this, PetSalonActivity.class);
-//        intent.putExtra("LA", latitude);
-//        intent.putExtra("LO", longitude);
-//        setResult(RESULT_OK, intent);
-//        finish();
-
->>>>>>> refs/remotes/origin/master
 
     }
 

@@ -78,7 +78,6 @@
             android:label="@string/title_activity_update_acc"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".petSalon.SpinnerActivity" />
         <activity
             android:name=".petRescue.PetRescueActivity"
             android:label="@string/title_activity_pet_rescue"
