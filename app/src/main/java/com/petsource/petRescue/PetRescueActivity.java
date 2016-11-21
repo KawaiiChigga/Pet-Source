@@ -12,9 +12,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.petsource.AddPetActivity;
 import com.petsource.MapsActivity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
@@ -72,6 +74,15 @@ public class PetRescueActivity extends AppCompatActivity {
             }
         });
         swipeRefresh.setRefreshing(true);
+        FloatingActionButton fabulous = (FloatingActionButton) findViewById(R.id.fabulous);
+        fabulous.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.d("FAK", "shit");
+                Intent intent = new Intent(PetRescueActivity.this, AddRescueActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

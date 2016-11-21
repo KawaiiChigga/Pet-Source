@@ -25,6 +25,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".PetListActivity" />
+        <activity android:name=".petRescue.AddRescueActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
