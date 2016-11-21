@@ -62,7 +62,23 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
 
         btnNext = (Button) findViewById(R.id.btnNext);
         btnNext.setTypeface(typeface);
+        btnNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Location findme = mMap.getMyLocation();
+                    double latitude = findme.getLatitude();
+                    double longitude = findme.getLongitude();
+                    LatLng latLng = new LatLng(latitude, longitude);
+                    Intent intent = new Intent(Maps2Activity.this, FinalCareActivity.class);
+                    startActivity(intent);
+                }
+                catch(Exception e){
+                    Toast.makeText(Maps2Activity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+                }
 
+            }
+        });
         lblLocation = (TextView) findViewById(R.id.lblLocation);
         lblLocation.setTypeface(typeface);
     }
@@ -107,20 +123,6 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
         mMap.addMarker(new MarkerOptions().position(ithb).title(nameStaff));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
-
-    }
-    public void testToast2(View view) {
-        try {
-            Location findme = mMap.getMyLocation();
-            double latitude = findme.getLatitude();
-            double longitude = findme.getLongitude();
-            LatLng latLng = new LatLng(latitude, longitude);
-            Intent intent = new Intent(this, FinalCareActivity.class);
-            startActivity(intent);
-        }
-        catch(Exception e){
-            Toast.makeText(Maps2Activity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
-        }
 
     }
 
