@@ -147,10 +147,10 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
         btnOpenSalon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-//                Intent intent = new Intent(MySalonActivity.this, MySalonMapsActivity.class);
+//                finish();
+                Intent intent = new Intent(MySalonActivity.this, MySalonMapsActivity.class);
 //                startActivity(intent);
-//                startActivityForResult(intent, REQ_MAPS);
+                startActivityForResult(intent, REQ_MAPS);
 
             }
         });
@@ -161,26 +161,14 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQ_MAPS){
             if(resultCode == RESULT_OK){
-                double latitude = data.getDoubleExtra("LA", 0);
-                double longitude = data.getDoubleExtra("LO", 0);
-                int isWash = 0, isTrim = 0, isNail = 0;
-                if (cbWashing.isChecked()) {
-                    isWash = 1;
-                }
-                if (cbNail.isChecked()) {
-                    isNail = 1;
-                }
-                if (cbTrimming.isChecked()) {
-                    isTrim = 1;
-                }
                 Call<Shop> addshop = API.Factory.getInstance().addShop(
                         SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
                         txtSetDate.getText().toString(),
                         txtStartTime.getText().toString(),
                         txtSetDate.getText().toString(),
                         txtEndTime.getText().toString(),
-                        latitude,
-                        longitude,
+                        MySalonMapsActivity.latitude,
+                        MySalonMapsActivity.longitude,
                         0,
                         txtSetPrice.getText().toString()
 
@@ -198,7 +186,7 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
                 });
 //                Intent intent = new Intent(this, ListSalonActivity.class);
 //                startActivity(intent);
-//                finish();
+                finish();
 
             }else if(resultCode == RESULT_CANCELED);
         }
