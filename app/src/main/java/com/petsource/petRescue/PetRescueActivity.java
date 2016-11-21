@@ -1,25 +1,29 @@
 package com.petsource.petRescue;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.petsource.AddPetActivity;
+import com.petsource.MapsActivity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
-import com.petsource.adapter.PetListAdapter;
+import com.petsource.adapter.ListSalonAdapter;
 import com.petsource.adapter.RescueListAdapter;
+import com.petsource.model.Info;
 import com.petsource.model.Pet;
+import com.petsource.model.Shop;
+import com.petsource.model.User;
 import com.petsource.network.API;
 
 import java.util.ArrayList;
@@ -29,9 +33,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PetRescueActivity extends AppCompatActivity{
+import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 
-    private List<Pet> data;
+public class PetRescueActivity extends AppCompatActivity {
+
+    public static String idStaff;
+    private List<Info> data;
     private RecyclerView petRV;
 
     public RescueListAdapter adapter;
@@ -42,8 +49,7 @@ public class PetRescueActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_rescue);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar2);
-        toolbar.setTitle("Pet Rescue");
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
@@ -66,37 +72,41 @@ public class PetRescueActivity extends AppCompatActivity{
             }
         });
         swipeRefresh.setRefreshing(true);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(PetRescueActivity.this, AddPetActivity.class);
-                startActivity(intent);
-            }
-        });
-
 
     }
 
-    public void prepareData() {
-        Call<List<Pet>> p = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
-        p.enqueue(new Callback<List<Pet>>() {
-            @Override
-            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                swipeRefresh.setRefreshing(false);
-                data.clear();
-                for (Pet p : response.body() ) {
-                    data.add(p);
-                }
-                adapter = new RescueListAdapter(data);
-                LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
-                petRV.setHasFixedSize(true);
-                petRV.setLayoutManager(manager);
-                petRV.setAdapter(adapter);
-            }
 
+    public void prepareData() {
+        Call<List<Shop>> p = API.Factory.getInstance().getSalon();
+        p.enqueue(new Callback<List<Shop>>() {
             @Override
-            public void onFailure(Call<List<Pet>> call, Throwable t) {
+            public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                for (Shop s : response.body()) {
+                    Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
+                    itemCall.enqueue(new Callback<List<Info>>() {
+                        @Override
+                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                            data.clear();
+                            for (Info i : response.body()) {
+                                data.add(i);
+                            }
+                            adapter = new RescueListAdapter(data);
+                            LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
+                            petRV.setHasFixedSize(true);
+                            petRV.setLayoutManager(manager);
+                            petRV.setAdapter(adapter);
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Info>> call, Throwable t) {
+                            Toast.makeText(PetRescueActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+
+            }
+            @Override
+            public void onFailure(Call<List<Shop>> call, Throwable t) {
                 swipeRefresh.setRefreshing(false);
                 Toast.makeText(PetRescueActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
             }

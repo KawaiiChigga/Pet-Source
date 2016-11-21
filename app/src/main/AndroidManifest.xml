@@ -82,6 +82,10 @@
             android:name=".petRescue.PetRescueActivity"
             android:label="@string/title_activity_pet_rescue"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".petSalon.ListSalonActivity"
+            android:label="@string/title_activity_list_salon"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
