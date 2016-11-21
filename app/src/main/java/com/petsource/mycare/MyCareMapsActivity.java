@@ -1,7 +1,6 @@
-package com.petsource.mysalon;
+package com.petsource.mycare;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
@@ -17,9 +16,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.petsource.R;
-import com.petsource.petSalon.PetSalonActivity;
 
-public class MySalonMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MyCareMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     GoogleMapOptions options = new GoogleMapOptions();
@@ -85,11 +83,7 @@ public class MySalonMapsActivity extends FragmentActivity implements OnMapReadyC
         LatLng latLng = new LatLng(latitude, longitude);
 //        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, MySalonActivity.class);
-        intent.putExtra("LA", latitude);
-        intent.putExtra("LO", longitude);
-        setResult(RESULT_OK, intent);
-        finish();
+
 
 
     }

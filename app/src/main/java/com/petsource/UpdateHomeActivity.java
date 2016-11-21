@@ -75,7 +75,7 @@
             startActivity(intent);
         }
 
-        public void Mycare(View view) {
+        public void gotoMycare(View view) {
             Intent intent = new Intent(this, MyCareActivity.class);
             startActivity(intent);
         }

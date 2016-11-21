@@ -133,10 +133,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 if (response.body().size() == 0) {
                     Call<Info> info = API.Factory.getInstance().registerAccount(
                             userid,
-                            currentDate,
                             name,
                             email,
                             url,
+                            currentDate,
                             0,
                             0
                     );

@@ -29,6 +29,8 @@ import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MySalonActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -95,7 +97,16 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-                                txtStartTime.setText(hourOfDay+":"+minute);
+                                String print = "";
+                                if (hourOfDay < 10) {
+                                    print += "0";
+                                }
+                                print += hourOfDay + ":";
+                                if (minute < 10) {
+                                    print += 0;
+                                }
+                                print += minute + "";
+                                txtStartTime.setText(print);
                             }
                         },
                         now.get(Calendar.HOUR),
@@ -115,7 +126,16 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
                         new TimePickerDialog.OnTimeSetListener() {
                             @Override
                             public void onTimeSet(RadialPickerLayout view, int hourOfDay, int minute, int second) {
-                                txtEndTime.setText(hourOfDay+":"+minute);
+                                String print = "";
+                                if (hourOfDay < 10) {
+                                    print += "0";
+                                }
+                                print += hourOfDay + ":";
+                                if (minute < 10) {
+                                    print += 0;
+                                }
+                                print += minute + "";
+                                txtEndTime.setText(print);
                             }
                         },
                         now.get(Calendar.HOUR),
@@ -130,8 +150,10 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
         btnOpenSalon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MySalonActivity.this, MySalonMapsActivity.class);
-                startActivityForResult(intent, REQ_MAPS);
+                finish();
+//                Intent intent = new Intent(MySalonActivity.this, MySalonMapsActivity.class);
+//                startActivity(intent);
+//                startActivityForResult(intent, REQ_MAPS);
 
             }
         });
@@ -169,6 +191,17 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
                         txtSetPrice.getText().toString()
 
                 );
+                addshop.enqueue(new Callback<Shop>() {
+                    @Override
+                    public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Shop> call, Throwable t) {
+
+                    }
+                });
 //                Intent intent = new Intent(this, ListSalonActivity.class);
 //                startActivity(intent);
 //                finish();
