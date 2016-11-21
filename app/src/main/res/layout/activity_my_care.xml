@@ -121,7 +121,7 @@
         android:id="@+id/txtSetPrice" />
 
     <Button
-        android:text="OPEN SALON"
+        android:text="OPEN CARE"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="470dp"
         android:layout_width="310dp"

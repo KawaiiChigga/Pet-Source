@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="45dp"
             android:layout_marginLeft="200dp"
-            android:id="@+id/lblCareTitle" />
+            android:id="@+id/lblLocation" />
 
 
     </android.support.design.widget.AppBarLayout>
@@ -35,8 +35,11 @@
 
     <Button
         android:text="Next"
+        android:textSize="20dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
         android:layout_height="wrap_content"
-        android:id="@+id/button3"
+        android:id="@+id/btnNext"
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

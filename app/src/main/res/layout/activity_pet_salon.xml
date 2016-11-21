@@ -68,7 +68,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="21dp"
         android:id="@+id/btnSalon"
-        android:onClick="gotoMaps"/>
+        android:onClick="gotoListSalon"/>
 
     <ImageView
         android:layout_width="100dp"
