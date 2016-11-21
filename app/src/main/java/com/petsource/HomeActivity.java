@@ -45,14 +45,8 @@ import retrofit2.Response;
     private CustomerSectionsPagerAdapter mSectionsPagerAdapter;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private TextView lblUpdate;
-    private GoogleApiClient mGoogleApiClient;
 
     public static Activity homeActivity;
-    public static SharedPreferences shared;
-
-    private int isStaff;
-    private int isApprove;
     public HomeActivity() {
         homeActivity = this;
     }
@@ -63,49 +57,41 @@ import retrofit2.Response;
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
-        isStaff = 1;
-        isApprove = 1;
-
-        if (isStaff == 1 && isApprove == 1) {
-            mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
-            mViewPager = (ViewPager) findViewById(R.id.container);
-            mViewPager.setAdapter(mCSectionsPagerAdapter);
-        } else {
-            mSectionsPagerAdapter = new CustomerSectionsPagerAdapter(getSupportFragmentManager());
-            mViewPager = (ViewPager) findViewById(R.id.container);
-            mViewPager.setAdapter(mSectionsPagerAdapter);
-        }
+        mSectionsPagerAdapter = new CustomerSectionsPagerAdapter(getSupportFragmentManager());
+        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager.setAdapter(mSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
     }
 
-        public void gotoPetSalon(View view) {
-            Intent intent = new Intent(this, PetSalonActivity.class);
-            startActivity(intent);
-        }
+    public void gotoPetSalon(View view) {
+        Intent intent = new Intent(this, PetSalonActivity.class);
+        startActivity(intent);
+    }
 
-        public void gotoPetCare(View view) {
-            Intent intent = new Intent(this, PetCareActivity.class);
-            startActivity(intent);
-        }
+    public void gotoPetCare(View view) {
+        Intent intent = new Intent(this, PetCareActivity.class);
+        startActivity(intent);
+    }
 
 //        public void gotoPetRescue(View view) {
 //            Intent intent = new Intent(this, PetRescueActivity.class);
 //            startActivity(intent);
 //        }
 
-        public void gotoMySalon(View view) {
-            Intent intent = new Intent(this, MySalonActivity.class);
-            startActivity(intent);
-        }
+    public void gotoMySalon(View view) {
+        Intent intent = new Intent(this, MySalonActivity.class);
+        startActivity(intent);
+    }
 
-        public void gotoMycare(View view) {
-            Intent intent = new Intent(this, MyCareActivity.class);
-            startActivity(intent);
-        }
+    public void gotoMycare(View view) {
+        Intent intent = new Intent(this, MyCareActivity.class);
+        startActivity(intent);
+    }
 
 
     public void gotoPetList(View view) {

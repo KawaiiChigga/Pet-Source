@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,16 +33,6 @@
         android:layout_marginLeft="130dp"
         android:layout_marginTop="70dp"/>
 
-    <TextView
-        android:text="Set Date"
-        android:textSize="10pt"
-        android:textColor="#444545"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="180dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        />
 
     <TextView
         android:text=""
@@ -53,82 +43,109 @@
         android:textSize="10pt"
         android:id="@+id/txtSetDate"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="210dp"/>
+        android:layout_marginTop="210dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:paddingTop="3pt"
+        android:textSize="8pt"
+        android:id="@+id/txtEndTime"
+        android:layout_alignBaseline="@+id/txtStartTime"
+        android:layout_alignBottom="@+id/txtStartTime"
+        android:layout_alignRight="@+id/txtSetDate"
+        android:layout_alignEnd="@+id/txtSetDate" />
+
+    <TextView
+        android:layout_width="120dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:ems="10"
+        android:paddingTop="3pt"
+        android:textSize="8pt"
+        android:id="@+id/txtStartTime"
+        android:layout_below="@+id/textView12"
+        android:layout_marginTop="5dp"
+        android:layout_alignLeft="@+id/txtSetDate"
+        android:layout_alignStart="@+id/txtSetDate" />
 
     <TextView
         android:text="Set Time"
         android:textSize="10pt"
         android:textColor="#444545"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView12" />
+        android:id="@+id/textView12"
+        android:layout_below="@+id/txtSetDate"
+        android:layout_alignLeft="@+id/txtStartTime"
+        android:layout_alignStart="@+id/txtStartTime" />
 
-    <EditText
-        android:layout_width="120dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="290dp"
-        android:background="#444545"
-        android:textColor="#FDBD15"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/txtStartTime" />
+    <TextView
+        android:text="Set Date"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView10"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/imageView7"
+        android:layout_alignLeft="@+id/txtSetDate"
+        android:layout_alignStart="@+id/txtSetDate" />
 
     <TextView
         android:text="-"
-        android:textSize="50pt"
+        android:textSize="30pt"
         android:textColor="#444545"
-        android:layout_marginLeft="170dp"
-        android:layout_marginTop="240dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView13"
-        android:layout_weight="1" />
-
-    <EditText
-        android:layout_width="120dp"
-        android:layout_height="35dp"
-        android:layout_marginLeft="220dp"
-        android:layout_marginTop="290dp"
-        android:background="#444545"
-        android:textColor="#FDBD15"
-        android:inputType="time"
-        android:ems="10"
-        android:id="@+id/txtEndTime" />
-
+        android:layout_marginTop="5dp"
+        android:layout_alignTop="@+id/textView12"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Set Price"
         android:textSize="10pt"
         android:textColor="#444545"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="13dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView14" />
+        android:id="@+id/textView14"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/txtStartTime"
+        android:layout_alignStart="@+id/txtStartTime" />
 
     <EditText
         android:layout_width="310dp"
         android:layout_height="35dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="380dp"
         android:background="#444545"
         android:textColor="#FDBD15"
         android:inputType="number"
         android:ems="10"
-        android:id="@+id/txtSetPrice" />
+        android:id="@+id/txtSetPrice"
+        android:layout_below="@+id/textView14"
+        android:layout_marginTop="5dp"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
 
     <Button
         android:text="OPEN CARE"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="470dp"
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"
-        android:id="@+id/btnOpenCare" />
+        android:id="@+id/btnOpenCare"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/txtSetPrice"
+        android:layout_alignStart="@+id/txtSetPrice"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>
