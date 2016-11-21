@@ -23,7 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".LoginActivity" />
-        <activity android:name=".HomeActivity" />
+        <activity android:name=".HomeActivity" android:label="@string/app_name"/>
         <activity android:name=".PetListActivity" />
         <activity android:name=".petRescue.AddRescueActivity" />
         <activity
@@ -107,13 +107,12 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UpdateHomeActivity"
-            android:label="@string/title_activity_home"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".mysalon.MySalonMapsActivity"
             android:label="MySalonActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".upHomeFragments.Maps2Activity" />
         <activity android:name=".Maps2Activity" />
         <activity
             android:name=".petCare.ListCareActivity"

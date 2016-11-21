@@ -22,17 +22,6 @@
         android:id="@+id/profilepicture" />
 
     <Button
-        android:text="Settings"
-        android:textColor="@color/textColor"
-        android:background="@color/colorPrimary"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/btnFUpAccountSignOut"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/btnFUpAccountSettings" />
-
-    <Button
         android:text="Sign Out"
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"
@@ -76,14 +65,4 @@
         android:layout_marginLeft="14dp"
         android:layout_marginStart="14dp" />
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnFUpAccountMyPets"
-        android:layout_marginTop="20dp"
-        android:id="@+id/staffRatingBar"
-        android:numStars="5"
-        style="@style/Widget.AppCompat.RatingBar" 
-        android:layout_centerHorizontal="true"
-        android:rating="2.5" />
 </RelativeLayout>
