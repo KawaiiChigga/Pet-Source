@@ -2,7 +2,7 @@ package com.petsource.adapter;
 
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
-import android.telecom.Call;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +19,8 @@ import com.petsource.petRescue.PetRescueActivity;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -93,7 +95,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
 //                PetRescueActivity.rescueDecript = data2.get(Integer.valueOf(getAdapterPosition())).getDescription();
 
                 Call<List<Pet>> a = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
-                a.enqueue(new SortedList.Callback<List<Rescue>>() {
+                a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
 //                        PetRescueActivity.rescueDecript = response.body().get(0).getDescription();
