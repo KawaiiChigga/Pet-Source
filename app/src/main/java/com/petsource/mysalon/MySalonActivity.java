@@ -68,9 +68,6 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
 
         txtStartTime = (TextView) findViewById(R.id.txtStartTime);
         txtEndTime = (TextView) findViewById(R.id.txtEndTime);
-        cbWashing = (CheckBox) findViewById(R.id.cbWashing);
-        cbNail = (CheckBox) findViewById(R.id.cbNail);
-        cbTrimming = (CheckBox) findViewById(R.id.cbTrimming);
         txtSetPrice = (EditText) findViewById(R.id.txtSetPrice);
         txtSetDate = (TextView) findViewById(R.id.txtSetDate);
 
@@ -184,9 +181,6 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
                         txtEndTime.getText().toString(),
                         latitude,
                         longitude,
-                        isWash,
-                        isTrim,
-                        isNail,
                         0,
                         txtSetPrice.getText().toString()
 

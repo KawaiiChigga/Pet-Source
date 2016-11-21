@@ -1,7 +1,6 @@
 package com.petsource;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -23,8 +22,6 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petSalon.ListSalonActivity;
-import com.petsource.petSalon.PetSalonActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -33,6 +30,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static String nameStaff;
     public static double latitudeStaff;
     public static double longtitudeStaff;
+    public static String addressStaff;
+    public static String cityStaff;
+    public static String jobStaff;
+    public static String priceStaff;
 
     GoogleMapOptions options = new GoogleMapOptions();
 
@@ -102,23 +103,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
     public void testToast(View view) {
-
-        Location findme = mMap.getMyLocation();
-        double latitude = findme.getLatitude();
-        double longitude = findme.getLongitude();
-        LatLng latLng = new LatLng(latitude, longitude);
-//        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
-
-<<<<<<< HEAD
-
-=======
-//        Intent intent = new Intent(this, PetSalonActivity.class);
-//        intent.putExtra("LA", latitude);
-//        intent.putExtra("LO", longitude);
-//        setResult(RESULT_OK, intent);
-//        finish();
->>>>>>> refs/remotes/origin/master
-
+        try {
+            Location findme = mMap.getMyLocation();
+            double latitude = findme.getLatitude();
+            double longitude = findme.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
+            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+        }
+        catch(Exception e){
+            Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

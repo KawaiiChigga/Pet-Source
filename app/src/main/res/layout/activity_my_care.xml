@@ -134,13 +134,8 @@
         android:layout_alignStart="@+id/textView14" />
 
     <Button
-<<<<<<< HEAD
-        android:text="OPEN SALON"
-=======
         android:text="OPEN CARE"
-        android:layout_marginLeft="30dp"
         android:layout_marginTop="470dp"
->>>>>>> refs/remotes/origin/master
         android:layout_width="310dp"
         android:layout_height="wrap_content"
         android:textSize="20dp"

@@ -3,6 +3,7 @@ package com.petsource.network;
 import com.petsource.model.Info;
 import com.petsource.model.Login;
 import com.petsource.model.Pet;
+import com.petsource.model.Rescue;
 import com.petsource.model.Shop;
 import com.petsource.model.User;
 import com.google.gson.Gson;
@@ -44,6 +45,10 @@ public interface API {
 
     @GET("shop/")
     Call<List<Shop>> getSalon(@Query("iduser") String iduser);
+
+    @GET("rescue/")
+    Call<List<Rescue>> getRescue();
+
 //    @FormUrlEncoded
 //    @POST("users/login")
 //    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
@@ -57,8 +62,7 @@ public interface API {
     @POST("shop/")
     Call<Shop> addShop(@Field("userid") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
                        @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") double latitude,
-                       @Field("longitude") double longitude, @Field("isWash") int isWash, @Field("isTrim") int isTrim,
-                       @Field("isClip") int isClip, @Field("isCare") int isCare, @Field("price") String price);
+                       @Field("longitude") double longitude, @Field("isCare") int isCare, @Field("price") String price);
 
     @FormUrlEncoded
     @POST("infouser/")

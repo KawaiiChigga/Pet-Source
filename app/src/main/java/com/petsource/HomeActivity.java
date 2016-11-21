@@ -82,18 +82,6 @@ import retrofit2.Response;
 //            Intent intent = new Intent(this, PetRescueActivity.class);
 //            startActivity(intent);
 //        }
-
-    public void gotoMySalon(View view) {
-        Intent intent = new Intent(this, MySalonActivity.class);
-        startActivity(intent);
-    }
-
-    public void gotoMycare(View view) {
-        Intent intent = new Intent(this, MyCareActivity.class);
-        startActivity(intent);
-    }
-
-
     public void gotoPetList(View view) {
         Intent intent = new Intent(this, PetListActivity.class);
         startActivity(intent);

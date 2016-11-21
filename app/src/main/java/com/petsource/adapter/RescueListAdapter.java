@@ -18,6 +18,8 @@ import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.UpdateHomeActivity;
 import com.petsource.model.Info;
+import com.petsource.model.Pet;
+import com.petsource.model.Rescue;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
 import com.petsource.petSalon.ListSalonActivity;
@@ -33,11 +35,10 @@ import static android.app.Activity.RESULT_OK;
 import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 
 
-public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyViewHolder>{
-    private List<Info> data;
-    private List<Shop> data2;
+public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.MyViewHolder>{
+    private List<Pet> data;
 
-    public ListSalonAdapter(List<Info> data){
+    public RescueListAdapter(List<Pet> data){
         this.data = data;
     }
 
@@ -49,7 +50,7 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Info p = data.get(position);
+        Pet p = data.get(position);
         holder.bind(p);
     }
 
@@ -69,10 +70,15 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
             itemView.setOnClickListener(this);
         }
 
-        public void bind(final Info user) {
-                txtName.setText(user.getName());
-                txtJob.setText(user.getJob());
-                txtAlamat.setText(user.getAddress());
+        public void bind(Pet pet) {
+            txtName.setText(pet.getName());
+            txtJob.setText(pet.getRace());
+            if(pet.isDog()==1){
+                txtAlamat.setText("Dog");
+            }
+            else{
+                txtAlamat.setText("Cat");
+            }
         }
 
         @Override
@@ -81,21 +87,17 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
             {
                 MapsActivity.idStaff = data.get(itemView.getId()+1).getUserid();
                 MapsActivity.nameStaff = data.get(itemView.getId()+1).getName();
-                MapsActivity.addressStaff = data.get(itemView.getId()+1).getAddress();
-                MapsActivity.cityStaff = data.get(itemView.getId()+1).getCity();
-                MapsActivity.jobStaff = data.get(itemView.getId()+1).getJob();
 
-                Call<List<Shop>> a = API.Factory.getInstance().getSalon(data.get(itemView.getId()+1).getUserid());
-                a.enqueue(new Callback<List<Shop>>() {
+                Call<List<Rescue>> a = API.Factory.getInstance().getRescue();
+                a.enqueue(new Callback<List<Rescue>>() {
                     @Override
-                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-                        MapsActivity.latitudeStaff = response.body().get(itemView.getId()+1).getLatitude();
-                        MapsActivity.longtitudeStaff = response.body().get(itemView.getId()+1).getLongitude();
-                        MapsActivity.priceStaff = response.body().get(itemView.getId()+1).getPrice();
+                    public void onResponse(Call<List<Rescue>> call, Response<List<Rescue>> response) {
+                        MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
+                        MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
                     }
 
                     @Override
-                    public void onFailure(Call<List<Shop>> call, Throwable t) {
+                    public void onFailure(Call<List<Rescue>> call, Throwable t) {
 
                     }
                 });

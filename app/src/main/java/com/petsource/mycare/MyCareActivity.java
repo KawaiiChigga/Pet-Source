@@ -1,6 +1,7 @@
 package com.petsource.mycare;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -12,13 +13,21 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.petsource.R;
+import com.petsource.SplashActivity;
+import com.petsource.model.Shop;
+import com.petsource.network.API;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import java.util.Calendar;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class MyCareActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    public static final int REQ_MAPS = 100;
 
     private TextView txtSetDate;
     private TextView txtStartTime;
@@ -124,6 +133,50 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
                 tpd.show(getFragmentManager(), "EndTime");
             }
         });
+
+        btnOpenCare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MyCareActivity.this, MyCareMapsActivity.class);
+                startActivityForResult(intent, REQ_MAPS);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQ_MAPS) {
+            if (resultCode == RESULT_OK) {
+                Intent intent = getIntent();
+                double latitude = intent.getDoubleExtra("LA", 0);
+                double longitude = intent.getDoubleExtra("LO", 0);
+                Call<Shop> addshop = API.Factory.getInstance().addShop(
+                        SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
+                        txtSetDate.getText().toString(),
+                        txtStartTime.getText().toString(),
+                        txtSetDate.getText().toString(),
+                        txtEndTime.getText().toString(),
+                        latitude,
+                        longitude,
+                        1,
+                        txtSetPrice.getText().toString()
+
+                );
+                addshop.enqueue(new Callback<Shop>() {
+                    @Override
+                    public void onResponse(Call<Shop> call, Response<Shop> response) {
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Shop> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        }
     }
 
     @Override

@@ -24,7 +24,6 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".LoginActivity" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".UpdateHomeActivity" />
         <activity android:name=".PetListActivity" />
         <activity
             android:name=".SplashActivity"
@@ -65,6 +64,9 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".mycare.MyCareMapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity
             android:name=".petSalon.PetSalonActivity"
             android:label="@string/title_activity_pet_salon"
             android:theme="@style/AppTheme.NoActionBar"
@@ -82,7 +84,7 @@
         <activity
             android:name=".petRescue.PetRescueActivity"
             android:label="@string/title_activity_pet_rescue"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".petSalon.ListSalonActivity"
             android:label="@string/title_activity_list_salon"
@@ -94,6 +96,18 @@
         <activity
             android:name=".mycare.MyCareActivity"
             android:label="@string/title_activity_my_care"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".petSalon.FinalSalonActivity"
+            android:label="@string/title_activity_final_salon"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".UpdateHomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".mysalon.MySalonMapsActivity"
+            android:label="MySalonActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -1,32 +1,26 @@
-package com.petsource.mycare;
+package com.petsource.mysalon;
 
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
-import com.petsource.R;
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petSalon.ListSalonActivity;
-import com.petsource.petSalon.PetSalonActivity;
+import com.petsource.R;
+import com.petsource.mycare.MyCareActivity;
 
-public class MyCareMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MySalonMapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
 
@@ -76,13 +70,13 @@ public class MyCareMapsActivity extends FragmentActivity implements OnMapReadyCa
             Location findme = mMap.getMyLocation();
             double latitude = findme.getLatitude();
             double longitude = findme.getLongitude();
-            Intent intent = new Intent(MyCareMapsActivity.this, MyCareActivity.class);
+            Intent intent = new Intent(MySalonMapsActivity.this, MySalonActivity.class);
             intent.putExtra("LA", latitude);
             intent.putExtra("LO", longitude);
             setResult(RESULT_OK);
             finish();
         } catch (Exception e) {
-            Toast.makeText(MyCareMapsActivity.this, "Couldn't find your location", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MySalonMapsActivity.this, "Couldn't find your location", Toast.LENGTH_SHORT).show();
         }
 
 
