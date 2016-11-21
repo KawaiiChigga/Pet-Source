@@ -40,6 +40,18 @@ import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 public class PetRescueActivity extends AppCompatActivity {
 
     public static String idStaff;
+    public static String rescueName;
+    public static String rescueRace;
+    public static String rescuePetID;
+    public static String rescueUserID;
+    public static int rescueCertified;
+    public static int rescueGender;
+    public static int rescueIsDog;
+    public static String rescueYear;
+    public static String rescueDecript;
+    public static double rescueLatitude;
+    public static double rescueLongtitude;
+
     private List<Pet> data;
     private RecyclerView petRV;
 
