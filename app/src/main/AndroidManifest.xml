@@ -94,6 +94,10 @@
         <activity
             android:name=".mycare.MyCareActivity"
             android:label="@string/title_activity_my_care"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".petSalon.FinalSalonActivity"
+            android:label="@string/title_activity_final_salon"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

@@ -23,14 +23,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.petsource.petSalon.FinalSalonActivity;
 import com.petsource.petSalon.ListSalonActivity;
 import com.petsource.petSalon.PetSalonActivity;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
     public static String idStaff = new String();
     public static String nameStaff;
+    public static String addressStaff;
+    public static String jobStaff;
+    public static String cityStaff;
+    public static String priceStaff;
     public static double latitudeStaff;
     public static double longtitudeStaff;
 
@@ -107,15 +113,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         double latitude = findme.getLatitude();
         double longitude = findme.getLongitude();
         LatLng latLng = new LatLng(latitude, longitude);
-//        Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
 
-//        Intent intent = new Intent(this, PetSalonActivity.class);
-//        intent.putExtra("LA", latitude);
-//        intent.putExtra("LO", longitude);
-//        setResult(RESULT_OK, intent);
-//        finish();
-
-
+        Intent intent = new Intent(this, FinalSalonActivity.class);
+        startActivity(intent);
     }
 
 }
