@@ -7,38 +7,39 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-        <TextView
-            android:layout_width="match_parent"
-            android:text="My Transaction"
-            android:layout_height="wrap_content"
-            android:id="@+id/lblMyHistory"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:text="My Transaction"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblMyHistory"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rvstaffhistory"
-            android:layout_below="@+id/lblMyHistory"
-            android:scrollbars="vertical">
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvstaffhistory"
+                android:layout_below="@+id/lblMyHistory"
+                android:scrollbars="vertical">
+            </android.support.v7.widget.RecyclerView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/rvstaffhistory"
-            android:text="My Shop"
-            android:id="@+id/lblMyShop"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rvstaffhistory"
+                android:text="My Shop"
+                android:id="@+id/lblMyShop"/>
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/rvstaffshop"
-            android:layout_below="@+id/lblMyShop"
-            android:scrollbars="vertical">
-        </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rvstaffshop"
+                android:layout_below="@+id/lblMyShop"
+                android:scrollbars="vertical">
+            </android.support.v7.widget.RecyclerView>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>
