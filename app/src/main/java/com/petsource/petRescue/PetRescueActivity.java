@@ -1,5 +1,6 @@
 package com.petsource.petRescue;
 
+import android.app.Activity;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
@@ -58,6 +59,11 @@ public class PetRescueActivity extends AppCompatActivity {
     public RescueListAdapter adapter;
     public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
+    public static Activity petRescueActivity;
+
+    public PetRescueActivity() {
+        petRescueActivity=this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

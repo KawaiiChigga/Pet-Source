@@ -8,7 +8,6 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,10 +20,12 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.petsource.petRescue.AddRescueActivity;
 import com.petsource.petRescue.PetRescueActivity;
-import com.petsource.petRescue.RescueInfoActivity;
+import com.petsource.petRescue.RescueDescActivity;
+import com.petsource.petSalon.FinalSalonActivity;
 
-public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsAddRescueActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     public static String namaPet;
@@ -40,7 +41,7 @@ public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCa
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maps_rescue);
+        setContentView(R.layout.activity_maps_addrescue);
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -90,18 +91,29 @@ public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCa
 
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-        LatLng ithb = new LatLng(lat, lng);
-     //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.addMarker(new MarkerOptions().position(ithb).title(namaPet));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
-
-
     }
     public void testToast(View view) {
-        Toast.makeText(MapsRescueActivity.this, "Thank you. You will be notified when the rescue is available   ", Toast.LENGTH_SHORT).show();
-        PetRescueActivity.petRescueActivity.finish();
-        RescueInfoActivity.rescueInfoActivity.finish();
-        finish();
+        try {
+            Location findme = mMap.getMyLocation();
+            double latitude = findme.getLatitude();
+            double longitude = findme.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
+//            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MapsAddRescueActivity.this, "Thank you. You will be notified when someone is willing to adopt.", Toast.LENGTH_SHORT).show();
+            PetRescueActivity.petRescueActivity.finish();
+            AddRescueActivity.addRescueActivity.finish();
+            RescueDescActivity.rescueDescActivity.finish();
+            finish();
+        }
+        catch(Exception e){
+            Toast.makeText(MapsAddRescueActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MapsAddRescueActivity.this, "Thank you. You will be notified when someone is willing to adopt.", Toast.LENGTH_SHORT).show();
+            PetRescueActivity.petRescueActivity.finish();
+            AddRescueActivity.addRescueActivity.finish();
+            RescueDescActivity.rescueDescActivity.finish();
+            finish();
+        }
+
     }
 
 }
