@@ -68,6 +68,9 @@
             android:name=".MapsRescueActivity"
             android:label="@string/title_activity_maps" />
         <activity
+            android:name=".MapsAddRescueActivity"
+            android:label="@string/title_activity_maps" />
+        <activity
             android:name=".mycare.MyCareMapsActivity"
             android:label="@string/title_activity_maps" />
         <activity
@@ -87,6 +90,10 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".petRescue.PetRescueActivity"
+            android:label="@string/title_activity_pet_rescue"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".petRescue.RescueDescActivity"
             android:label="@string/title_activity_pet_rescue"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
