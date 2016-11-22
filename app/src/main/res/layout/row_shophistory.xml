@@ -21,17 +21,17 @@
         android:id="@+id/lblFHistoryDate"
         android:textSize="12sp"
         android:layout_alignBottom="@+id/userHpicture"
-        android:layout_alignLeft="@+id/lblFHistoryPetName"
-        android:layout_alignStart="@+id/lblFHistoryPetName" />
+        android:layout_alignLeft="@+id/lblFHistoryCustomerName"
+        android:layout_alignStart="@+id/lblFHistoryCustomerName" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lblFHistoryShopName"
+        android:id="@+id/lblFHistoryPetName"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:layout_above="@+id/lblFHistoryDate"
-        android:layout_alignLeft="@+id/lblFHistoryPetName"
-        android:layout_alignStart="@+id/lblFHistoryPetName" />
+        android:layout_alignLeft="@+id/lblFHistoryCustomerName"
+        android:layout_alignStart="@+id/lblFHistoryCustomerName" />
 
     <TextView
         android:layout_height="wrap_content"
@@ -42,7 +42,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginStart="12dp"
         android:layout_width="250dp"
-        android:id="@+id/lblFHistoryPetName" />
+        android:id="@+id/lblFHistoryCustomerName" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,8 +50,8 @@
         android:id="@+id/lblFHistoryStatus"
         android:textSize="21sp"
         android:layout_alignBottom="@+id/lblFHistoryDate"
-        android:layout_alignRight="@+id/lblFHistoryPetName"
-        android:layout_alignEnd="@+id/lblFHistoryPetName"
+        android:layout_alignRight="@+id/lblFHistoryCustomerName"
+        android:layout_alignEnd="@+id/lblFHistoryCustomerName"
         android:textAlignment="textEnd" />
 
 </RelativeLayout>

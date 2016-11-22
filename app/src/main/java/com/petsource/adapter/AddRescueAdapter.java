@@ -81,8 +81,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
 
         @Override
         public void onClick(View v) {
-            if(v.getId()==itemView.getId())
-            {
+            if(v.getId()==itemView.getId()) {
                 PetRescueActivity.rescueName = data.get(Integer.valueOf(getAdapterPosition())).getName();
                 PetRescueActivity.rescueRace = data.get(Integer.valueOf(getAdapterPosition())).getRace();
                 PetRescueActivity.rescueCertified = data.get(Integer.valueOf(getAdapterPosition())).isCertified();
@@ -108,6 +107,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
 
                     }
                 });
+            }
         }
     }
 }

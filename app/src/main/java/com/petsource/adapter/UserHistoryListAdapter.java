@@ -17,10 +17,10 @@ public class UserHistoryListAdapter {
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            lblStaffName = (TextView) itemView.findViewById(R.id.lblFHistoryName);
-            lblPetName = (TextView) itemView.findViewById(R.id.lblFHistoryPetName);
+            lblStaffName = (TextView) itemView.findViewById(R.id.lblFHistoryPetName);
+//            lblPetName = (TextView) itemView.findViewById(R.id.lblFHistoryPetName);
             lblDate = (TextView) itemView.findViewById(R.id.lblFHistoryDate);
-            lblRating = (TextView) itemView.findViewById(R.id.lblFHistoryRating);
+//            lblRating = (TextView) itemView.findViewById(R.id.lblFHistoryRating);
         }
 
         public void bind() {
