@@ -22,17 +22,6 @@
         android:id="@+id/profilepicture" />
 
     <Button
-        android:text="Settings"
-        android:textColor="@color/textColor"
-        android:background="@color/colorPrimary"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:layout_above="@+id/btnFAccountSignOut"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:id="@+id/btnFAccountSettings" />
-
-    <Button
         android:text="Sign Out"
         android:textColor="@color/textColor"
         android:background="@color/colorPrimary"

@@ -21,6 +21,8 @@ import com.petsource.R;
 import com.petsource.mycare.MyCareActivity;
 
 public class MySalonMapsActivity extends FragmentActivity implements OnMapReadyCallback {
+    public static double longitude;
+    public static double latitude;
 
     private GoogleMap mMap;
 
@@ -68,11 +70,8 @@ public class MySalonMapsActivity extends FragmentActivity implements OnMapReadyC
     public void testToast(View view) {
         try {
             Location findme = mMap.getMyLocation();
-            double latitude = findme.getLatitude();
-            double longitude = findme.getLongitude();
-            Intent intent = new Intent(MySalonMapsActivity.this, MySalonActivity.class);
-            intent.putExtra("LA", latitude);
-            intent.putExtra("LO", longitude);
+            latitude = findme.getLatitude();
+            longitude = findme.getLongitude();
             setResult(RESULT_OK);
             finish();
         } catch (Exception e) {

@@ -31,6 +31,8 @@ public class MyCareMapsActivity extends FragmentActivity implements OnMapReadyCa
     private GoogleMap mMap;
 
     GoogleMapOptions options = new GoogleMapOptions();
+    public static double longitude;
+    public static double latitude;
 
     private Button btnNext;
     private TextView lblLocation;
@@ -74,11 +76,8 @@ public class MyCareMapsActivity extends FragmentActivity implements OnMapReadyCa
     public void testToast(View view) {
         try {
             Location findme = mMap.getMyLocation();
-            double latitude = findme.getLatitude();
-            double longitude = findme.getLongitude();
-            Intent intent = new Intent(MyCareMapsActivity.this, MyCareActivity.class);
-            intent.putExtra("LA", latitude);
-            intent.putExtra("LO", longitude);
+            latitude = findme.getLatitude();
+            longitude = findme.getLongitude();
             setResult(RESULT_OK);
             finish();
         } catch (Exception e) {

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.model.Shop;
@@ -38,6 +39,7 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
     private TextView lblOpenCare;
 
     public SharedPreferences shared;
+    FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -141,6 +143,7 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
                 startActivityForResult(intent, REQ_MAPS);
             }
         });
+        mFirebaseAuth = FirebaseAuth.getInstance();
     }
 
     @Override
@@ -148,17 +151,14 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_MAPS) {
             if (resultCode == RESULT_OK) {
-                Intent intent = getIntent();
-                double latitude = intent.getDoubleExtra("LA", 0);
-                double longitude = intent.getDoubleExtra("LO", 0);
                 Call<Shop> addshop = API.Factory.getInstance().addShop(
-                        SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
+                        mFirebaseAuth.getCurrentUser().getUid(),
                         txtSetDate.getText().toString(),
                         txtStartTime.getText().toString(),
                         txtSetDate.getText().toString(),
                         txtEndTime.getText().toString(),
-                        latitude,
-                        longitude,
+                        MyCareMapsActivity.latitude,
+                        MyCareMapsActivity.longitude,
                         1,
                         txtSetPrice.getText().toString()
 
@@ -174,7 +174,7 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
 
                     }
                 });
-
+                finish();
             }
         }
     }

@@ -13,14 +13,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.petsource.HomeActivity;
-import com.petsource.MapsActivity;
+import com.petsource.Maps2Activity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.UpdateHomeActivity;
 import com.petsource.model.Info;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
-import com.petsource.petSalon.ListSalonActivity;
+
 
 import java.util.List;
 import java.util.Map;
@@ -30,20 +30,20 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static android.app.Activity.RESULT_OK;
-import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 
 
-public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyViewHolder>{
+
+public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyViewHolder>{
     private List<Info> data;
     private List<Shop> data2;
 
-    public ListSalonAdapter(List<Info> data){
+    public ListCareAdapter(List<Info> data){
         this.data = data;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_salon, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_care, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -59,7 +59,7 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtJob, txtAlamat, btnPickMe;
+        TextView txtName, txtJob, txtAlamat;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -70,28 +70,28 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
         }
 
         public void bind(final Info user) {
-                txtName.setText(user.getName());
-                txtJob.setText(user.getJob());
-                txtAlamat.setText(user.getAddress());
+            txtName.setText(user.getName());
+            txtJob.setText(user.getJob());
+            txtAlamat.setText(user.getAddress());
         }
 
         @Override
         public void onClick(View v) {
             if(v.getId()==itemView.getId())
             {
-                MapsActivity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getUserid();
-                MapsActivity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
-                MapsActivity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
-                MapsActivity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
-                MapsActivity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
+                Maps2Activity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getUserid();
+                Maps2Activity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
+                Maps2Activity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
+                Maps2Activity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
+                Maps2Activity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
 
-                Call<List<Shop>> a = API.Factory.getInstance().getSalonStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
+                Call<List<Shop>> a = API.Factory.getInstance().getCareStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
                 a.enqueue(new Callback<List<Shop>>() {
                     @Override
                     public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-                        MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
-                        MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
-                        MapsActivity.priceStaff = response.body().get(0).getPrice();
+                        Maps2Activity.latitudeStaff = response.body().get(0).getLatitude();
+                        Maps2Activity.longtitudeStaff = response.body().get(0).getLongitude();
+                        Maps2Activity.priceStaff = response.body().get(0).getPrice();
                     }
 
                     @Override
@@ -101,7 +101,7 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
                 });
 
 
-                Intent intent = new Intent(v.getContext(), MapsActivity.class);
+                Intent intent = new Intent(v.getContext(), Maps2Activity.class);
                 v.getContext().startActivity(intent);
             }
         }

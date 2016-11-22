@@ -1,5 +1,6 @@
 package com.petsource.petCare;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -18,13 +19,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.petsource.R;
-import com.petsource.HomeActivity;
-import com.petsource.MapsActivity;
 import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
-import com.petsource.mysalon.MySalonActivity;
 import com.petsource.network.API;
-import com.petsource.petSalon.ListSalonActivity;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.ArrayList;
@@ -42,6 +39,14 @@ public class PetCareActivity extends AppCompatActivity {
     private TextView txtFrom, txtTo;
     private Spinner spinner;
     List<String> mypet;
+
+    public static Activity petCareActivity;
+
+    public PetCareActivity() {
+        petCareActivity = this;
+    }
+
+    public static final int REQ_MAPS2 = 100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,16 +128,9 @@ public class PetCareActivity extends AppCompatActivity {
             }
         });
 
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-
-//        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-//                R.array.array, android.R.layout.simple_spinner_item);
-
         ArrayAdapter<String> petAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_layout, mypet);
 
 
-        // Specify the layout to use when the list of choices appears
         petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
@@ -152,13 +150,19 @@ public class PetCareActivity extends AppCompatActivity {
             }
         });
 
-        // Apply the adapter to the spinner
-
     }
 
-    public void gotoListSalon(View view) {
-        Intent intent = new Intent(this, ListSalonActivity.class);
-        startActivity(intent);
+    public void gotoListCare(View view) {
+
+        if (txtFrom.getText().toString().equalsIgnoreCase("")) {
+            txtFrom.setError("This field can not be blank");
+        }else if (txtTo.getText().toString().trim().equalsIgnoreCase("")) {
+            txtTo.setError("This field can not be blank");
+        }else{
+            Intent intent = new Intent(this, ListCareActivity.class);
+            startActivity(intent);
+        }
+
     }
 
 }

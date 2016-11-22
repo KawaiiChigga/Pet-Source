@@ -41,10 +41,16 @@ public interface API {
     Call<Pet> getPet(@Path("id") String id);
 
     @GET("shop/")
-    Call<List<Shop>> getSalon();
+    Call<List<Shop>> getSalon(@Query("isCare") int isCare);
 
     @GET("shop/")
-    Call<List<Shop>> getSalon(@Query("iduser") String iduser);
+    Call<List<Shop>> getSalonStaff(@Query("idUser") String idUser);
+
+    @GET("shop/")
+    Call<List<Shop>> getCare(@Query("isCare") int isCare);
+
+    @GET("shop/")
+    Call<List<Shop>> getCareStaff(@Query("idUser") String idUser);
 
     @GET("rescue/")
     Call<List<Rescue>> getRescue();
@@ -63,7 +69,7 @@ public interface API {
 
     @FormUrlEncoded
     @POST("shop/")
-    Call<Shop> addShop(@Field("userid") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
+    Call<Shop> addShop(@Field("iduser") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,
                        @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") double latitude,
                        @Field("longitude") double longitude, @Field("isCare") int isCare, @Field("price") String price);
 

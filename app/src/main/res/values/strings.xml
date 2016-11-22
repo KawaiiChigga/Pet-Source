@@ -31,4 +31,6 @@
     <string name="title_activity_my_salon">MySalonActivity</string>
     <string name="title_activity_my_care">MyCareActivity</string>
     <string name="title_activity_final_salon">FinalSalonActivity</string>
+    <string name="title_activity_list_care">ListCareActivity</string>
+    <string name="title_activity_final_care">FinalCareActivity</string>
 </resources>

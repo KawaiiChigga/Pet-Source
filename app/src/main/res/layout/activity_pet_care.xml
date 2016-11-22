@@ -107,7 +107,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/txtTo"
         android:layout_alignStart="@+id/txtTo"
-        android:onClick="gotoListSalon"/>
+        android:onClick="gotoListCare"/>
 
 
 </RelativeLayout>

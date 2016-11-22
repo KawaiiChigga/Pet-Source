@@ -1,4 +1,4 @@
-package com.petsource.petSalon;
+package com.petsource.petCare;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -13,15 +13,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.petsource.HomeActivity;
-import com.petsource.MapsActivity;
+import com.petsource.Maps2Activity;
 import com.petsource.R;
 
-public class FinalSalonActivity extends AppCompatActivity {
+public class FinalCareActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_final_salon);
+        setContentView(R.layout.activity_final_care);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -45,19 +45,19 @@ public class FinalSalonActivity extends AppCompatActivity {
         txtJob = (TextView) findViewById(R.id.txtJob);
         txtPrice = (TextView) findViewById(R.id.txtPrice);
 
-        txtName.setText(MapsActivity.nameStaff);
-        txtCity.setText(MapsActivity.cityStaff);
-        txtAddress.setText(MapsActivity.addressStaff);
-        txtJob.setText(MapsActivity.jobStaff);
-        txtPrice.setText(MapsActivity.priceStaff);
+        txtName.setText(Maps2Activity.nameStaff);
+        txtCity.setText(Maps2Activity.cityStaff);
+        txtAddress.setText(Maps2Activity.addressStaff);
+        txtJob.setText(Maps2Activity.jobStaff);
+        txtPrice.setText(Maps2Activity.priceStaff);
 
 
     }
 
     public void gotoHome(View view) {
-        PetSalonActivity.petSalonActivity.finish();
-        ListSalonActivity.listSalonActivity.finish();
-        MapsActivity.mapsActivity.finish();
+        PetCareActivity.petCareActivity.finish();
+        ListCareActivity.listCareActivity.finish();
+        Maps2Activity.maps2Activity.finish();
         finish();
     }
 
