@@ -1,10 +1,8 @@
 package com.petsource.adapter;
 
-import android.content.Intent;
 import android.support.v7.util.SortedList;
 import android.support.v7.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import com.petsource.model.Rescue;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
 import com.petsource.petRescue.PetRescueActivity;
-import com.petsource.petRescue.RescueDescActivity;
-import com.petsource.petRescue.RescueInfoActivity;
 
 import java.util.List;
 
@@ -31,10 +27,11 @@ import retrofit2.Response;
  * Created by Daniel on 11/6/2016.
  */
 
-public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyViewHolder> {
+public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyViewHolder>{
     private List<Pet> data;
+    private List<Rescue> data2;
 
-    public AddRescueAdapter(List<Pet> data) {
+    public AddRescueAdapter(List<Pet> data){
         this.data = data;
     }
 
@@ -50,7 +47,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_addrescue, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_rescue, parent, false);
 
         return new MyViewHolder(view);
     }
@@ -66,7 +63,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
         return data.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView txtName, txtRace, txtYear;
 
         public MyViewHolder(View itemView) {
@@ -74,7 +71,6 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
             txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
             txtRace = (TextView) itemView.findViewById(R.id.lblListSalonJob);
             txtYear = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
-            itemView.setOnClickListener(this);
         }
 
         public void bind(Pet user) {
@@ -84,10 +80,17 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
         }
 
         @Override
-        public void onClick(final View v) {
-            if (v.getId() == itemView.getId()) {
-                RescueDescActivity.idPet = data.get(Integer.valueOf(getAdapterPosition())).getId();
-                Log.d("FAK", "klik");
+        public void onClick(View v) {
+            if(v.getId()==itemView.getId()) {
+                PetRescueActivity.rescueName = data.get(Integer.valueOf(getAdapterPosition())).getName();
+                PetRescueActivity.rescueRace = data.get(Integer.valueOf(getAdapterPosition())).getRace();
+                PetRescueActivity.rescueCertified = data.get(Integer.valueOf(getAdapterPosition())).isCertified();
+                PetRescueActivity.rescueYear = data.get(Integer.valueOf(getAdapterPosition())).getBirthdate();
+                PetRescueActivity.rescueGender = data.get(Integer.valueOf(getAdapterPosition())).isMale();
+                PetRescueActivity.rescueIsDog = data.get(Integer.valueOf(getAdapterPosition())).isDog();
+                PetRescueActivity.rescuePetID = data.get(Integer.valueOf(getAdapterPosition())).getId();
+                PetRescueActivity.rescueUserID = data.get(Integer.valueOf(getAdapterPosition())).getUserid();
+
 //                PetRescueActivity.rescueDecript = data2.get(Integer.valueOf(getAdapterPosition())).getDescription();
 
                 Call<List<Pet>> a = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
@@ -97,20 +100,14 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
 //                        PetRescueActivity.rescueDecript = response.body().get(0).getDescription();
 //                        PetRescueActivity.rescueLatitude = response.body().get(0).getLatitude();
 //                        PetRescueActivity.rescueLongtitude = response.body().get(0).getLongitude();
-                        Log.d("FAK", "fak");
-                        Intent intent = new Intent(v.getContext(), RescueDescActivity.class);
-                        v.getContext().startActivity(intent);
                     }
 
                     @Override
                     public void onFailure(Call<List<Pet>> call, Throwable t) {
 
                     }
-
                 });
-
             }
-
         }
     }
 }

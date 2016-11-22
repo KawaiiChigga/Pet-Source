@@ -5,6 +5,7 @@ import com.petsource.model.Login;
 import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
 import com.petsource.model.Shop;
+import com.petsource.model.Transaction;
 import com.petsource.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -58,6 +59,12 @@ public interface API {
     @GET("rescue/{id}")
     Call<Rescue> getRescueUser(@Path("id") String id);
 
+    @GET("transaction/")
+    Call<List<Transaction>> getTransUser(@Query ("iduser") String iduser);
+
+    @GET("transaction/")
+    Call<List<Transaction>> getTransShop(@Query ("idshop") String idshop);
+
 //    @FormUrlEncoded
 //    @POST("users/login")
 //    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
@@ -90,6 +97,13 @@ public interface API {
     Call<Pet> registerPet(@Field("name") String name, @Field("birthdate") String birthdate, @Field("race") String race,
                           @Field("userid") String userid, @Field("isMale") int isMale, @Field("isDog") int isDog,
                           @Field("isCertified") int isCertified);
+
+    @FormUrlEncoded
+    @POST("transaction/")
+    Call<Transaction> addTrans (@Field("iduser") String iduser, @Field("idpet") String idpet, @Field("date") String date,
+                                @Field("idshop") String idshop, @Field("price") String price, @Field("type") int type,
+                                @Field("isWashing") int isWashing, @Field("isNailclipping") int isNailclipping,
+                                @Field("isTrimming") int isTrimming, @Field("status") String status);
 
     class Factory{
 
