@@ -63,7 +63,6 @@ public class PetSalonActivity extends AppCompatActivity {
         lblSalonTitle.setTypeface(typeface);
 
         staticSpinner = (Spinner) findViewById(R.id.spinnerONE);
-
         mypet = new ArrayList<Pet>();
 
         Call<List<Pet>> getpet = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
@@ -71,7 +70,6 @@ public class PetSalonActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
                 for (Pet p : response.body() ) {
-                    Log.d("DATAS", p.getName());
                     mypet.add(p);
                 }
             }
@@ -82,37 +80,27 @@ public class PetSalonActivity extends AppCompatActivity {
             }
         });
 
-
-        // Create an ArrayAdapter using the string array and a default spinner
-//        ArrayAdapter<CharSequence> staticAdapter = ArrayAdapter
-//                .createFromResource(this, R.array.spinner,
-//                R.layout.spinner_layout);
-
         ArrayAdapter<Pet> petAdapter = new ArrayAdapter<Pet>(this, R.layout.spinner_layout, mypet);
 
-        // Specify the layout to use when the list of choices appears
         petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // Apply the adapter to the spinner
         staticSpinner.setAdapter(petAdapter);
         staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(PetSalonActivity.this, parent.getItemAtPosition(position) + "", Toast.LENGTH_SHORT);
-                Log.d("FAK", position +"");
 
-                }
+            }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Log.d("FAK", "kosong");
+
             }
         });
     }
 
 
     public void gotoListSalon(View view) {
-
         Intent intent = new Intent(this, ListSalonActivity.class);
         startActivity(intent);
     }

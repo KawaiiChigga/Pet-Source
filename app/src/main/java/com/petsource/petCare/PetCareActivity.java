@@ -159,6 +159,8 @@ public class PetCareActivity extends AppCompatActivity {
         }else if (txtTo.getText().toString().trim().equalsIgnoreCase("")) {
             txtTo.setError("This field can not be blank");
         }else{
+            ListCareActivity.cusDateStart = txtFrom.getText().toString();
+            ListCareActivity.cusDateEnd = txtTo.getText().toString();
             Intent intent = new Intent(this, ListCareActivity.class);
             startActivity(intent);
         }
