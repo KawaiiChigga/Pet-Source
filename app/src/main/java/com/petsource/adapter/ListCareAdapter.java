@@ -38,7 +38,7 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
     private List<Shop> data2;
 
     public ListCareAdapter(List<Shop> data){
-        this.data = data2;
+        this.data = data;
     }
 
     @Override
@@ -63,7 +63,7 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
+            txtName = (TextView) itemView.findViewById(R.id.lblListCareName);
             txtJob = (TextView) itemView.findViewById(R.id.lblListCareDate);
             txtAlamat = (TextView) itemView.findViewById(R.id.lblListCareTime);
             itemView.setOnClickListener(this);
