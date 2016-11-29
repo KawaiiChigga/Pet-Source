@@ -3,6 +3,7 @@
     import android.app.Activity;
     import android.content.Intent;
     import android.content.SharedPreferences;
+    import android.graphics.Typeface;
     import android.os.Bundle;
     import android.support.design.widget.TabLayout;
     import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@
 
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private TextView lblHomeTitle;
 
     public static Activity upHomeActivity;
 
@@ -45,6 +47,11 @@
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblHomeTitle = (TextView) findViewById(R.id.lblHomeTitle);
+        lblHomeTitle.setTypeface(typeface);
 
         mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);

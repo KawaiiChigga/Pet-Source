@@ -44,6 +44,7 @@ import com.petsource.upHomeFragments.UpHomeFragment;
     private CustomerSectionsPagerAdapter mSectionsPagerAdapter;
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private TextView lblHomeTitle;
 
     public static Activity homeActivity;
     public HomeActivity() {
@@ -56,8 +57,12 @@ import com.petsource.upHomeFragments.UpHomeFragment;
         setContentView(R.layout.activity_home);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-
         setSupportActionBar(toolbar);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblHomeTitle = (TextView) findViewById(R.id.lblHomeTitle);
+        lblHomeTitle.setTypeface(typeface);
 
         mSectionsPagerAdapter = new CustomerSectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);

@@ -11,6 +11,8 @@
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
 
+
+
     </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

@@ -13,14 +13,24 @@
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
 
-        <TextView
-            android:text="Update"
-            android:textSize="16pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="250dp"
-            android:id="@+id/lblUpdateTitle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Update"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblUpdateTitle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
 
     </android.support.design.widget.AppBarLayout>
@@ -49,7 +59,8 @@
         android:id="@+id/txtUpAccountStreet"
         android:layout_below="@+id/textView3"
         android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+        android:layout_alignStart="@+id/textView3"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="310dp"

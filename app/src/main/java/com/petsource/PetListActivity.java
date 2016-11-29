@@ -3,6 +3,7 @@ package com.petsource;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,6 +12,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +32,8 @@ public class PetListActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
+    private TextView lblPetListTitle;
+
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -43,8 +47,12 @@ public class PetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Pet List");
         setSupportActionBar(toolbar);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblPetListTitle = (TextView) findViewById(R.id.lblPetListTitle);
+        lblPetListTitle.setTypeface(typeface);
 
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
