@@ -102,7 +102,7 @@ public class MapsAddRescueActivity extends FragmentActivity implements OnMapRead
             Toast.makeText(MapsAddRescueActivity.this, "Thank you. You will be notified when someone is willing to adopt.", Toast.LENGTH_SHORT).show();
             PetRescueActivity.petRescueActivity.finish();
             AddRescueActivity.addRescueActivity.finish();
-            RescueDescActivity.rescueDescActivity.finish();
+            RescueDe9optscActivity.rescueDescActivity.finish();
             finish();
         }
         catch(Exception e){
