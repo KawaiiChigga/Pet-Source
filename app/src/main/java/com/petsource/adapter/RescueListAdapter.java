@@ -29,7 +29,7 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_salon, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_rescue, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -45,24 +45,24 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtJob, txtAlamat, btnPickMe;
+        TextView txtName, txtRace, txtType;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
-            txtJob = (TextView) itemView.findViewById(R.id.lblListSalonJob);
-            txtAlamat = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
+            txtName = (TextView) itemView.findViewById(R.id.lblListRescueName);
+            txtRace = (TextView) itemView.findViewById(R.id.lblListRescueRace);
+            txtType = (TextView) itemView.findViewById(R.id.lblListRescueType);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Pet pet) {
             txtName.setText(pet.getName());
-            txtJob.setText(pet.getRace());
+            txtRace.setText(pet.getRace());
             if(pet.isDog()==1){
-                txtAlamat.setText("Dog");
+                txtType.setText("Dog");
             }
             else{
-                txtAlamat.setText("Cat");
+                txtType.setText("Cat");
             }
         }
 
@@ -85,8 +85,6 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
 
                     }
                 });
-
-
             }
         }
     }

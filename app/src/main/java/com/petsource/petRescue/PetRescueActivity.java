@@ -47,7 +47,6 @@ public class PetRescueActivity extends AppCompatActivity {
     private RecyclerView petRV;
 
     public RescueListAdapter adapter;
-    public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
     public static Activity petRescueActivity;
 
@@ -62,9 +61,8 @@ public class PetRescueActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
         petRV = (RecyclerView) findViewById(R.id.rvpetrescue);
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetrescue);
 
         data = new ArrayList<>();
         prepareData();
@@ -100,13 +98,14 @@ public class PetRescueActivity extends AppCompatActivity {
         p.enqueue(new Callback<List<Rescue>>() {
             @Override
             public void onResponse(Call<List<Rescue>> call, Response<List<Rescue>> response) {
+                data.clear();
                 for (Rescue s : response.body()) {
                     Call<Pet> itemCall = API.Factory.getInstance().getPet(s.getPetid());
                     itemCall.enqueue(new Callback<Pet>() {
                         @Override
                         public void onResponse(Call<Pet> call, Response<Pet> response) {
-                            data.clear();
                             data.add(response.body());
+
                             adapter = new RescueListAdapter(data);
                             LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
                             petRV.setHasFixedSize(true);
@@ -120,7 +119,6 @@ public class PetRescueActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             }
             @Override
             public void onFailure(Call<List<Rescue>> call, Throwable t) {

@@ -19,27 +19,27 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lblListSalonAlamat"
+        android:id="@+id/lblListRescueType"
         android:textSize="12sp"
         android:layout_alignBottom="@+id/petpicture"
-        android:layout_alignLeft="@+id/lblListSalonJob"
-        android:layout_alignStart="@+id/lblListSalonJob" />
+        android:layout_alignLeft="@+id/lblListRescueRace"
+        android:layout_alignStart="@+id/lblListRescueRace" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lblListSalonJob"
+        android:id="@+id/lblListRescueRace"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/lblListSalonAlamat"
-        android:layout_alignLeft="@+id/lblListSalonName"
-        android:layout_alignStart="@+id/lblListSalonName" />
+        android:layout_above="@+id/lblListRescueType"
+        android:layout_alignLeft="@+id/lblListRescueName"
+        android:layout_alignStart="@+id/lblListRescueName" />
 
     <TextView
         android:layout_height="wrap_content"
-        android:id="@+id/lblListSalonName"
+        android:id="@+id/lblListRescueName"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="21sp"
-        android:layout_above="@+id/lblListSalonJob"
+        android:layout_above="@+id/lblListRescueRace"
         android:layout_toRightOf="@+id/petpicture"
         android:layout_toEndOf="@+id/petpicture"
         android:layout_marginLeft="12dp"

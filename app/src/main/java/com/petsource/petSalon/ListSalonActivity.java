@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.petsource.R;
+import com.petsource.adapter.ListCareAdapter;
 import com.petsource.adapter.ListSalonAdapter;
 import com.petsource.model.Info;
 import com.petsource.model.Shop;
@@ -27,7 +28,7 @@ import retrofit2.Response;
 public class ListSalonActivity extends AppCompatActivity {
 
     public static String idStaff;
-    private List<Info> data;
+    private List<Shop> data;
     private RecyclerView petRV;
 
     public ListSalonAdapter adapter;
@@ -76,25 +77,33 @@ public class ListSalonActivity extends AppCompatActivity {
             public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
                 for (Shop s : response.body()) {
                     data.clear();
-                    Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
-                    itemCall.enqueue(new Callback<List<Info>>() {
-                        @Override
-                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
-                            for (Info i : response.body()) {
-                                data.add(i);
-                            }
-                            adapter = new ListSalonAdapter(data);
-                            LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
-                            petRV.setHasFixedSize(true);
-                            petRV.setLayoutManager(manager);
-                            petRV.setAdapter(adapter);
-                        }
-
-                        @Override
-                        public void onFailure(Call<List<Info>> call, Throwable t) {
-                            Toast.makeText(ListSalonActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                    for (Shop i : response.body()) {
+                        data.add(i);
+                    }
+                    adapter = new ListSalonAdapter(data);
+                    LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
+                    petRV.setHasFixedSize(true);
+                    petRV.setLayoutManager(manager);
+                    petRV.setAdapter(adapter);
+//                    Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
+//                    itemCall.enqueue(new Callback<List<Info>>() {
+//                        @Override
+//                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+//                            for (Info i : response.body()) {
+//                                data.add(i);
+//                            }
+//                            adapter = new ListSalonAdapter(data);
+//                            LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
+//                            petRV.setHasFixedSize(true);
+//                            petRV.setLayoutManager(manager);
+//                            petRV.setAdapter(adapter);
+//                        }
+//
+//                        @Override
+//                        public void onFailure(Call<List<Info>> call, Throwable t) {
+//                            Toast.makeText(ListSalonActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+//                        }
+//                    });
                 }
 
             }

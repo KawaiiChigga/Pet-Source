@@ -23,7 +23,6 @@ import retrofit2.Response;
 
 public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyViewHolder>{
     private List<Shop> data;
-    private List<Shop> data2;
 
     public ListCareAdapter(List<Shop> data){
         this.data = data;
@@ -47,13 +46,13 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtJob, txtAlamat;
+        TextView txtName, txtDate, txtTime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             txtName = (TextView) itemView.findViewById(R.id.lblListCareName);
-            txtJob = (TextView) itemView.findViewById(R.id.lblListCareDate);
-            txtAlamat = (TextView) itemView.findViewById(R.id.lblListCareTime);
+            txtDate = (TextView) itemView.findViewById(R.id.lblListCareDate);
+            txtTime = (TextView) itemView.findViewById(R.id.lblListCareTime);
             itemView.setOnClickListener(this);
         }
 
@@ -71,8 +70,8 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
                 }
             });
 //            txtName.setText(user.getIduser());
-            txtJob.setText(user.getStartdate() + " - " + user.getEnddate());
-            txtAlamat.setText(user.getStarttime() + " - " + user.getEndtime());
+            txtDate.setText(user.getStartdate() + " - " + user.getEnddate());
+            txtTime.setText(user.getStarttime() + " - " + user.getEndtime());
         }
 
         @Override

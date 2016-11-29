@@ -21,10 +21,9 @@ import retrofit2.Response;
 
 
 public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyViewHolder>{
-    private List<Info> data;
-    private List<Shop> data2;
+    private List<Shop> data;
 
-    public ListSalonAdapter(List<Info> data){
+    public ListSalonAdapter(List<Shop> data){
         this.data = data;
     }
 
@@ -36,7 +35,7 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Info p = data.get(position);
+        Shop p = data.get(position);
         holder.bind(p);
     }
 
@@ -46,39 +45,50 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtJob, txtAlamat, btnPickMe;
+        TextView txtName, txtDate, txtTime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
-            txtJob = (TextView) itemView.findViewById(R.id.lblListSalonJob);
-            txtAlamat = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
+            txtDate = (TextView) itemView.findViewById(R.id.lblListSalonDate);
+            txtTime = (TextView) itemView.findViewById(R.id.lblListSalonTime);
             itemView.setOnClickListener(this);
         }
 
-        public void bind(final Info user) {
-                txtName.setText(user.getName());
-                txtJob.setText(user.getJob());
-                txtAlamat.setText(user.getAddress());
+        public void bind(final Shop user) {
+            Call<List<Info>> getlist = API.Factory.getInstance().checkAccount(user.getIduser());
+            getlist.enqueue(new Callback<List<Info>>() {
+                @Override
+                public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                    txtName.setText(response.body().get(0).getName());
+                }
+
+                @Override
+                public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                }
+            });
+//            txtName.setText(user.getIduser());
+            txtDate.setText(user.getStartdate() + " - " + user.getEnddate());
+            txtTime.setText(user.getStarttime() + " - " + user.getEndtime());
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if(v.getId()==itemView.getId())
             {
-                MapsActivity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getUserid();
-                MapsActivity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
-                MapsActivity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
-                MapsActivity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
-                MapsActivity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
+                MapsActivity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getIduser();
 
-                Call<List<Shop>> a = API.Factory.getInstance().getSalonStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
+                Call<List<Shop>> a = API.Factory.getInstance().getSalonStaff(data.get(Integer.valueOf(getAdapterPosition())).getIduser());
                 a.enqueue(new Callback<List<Shop>>() {
                     @Override
                     public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
                         MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
                         MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
                         MapsActivity.priceStaff = response.body().get(0).getPrice();
+
+                        Intent intent = new Intent(v.getContext(), MapsActivity.class);
+                        v.getContext().startActivity(intent);
                     }
 
                     @Override
@@ -86,10 +96,6 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
 
                     }
                 });
-
-
-                Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                v.getContext().startActivity(intent);
             }
         }
     }
