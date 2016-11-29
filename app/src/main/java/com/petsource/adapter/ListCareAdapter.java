@@ -1,36 +1,24 @@
 package com.petsource.adapter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.petsource.HomeActivity;
-import com.petsource.Maps2Activity;
+import com.petsource.petCare.Maps2Activity;
 import com.petsource.R;
-import com.petsource.SplashActivity;
-import com.petsource.UpdateHomeActivity;
 import com.petsource.model.Info;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
 
 
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
-
 
 
 public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyViewHolder>{

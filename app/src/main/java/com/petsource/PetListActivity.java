@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.adapter.PetListAdapter;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
@@ -29,6 +31,9 @@ public class PetListActivity extends AppCompatActivity {
     private List<Pet> data;
     private RecyclerView petRV;
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
     public PetListAdapter adapter;
     public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
@@ -41,9 +46,11 @@ public class PetListActivity extends AppCompatActivity {
         toolbar.setTitle("Pet List");
         setSupportActionBar(toolbar);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         data = new ArrayList<>();
         prepareData();
@@ -74,7 +81,7 @@ public class PetListActivity extends AppCompatActivity {
     }
 
     public void prepareData() {
-        Call<List<Pet>> p = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
+        Call<List<Pet>> p = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
         p.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {

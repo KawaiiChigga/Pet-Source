@@ -18,6 +18,8 @@ import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
@@ -38,6 +40,9 @@ public class PetCareActivity extends AppCompatActivity {
     private TextView lblCareTitle;
     private TextView txtFrom, txtTo;
     private Spinner spinner;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
     List<String> mypet;
 
     public static Activity petCareActivity;
@@ -57,10 +62,11 @@ public class PetCareActivity extends AppCompatActivity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
-
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
         mypet = new ArrayList<String>();
 
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
+        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
         getpet.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {

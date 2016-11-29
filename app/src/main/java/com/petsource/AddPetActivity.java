@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.R;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
@@ -42,11 +43,16 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
     private Button btnAddPet;
     private TextView lblAddTitle;
 
-    public SharedPreferences shared;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
@@ -55,8 +61,6 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
 
         lblAddTitle = (TextView) findViewById(R.id.lblAddTitle);
         lblAddTitle.setTypeface(typeface);
-
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
         txtName = (EditText) findViewById(R.id.txtPetName);
         txtBirthdate = (TextView) findViewById(R.id.txtPetBirthdate);
@@ -99,7 +103,7 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
                 txtName.getText().toString(),
                 txtBirthdate.getText().toString(),
                 txtRace.getText().toString(),
-                SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
+                mFirebaseAuth.getCurrentUser().getUid(),
                 isMale,
                 isDog,
                 certified

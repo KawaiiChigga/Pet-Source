@@ -9,8 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.petsource.MapsAddRescueActivity;
-import com.petsource.MapsRescueActivity;
 import com.petsource.R;
 import com.petsource.model.Pet;
 import com.petsource.model.Rescue;

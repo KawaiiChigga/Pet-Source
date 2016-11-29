@@ -4,11 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,10 +14,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.R;
-import com.petsource.HomeActivity;
-import com.petsource.MapsActivity;
-import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
@@ -43,6 +39,9 @@ public class PetSalonActivity extends AppCompatActivity {
     private Button btnSalon;
     private TextView lblSalonTitle;
 
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
+
     public PetSalonActivity() {
         petSalonActivity = this;
     }
@@ -56,6 +55,9 @@ public class PetSalonActivity extends AppCompatActivity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         btnSalon = (Button) findViewById(R.id.btnSalon);
         btnSalon.setTypeface(typeface);
 
@@ -65,7 +67,7 @@ public class PetSalonActivity extends AppCompatActivity {
         staticSpinner = (Spinner) findViewById(R.id.spinnerONE);
         mypet = new ArrayList<Pet>();
 
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
+        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
         getpet.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {

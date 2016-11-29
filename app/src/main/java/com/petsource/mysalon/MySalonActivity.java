@@ -16,6 +16,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.model.Shop;
@@ -47,7 +49,8 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
     private Button btnOpenSalon;
     private TextView lblOpenSalon;
 
-    public SharedPreferences shared;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,14 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         btnOpenSalon = (Button) findViewById(R.id.btnOpenSalon);
         btnOpenSalon.setTypeface(typeface);
 
         lblOpenSalon = (TextView) findViewById(R.id.lblOpenSalon);
         lblOpenSalon.setTypeface(typeface);
-
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
         txtStartTime = (TextView) findViewById(R.id.txtStartTime);
         txtEndTime = (TextView) findViewById(R.id.txtEndTime);
@@ -162,7 +166,7 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
         if(requestCode == REQ_MAPS){
             if(resultCode == RESULT_OK){
                 Call<Shop> addshop = API.Factory.getInstance().addShop(
-                        SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
+                        mFirebaseAuth.getCurrentUser().getUid(),
                         txtSetDate.getText().toString(),
                         txtStartTime.getText().toString(),
                         txtSetDate.getText().toString(),

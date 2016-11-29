@@ -1,14 +1,11 @@
-package com.petsource;
+package com.petsource.petRescue;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -21,8 +18,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petRescue.PetRescueActivity;
-import com.petsource.petRescue.RescueInfoActivity;
+import com.petsource.R;
 
 public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCallback {
 

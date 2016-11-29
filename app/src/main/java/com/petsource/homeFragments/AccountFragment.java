@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.HomeActivity;
 import com.petsource.LoginActivity;
 import com.petsource.R;
@@ -26,6 +27,8 @@ public class AccountFragment extends Fragment{
     private TextView lblUpdate;
     private Button btnSignout;
     private ImageView imgProfile;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     public AccountFragment() {
 
@@ -41,11 +44,14 @@ public class AccountFragment extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
         lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
 
-        lblName.setText(SplashActivity.mFirebaseAuth.getCurrentUser().getDisplayName());
-        lblEmail.setText(SplashActivity.mFirebaseAuth.getCurrentUser().getEmail());
+        lblName.setText(mFirebaseAuth.getCurrentUser().getDisplayName());
+        lblEmail.setText(mFirebaseAuth.getCurrentUser().getEmail());
 
         lblUpdate = (TextView) getActivity().findViewById(R.id.lblUpdateAccount);
         lblUpdate.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +66,7 @@ public class AccountFragment extends Fragment{
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SplashActivity.mFirebaseAuth.signOut();
+                mFirebaseAuth.signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 HomeActivity.homeActivity.finish();
@@ -68,7 +74,7 @@ public class AccountFragment extends Fragment{
         });
 
         imgProfile = (ImageView) getActivity().findViewById(R.id.profilepicture);
-        Picasso.with(imgProfile.getContext()).load(SplashActivity.mFirebaseAuth.getCurrentUser().getPhotoUrl()).into(imgProfile);
+        Picasso.with(imgProfile.getContext()).load(mFirebaseAuth.getCurrentUser().getPhotoUrl()).into(imgProfile);
 
     }
 }
