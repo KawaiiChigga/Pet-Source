@@ -39,13 +39,16 @@ import static com.petsource.petCare.PetCareActivity.REQ_MAPS2;
 public class ListCareActivity extends AppCompatActivity {
 
     public static String idStaff;
-    private List<Info> data;
+    private List<Shop> data;
     private RecyclerView petRV;
 
     public ListCareAdapter adapter;
     public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
     public static Activity listCareActivity;
+
+    public static String cusDateStart;
+    public static String cusDateEnd;
 
     public ListCareActivity() {
         listCareActivity = this;
@@ -88,25 +91,65 @@ public class ListCareActivity extends AppCompatActivity {
             public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
                 for (Shop s : response.body()) {
                     data.clear();
-                    Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
-                    itemCall.enqueue(new Callback<List<Info>>() {
-                        @Override
-                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
-                            for (Info i : response.body()) {
-                                data.add(i);
-                            }
-                            adapter = new ListCareAdapter(data);
-                            LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
-                            petRV.setHasFixedSize(true);
-                            petRV.setLayoutManager(manager);
-                            petRV.setAdapter(adapter);
-                        }
+                    for (Shop i : response.body()) {
+                        data.add(i);
+                    }
+                    adapter = new ListCareAdapter(data);
+                    LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
+                    petRV.setHasFixedSize(true);
+                    petRV.setLayoutManager(manager);
+                    petRV.setAdapter(adapter);
+//                    boolean match = true;
+//                    String a[];
+//                    int start[], end[], cstart[], cend[];
+//
+//                    a = s.getEnddate().split("/");
+//                    end = new int[a.length];
+//                    for (int i = 0; i < a.length; i++) {
+//                        end[i] = Integer.parseInt(a[i]);
+//                    }
+//
+//                    a = s.getStartdate().split("/");
+//                    start = new int[a.length];
+//                    for (int i = 0; i < a.length; i++) {
+//                        start[i] = Integer.parseInt(a[i]);
+//                    }
+//
+//                    a = cusDateStart.split("/");
+//                    cstart = new int[a.length];
+//                    for (int i = 0; i < a.length; i++) {
+//                        cstart[i] = Integer.parseInt(a[i]);
+//                    }
+//
+//                    a = cusDateEnd.split("/");
+//                    cend = new int[a.length];
+//                    for (int i = 0; i < a.length; i++) {
+//                        cend[i] = Integer.parseInt(a[i]);
+//                    }
 
-                        @Override
-                        public void onFailure(Call<List<Info>> call, Throwable t) {
-                            Toast.makeText(ListCareActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+//                    if ()
+
+//                    if (match) {
+//                        Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
+//                        itemCall.enqueue(new Callback<List<Info>>() {
+//                            @Override
+//                            public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+//                                for (Info i : response.body()) {
+//                                    data.add(i);
+//                                }
+//                                adapter = new ListCareAdapter(data);
+//                                LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
+//                                petRV.setHasFixedSize(true);
+//                                petRV.setLayoutManager(manager);
+//                                petRV.setAdapter(adapter);
+//                            }
+//
+//                            @Override
+//                            public void onFailure(Call<List<Info>> call, Throwable t) {
+//                                Toast.makeText(ListCareActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//                    }
                 }
 
             }

@@ -34,10 +34,10 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyViewHolder>{
-    private List<Info> data;
+    private List<Shop> data;
     private List<Shop> data2;
 
-    public ListCareAdapter(List<Info> data){
+    public ListCareAdapter(List<Shop> data){
         this.data = data;
     }
 
@@ -49,7 +49,7 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Info p = data.get(position);
+        Shop p = data.get(position);
         holder.bind(p);
     }
 
@@ -63,42 +63,54 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
-            txtJob = (TextView) itemView.findViewById(R.id.lblListSalonJob);
-            txtAlamat = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
+            txtName = (TextView) itemView.findViewById(R.id.lblListCareName);
+            txtJob = (TextView) itemView.findViewById(R.id.lblListCareDate);
+            txtAlamat = (TextView) itemView.findViewById(R.id.lblListCareTime);
             itemView.setOnClickListener(this);
         }
 
-        public void bind(final Info user) {
-            txtName.setText(user.getName());
-            txtJob.setText(user.getJob());
-            txtAlamat.setText(user.getAddress());
+        public void bind(final Shop user) {
+            Call<List<Info>> getlist = API.Factory.getInstance().checkAccount(user.getIduser());
+            getlist.enqueue(new Callback<List<Info>>() {
+                @Override
+                public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                    txtName.setText(response.body().get(0).getName());
+                }
+
+                @Override
+                public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                }
+            });
+//            txtName.setText(user.getIduser());
+            txtJob.setText(user.getStartdate() + " - " + user.getEnddate());
+            txtAlamat.setText(user.getStarttime() + " - " + user.getEndtime());
         }
 
         @Override
         public void onClick(View v) {
             if(v.getId()==itemView.getId())
             {
-                Maps2Activity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getUserid();
-                Maps2Activity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
-                Maps2Activity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
-                Maps2Activity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
-                Maps2Activity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
+                Maps2Activity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getIduser();
+//                Maps2Activity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
+//                Maps2Activity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
+//                Maps2Activity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
+//                Maps2Activity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
 
-                Call<List<Shop>> a = API.Factory.getInstance().getCareStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
-                a.enqueue(new Callback<List<Shop>>() {
-                    @Override
-                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-                        Maps2Activity.latitudeStaff = response.body().get(0).getLatitude();
-                        Maps2Activity.longtitudeStaff = response.body().get(0).getLongitude();
-                        Maps2Activity.priceStaff = response.body().get(0).getPrice();
-                    }
-
-                    @Override
-                    public void onFailure(Call<List<Shop>> call, Throwable t) {
-
-                    }
-                });
+//                Call<List<Shop>> a = API.Factory.getInstance().getCareStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
+//                a.enqueue(new Callback<List<Shop>>() {
+//                    @Override
+//                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+//                        Maps2Activity.latitudeStaff = response.body().get(0).getLatitude();
+//                        Maps2Activity.longtitudeStaff = response.body().get(0).getLongitude();
+//                        Maps2Activity.priceStaff = response.body().get(0).getPrice();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<List<Shop>> call, Throwable t) {
+//
+//                    }
+//                });
 
 
                 Intent intent = new Intent(v.getContext(), Maps2Activity.class);

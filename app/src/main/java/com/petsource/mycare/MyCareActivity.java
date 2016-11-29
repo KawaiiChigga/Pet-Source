@@ -21,6 +21,8 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import retrofit2.Call;
@@ -151,9 +153,11 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_MAPS) {
             if (resultCode == RESULT_OK) {
+                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String sysdate = df.format(Calendar.getInstance().getTime());
                 Call<Shop> addshop = API.Factory.getInstance().addShop(
                         mFirebaseAuth.getCurrentUser().getUid(),
-                        txtSetDate.getText().toString(),
+                        sysdate,
                         txtStartTime.getText().toString(),
                         txtSetDate.getText().toString(),
                         txtEndTime.getText().toString(),
