@@ -88,7 +88,6 @@ public class PetCareActivity extends AppCompatActivity {
         lblCareTitle = (TextView) findViewById(R.id.lblCareTitle);
         lblCareTitle.setTypeface(typeface);
 
-
         txtFrom = (TextView) findViewById(R.id.txtFrom);
         txtTo = (TextView) findViewById(R.id.txtTo);
 

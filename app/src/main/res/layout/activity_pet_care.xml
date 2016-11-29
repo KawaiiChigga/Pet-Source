@@ -13,14 +13,24 @@
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
 
-        <TextView
-            android:text="Pet Care"
-            android:textSize="20pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="200dp"
-            android:id="@+id/lblCareTitle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Pet Care"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblCareTitle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
 
     </android.support.design.widget.AppBarLayout>

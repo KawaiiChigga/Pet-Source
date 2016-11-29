@@ -25,7 +25,7 @@
                 android:layout_height="45dp"
                 android:layout_marginRight="30dp"
 
-                android:id="@+id/lblCareTitle"
+                android:id="@+id/lblRescueDescTitle"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"

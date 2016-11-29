@@ -6,16 +6,25 @@
     tools:context="com.petsource.homeFragments.HistoryFragment"
     android:padding="10dp">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="My Transaction"
-        android:layout_height="wrap_content"
-        android:id="@+id/lblMyHistory"/>
-    <android.support.v7.widget.RecyclerView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/rvcustomerhistory"
-        android:scrollbars="vertical"
-        android:layout_below="@+id/lblMyHistory">
-    </android.support.v7.widget.RecyclerView>
+        android:padding="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:layout_width="match_parent"
+                android:text="My Transaction"
+                android:layout_height="wrap_content"
+                android:id="@+id/lblMyHistory"/>
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/rvcustomerhistory"
+                android:scrollbars="vertical"
+                android:layout_below="@+id/lblMyHistory">
+            </android.support.v7.widget.RecyclerView>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

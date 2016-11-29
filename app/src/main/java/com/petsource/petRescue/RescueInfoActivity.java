@@ -24,6 +24,7 @@ public class RescueInfoActivity extends AppCompatActivity {
 
     public static String idRescue;
     public static TextView name, gender, race, iscertified, birthdate, description;
+    private TextView lblRescueInfoTitle;
     public static double lat,lng;
 
     private Rescue rescue;
@@ -38,9 +39,15 @@ public class RescueInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rescue_info);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblRescueInfoTitle = (TextView) findViewById(R.id.lblRescueInfoTitle);
+        lblRescueInfoTitle.setTypeface(typeface);
+
         name = (TextView) findViewById(R.id.textName);
         gender = (TextView) findViewById(R.id.textisMale);
         race = (TextView) findViewById(R.id.textRace);

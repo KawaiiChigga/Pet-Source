@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,6 +14,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.petsource.R;
@@ -45,6 +47,7 @@ public class PetRescueActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
+    private TextView lblPetRescueTitle;
 
     public RescueListAdapter adapter;
     public SwipeRefreshLayout swipeRefresh;
@@ -60,6 +63,11 @@ public class PetRescueActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pet_rescue);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblPetRescueTitle = (TextView) findViewById(R.id.lblAddRescueTitle);
+        lblPetRescueTitle.setTypeface(typeface);
 
         petRV = (RecyclerView) findViewById(R.id.rvpetrescue);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetrescue);

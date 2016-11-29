@@ -3,12 +3,14 @@ package com.petsource.petSalon;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.petsource.R;
@@ -30,9 +32,9 @@ public class ListSalonActivity extends AppCompatActivity {
     public static String idStaff;
     private List<Shop> data;
     private RecyclerView petRV;
+    private TextView lblPetSalonTitle;
 
     public ListSalonAdapter adapter;
-    public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
     public static Activity listSalonActivity;
 
@@ -47,7 +49,11 @@ public class ListSalonActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblPetSalonTitle = (TextView) findViewById(R.id.lblSalonListTitle);
+        lblPetSalonTitle.setTypeface(typeface);
+
         petRV = (RecyclerView) findViewById(R.id.rvListSalon);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
