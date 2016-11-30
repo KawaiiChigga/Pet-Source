@@ -2,6 +2,7 @@ package com.petsource.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,7 +84,6 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
                     @Override
                     public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
                         MapsActivity.staff = response.body().get(0);
-
                         Call<List<Info>> i = API.Factory.getInstance().checkAccount(response.body().get(0).getIduser());
                         i.enqueue(new Callback<List<Info>>() {
 

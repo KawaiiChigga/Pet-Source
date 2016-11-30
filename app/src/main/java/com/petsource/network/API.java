@@ -45,13 +45,13 @@ public interface API {
     Call<List<Shop>> getSalon(@Query("isCare") int isCare);
 
     @GET("shop/")
-    Call<List<Shop>> getSalonStaff(@Query("idUser") String idUser);
+    Call<List<Shop>> getSalonStaff(@Query("iduser") String idUser);
 
     @GET("shop/")
     Call<List<Shop>> getCare(@Query("isCare") int isCare);
 
     @GET("shop/")
-    Call<List<Shop>> getCareStaff(@Query("idUser") String idUser);
+    Call<List<Shop>> getStaff(@Query("iduser") String iduser);
 
     @GET("rescue/")
     Call<List<Rescue>> getRescue();
