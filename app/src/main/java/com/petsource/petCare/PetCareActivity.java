@@ -36,8 +36,9 @@ import retrofit2.Response;
 
 public class PetCareActivity extends AppCompatActivity {
 
+    public static String ChosePet;
     private Button btnCare;
-    private TextView lblCareTitle, textView11, textView, textView2;
+    private TextView lblCareTitle, textView11, textView, textView2, textPetName;
     private TextView txtFrom, txtTo;
     private Spinner spinner;
     private FirebaseAuth mFirebaseAuth;
@@ -96,6 +97,10 @@ public class PetCareActivity extends AppCompatActivity {
 
         textView2 = (TextView) findViewById(R.id.textView2);
         textView2.setTypeface(typeface);
+
+        textPetName = (TextView) findViewById(R.id.textPetName);
+        textPetName.setTypeface(typeface);
+        textPetName.setText(ChosePet);
 
         txtFrom = (TextView) findViewById(R.id.txtFrom);
         txtTo = (TextView) findViewById(R.id.txtTo);

@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.petsource.R;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
-import com.petsource.petSalon.PetSalonActivity;
+import com.petsource.petCare.PetCareActivity;
 
 import java.util.List;
 
@@ -24,19 +24,20 @@ import retrofit2.Response;
  * Created by USER on 30/11/2016.
  */
 
-public class ChosePetSalonAdapter extends RecyclerView.Adapter<ChosePetSalonAdapter.MyViewHolder> {
+public class ChosePetCareAdapter extends RecyclerView.Adapter<ChosePetCareAdapter.MyViewHolder> {
 
     private List<Pet> data;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    public ChosePetSalonAdapter (List<Pet> data){
+    public ChosePetCareAdapter(List<Pet> data) {
         this.data = data;
     }
 
+
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_chosepetsalon, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_chosepetcare, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -70,8 +71,7 @@ public class ChosePetSalonAdapter extends RecyclerView.Adapter<ChosePetSalonAdap
 
         @Override
         public void onClick(final View v) {
-            if(v.getId()==itemView.getId())
-            {
+            if (v.getId() == itemView.getId()) {
                 mFirebaseAuth = FirebaseAuth.getInstance();
                 mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -79,9 +79,9 @@ public class ChosePetSalonAdapter extends RecyclerView.Adapter<ChosePetSalonAdap
                 a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                        PetSalonActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition())).getName();
+                        PetCareActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition())).getName();
 
-                        Intent intent = new Intent(v.getContext(), PetSalonActivity.class);
+                        Intent intent = new Intent(v.getContext(), PetCareActivity.class);
                         v.getContext().startActivity(intent);
                     }
 

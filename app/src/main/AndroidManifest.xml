@@ -138,6 +138,10 @@
         <activity
             android:name=".petSalon.ChosePetSalonActivity"
             android:label="@string/title_activity_chose_pet_salon"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".petCare.ChosePetCareActivity"
+            android:label="@string/title_activity_chose_pet_care"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
