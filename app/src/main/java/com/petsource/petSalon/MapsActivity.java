@@ -22,18 +22,22 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.petsource.model.Info;
+import com.petsource.model.Shop;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    public static String idStaff = new String();
-    public static String nameStaff;
-    public static double latitudeStaff;
-    public static double longtitudeStaff;
-    public static String addressStaff;
-    public static String cityStaff;
-    public static String jobStaff;
-    public static String priceStaff;
+    public static Shop staff;
+    public static Info infoStaff;
+//    public static String idStaff = new String();
+//    public static String nameStaff;
+//    public static double latitudeStaff;
+//    public static double longtitudeStaff;
+//    public static String addressStaff;
+//    public static String cityStaff;
+//    public static String jobStaff;
+//    public static String priceStaff;
     public static Activity mapsActivity;
 
     public MapsActivity() {
@@ -99,9 +103,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-        LatLng ithb = new LatLng(latitudeStaff, longtitudeStaff);
+        LatLng ithb = new LatLng(staff.getLatitude(), staff.getLongitude());
      //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.addMarker(new MarkerOptions().position(ithb).title(nameStaff));
+        mMap.addMarker(new MarkerOptions().position(ithb).title(infoStaff.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
 
@@ -112,7 +116,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double latitude = findme.getLatitude();
             double longitude = findme.getLongitude();
             LatLng latLng = new LatLng(latitude, longitude);
-//            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, FinalSalonActivity.class);
                 startActivity(intent);
         }

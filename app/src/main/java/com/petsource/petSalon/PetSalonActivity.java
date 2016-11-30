@@ -39,7 +39,7 @@ public class PetSalonActivity extends AppCompatActivity {
     double latitude, longtitude;
 
     private Button btnSalon;
-    private TextView lblSalonTitle, textView8;
+    private TextView lblSalonTitle, textView8, textPetName;
     private CheckBox checkBox, checkBox2, checkBox3;
 
     private FirebaseAuth mFirebaseAuth;
@@ -78,6 +78,12 @@ public class PetSalonActivity extends AppCompatActivity {
 
         checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
         checkBox3.setTypeface(typeface);
+
+        textPetName = (TextView) findViewById(R.id.textPetName);
+        textPetName.setTypeface(typeface);
+        textPetName.setText(ChosePet);
+
+
 
 //        staticSpinner = (Spinner) findViewById(R.id.spinnerONE);
 //        mypet = new ArrayList<Pet>();

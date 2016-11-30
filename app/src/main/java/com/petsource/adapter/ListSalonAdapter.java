@@ -77,18 +77,30 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
         public void onClick(final View v) {
             if(v.getId()==itemView.getId())
             {
-                MapsActivity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getIduser();
-
                 Call<List<Shop>> a = API.Factory.getInstance().getSalonStaff(data.get(Integer.valueOf(getAdapterPosition())).getIduser());
                 a.enqueue(new Callback<List<Shop>>() {
+
                     @Override
                     public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-                        MapsActivity.latitudeStaff = response.body().get(0).getLatitude();
-                        MapsActivity.longtitudeStaff = response.body().get(0).getLongitude();
-                        MapsActivity.priceStaff = response.body().get(0).getPrice();
+                        MapsActivity.staff = response.body().get(0);
 
-                        Intent intent = new Intent(v.getContext(), MapsActivity.class);
-                        v.getContext().startActivity(intent);
+                        Call<List<Info>> i = API.Factory.getInstance().checkAccount(response.body().get(0).getIduser());
+                        i.enqueue(new Callback<List<Info>>() {
+
+                            @Override
+                            public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                                MapsActivity.infoStaff = response.body().get(0);
+                                Intent intent = new Intent(v.getContext(), MapsActivity.class);
+                                v.getContext().startActivity(intent);
+                            }
+
+                            @Override
+                            public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                            }
+                        });
+
+
                     }
 
                     @Override
@@ -97,6 +109,8 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
                     }
                 });
             }
+
+
         }
     }
 }

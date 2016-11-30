@@ -37,7 +37,7 @@
 
     <CheckBox
         android:text="Nail Clipping"
-        android:textSize="16pt"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkBox"
@@ -48,7 +48,7 @@
 
     <CheckBox
         android:text="Trimming"
-        android:textSize="16pt"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkBox2"
@@ -82,7 +82,7 @@
 
     <CheckBox
         android:text="Washing"
-        android:textSize="16pt"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
@@ -100,8 +100,22 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/imageView5"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:id="@+id/textView8" />
+
+    <TextView
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:paddingTop="1dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/textPetName"
+        android:layout_marginTop="-30dp"
+        />
 
 
 </RelativeLayout>

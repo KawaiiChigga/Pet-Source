@@ -91,25 +91,6 @@ public class ListSalonActivity extends AppCompatActivity {
                     petRV.setHasFixedSize(true);
                     petRV.setLayoutManager(manager);
                     petRV.setAdapter(adapter);
-//                    Call<List<Info>> itemCall = API.Factory.getInstance().checkAccount(s.getIduser());
-//                    itemCall.enqueue(new Callback<List<Info>>() {
-//                        @Override
-//                        public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
-//                            for (Info i : response.body()) {
-//                                data.add(i);
-//                            }
-//                            adapter = new ListSalonAdapter(data);
-//                            LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
-//                            petRV.setHasFixedSize(true);
-//                            petRV.setLayoutManager(manager);
-//                            petRV.setAdapter(adapter);
-//                        }
-//
-//                        @Override
-//                        public void onFailure(Call<List<Info>> call, Throwable t) {
-//                            Toast.makeText(ListSalonActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
                 }
 
             }

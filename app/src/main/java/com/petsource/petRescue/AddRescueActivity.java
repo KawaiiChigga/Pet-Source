@@ -59,7 +59,7 @@ public class AddRescueActivity extends AppCompatActivity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
-        lblAddRescueTitle = (TextView) findViewById(R.id.lblHomeTitle);
+        lblAddRescueTitle = (TextView) findViewById(R.id.lblAddRescueTitle);
         lblAddRescueTitle.setTypeface(typeface);
 
         mFirebaseAuth = FirebaseAuth.getInstance();

@@ -60,6 +60,7 @@ public class ChosePetSalonAdapter extends RecyclerView.Adapter<ChosePetSalonAdap
             txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
             txtRace = (TextView) itemView.findViewById(R.id.lblListSalonJob);
             txtYear = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Pet user) {
@@ -79,7 +80,7 @@ public class ChosePetSalonAdapter extends RecyclerView.Adapter<ChosePetSalonAdap
                 a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                        PetSalonActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition())).getId();
+                        PetSalonActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition())).getName();
 
                         Intent intent = new Intent(v.getContext(), PetSalonActivity.class);
                         v.getContext().startActivity(intent);

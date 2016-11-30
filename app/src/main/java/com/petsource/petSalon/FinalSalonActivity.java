@@ -39,11 +39,11 @@ public class FinalSalonActivity extends AppCompatActivity {
         txtJob = (TextView) findViewById(R.id.txtJob);
         txtPrice = (TextView) findViewById(R.id.txtPrice);
 
-        txtName.setText(MapsActivity.nameStaff);
-        txtCity.setText(MapsActivity.cityStaff);
-        txtAddress.setText(MapsActivity.addressStaff);
-        txtJob.setText(MapsActivity.jobStaff);
-        txtPrice.setText(MapsActivity.priceStaff);
+        txtName.setText(MapsActivity.infoStaff.getName());
+        txtCity.setText(MapsActivity.infoStaff.getCity());
+        txtAddress.setText(MapsActivity.infoStaff.getAddress());
+        txtJob.setText(MapsActivity.infoStaff.getJob());
+        txtPrice.setText(MapsActivity.staff.getPrice());
 
 
     }
