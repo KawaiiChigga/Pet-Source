@@ -31,6 +31,7 @@ import retrofit2.Response;
 public class PetSalonActivity extends AppCompatActivity {
 
     public static final int REQ_MAPS = 100;
+    public static String ChosePet;
 
     public static Activity petSalonActivity;
     List<Pet> mypet;
