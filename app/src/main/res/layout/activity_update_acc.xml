@@ -35,20 +35,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <TextView
-        android:text="Address"
-        android:textSize="10pt"
-        android:textColor="#444545"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="33dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="47dp"
-        android:id="@+id/textView3" />
-
     <EditText
         android:layout_width="310dp"
         android:layout_height="35dp"
@@ -58,8 +44,6 @@
         android:ems="10"
         android:id="@+id/txtUpAccountStreet"
         android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -70,8 +54,8 @@
         android:paddingTop="3pt"
         android:textSize="8pt"
         android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
+        android:layout_alignLeft="@+id/txtUpAccountStreet"
+        android:layout_alignStart="@+id/txtUpAccountStreet"
         android:id="@+id/txtUpAccountBirthdate" />
 
     <TextView
@@ -144,6 +128,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
         android:id="@+id/btnUpAccountGo" />
+
+    <TextView
+        android:text="Address"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/appbar"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
 
 
 </RelativeLayout>

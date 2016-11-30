@@ -20,6 +20,7 @@ import com.petsource.network.API;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -77,23 +78,34 @@ public class UpdateAccActivity extends AppCompatActivity implements DatePickerDi
         btnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Call<Info> u = API.Factory.getInstance().updateAccount(
-                        mFirebaseAuth.getCurrentUser().getUid(),
-                        txtStreet.getText().toString(),
-                        txtCity.getText().toString(),
-                        txtBirthdate.getText().toString(),
-                        txtJob.getText().toString(),
-                        1,
-                        0
-                );
-                u.enqueue(new Callback<Info>() {
+                Call<List<Info>> getUser = API.Factory.getInstance().checkAccount(mFirebaseAuth.getCurrentUser().getUid());
+                getUser.enqueue(new Callback<List<Info>>() {
                     @Override
-                    public void onResponse(Call<Info> call, Response<Info> response) {
-                        finish();
+                    public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                        Call<Info> u = API.Factory.getInstance().updateAccount(
+                                response.body().get(0).getId(),
+                                txtStreet.getText().toString(),
+                                txtCity.getText().toString(),
+                                txtBirthdate.getText().toString(),
+                                txtJob.getText().toString(),
+                                1,
+                                0
+                        );
+                        u.enqueue(new Callback<Info>() {
+                            @Override
+                            public void onResponse(Call<Info> call, Response<Info> response) {
+                                finish();
+                            }
+
+                            @Override
+                            public void onFailure(Call<Info> call, Throwable t) {
+
+                            }
+                        });
                     }
 
                     @Override
-                    public void onFailure(Call<Info> call, Throwable t) {
+                    public void onFailure(Call<List<Info>> call, Throwable t) {
                         Toast.makeText(UpdateAccActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
                     }
                 });

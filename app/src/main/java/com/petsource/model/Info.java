@@ -5,6 +5,7 @@ package com.petsource.model;
  */
 
 public class Info {
+    private String id;
     private String userid;
     private int isStaff;
     private int isApprove;
@@ -18,6 +19,14 @@ public class Info {
     private String name;
     private String url;
     private String email;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getUserid() {
         return userid;

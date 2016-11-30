@@ -87,8 +87,8 @@ public interface API {
                                @Field("isApprove") int isApprove);
 
     @FormUrlEncoded
-    @PUT("users/")
-    Call<Info> updateAccount(@Query("userid") String userid, @Field("address") String address, @Field("city") String city,
+    @PUT("infouser/{id}")
+    Call<Info> updateAccount(@Path("id") String id, @Field("address") String address, @Field("city") String city,
                              @Field("birthday") String birthday, @Field("job") String job, @Field("isStaff") int isStaff,
                              @Field("isApprove") int isApprove);
 
