@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,7 +38,8 @@ public class PetSalonActivity extends AppCompatActivity {
     double latitude, longtitude;
 
     private Button btnSalon;
-    private TextView lblSalonTitle;
+    private TextView lblSalonTitle, textView8;
+    private CheckBox checkBox, checkBox2, checkBox3;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -64,41 +66,53 @@ public class PetSalonActivity extends AppCompatActivity {
         lblSalonTitle = (TextView) findViewById(R.id.lblSalonTitle);
         lblSalonTitle.setTypeface(typeface);
 
-        staticSpinner = (Spinner) findViewById(R.id.spinnerONE);
-        mypet = new ArrayList<Pet>();
+        textView8 = (TextView) findViewById(R.id.textView8);
+        textView8.setTypeface(typeface);
 
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
-        getpet.enqueue(new Callback<List<Pet>>() {
-            @Override
-            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                for (Pet p : response.body() ) {
-                    mypet.add(p);
-                }
-            }
+        checkBox = (CheckBox) findViewById(R.id.checkBox);
+        checkBox.setTypeface(typeface);
 
-            @Override
-            public void onFailure(Call<List<Pet>> call, Throwable t) {
+        checkBox2 = (CheckBox) findViewById(R.id.checkBox2);
+        checkBox2.setTypeface(typeface);
 
-            }
-        });
+        checkBox3 = (CheckBox) findViewById(R.id.checkBox3);
+        checkBox3.setTypeface(typeface);
 
-        ArrayAdapter<Pet> petAdapter = new ArrayAdapter<Pet>(this, R.layout.spinner_layout, mypet);
+//        staticSpinner = (Spinner) findViewById(R.id.spinnerONE);
+//        mypet = new ArrayList<Pet>();
 
-        petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        staticSpinner.setAdapter(petAdapter);
-        staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(PetSalonActivity.this, parent.getItemAtPosition(position) + "", Toast.LENGTH_SHORT);
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
+//        getpet.enqueue(new Callback<List<Pet>>() {
+//            @Override
+//            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+//                for (Pet p : response.body() ) {
+//                    mypet.add(p);
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Pet>> call, Throwable t) {
+//
+//            }
+//        });
+//
+//        ArrayAdapter<Pet> petAdapter = new ArrayAdapter<Pet>(this, R.layout.spinner_layout, mypet);
+//
+//        petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//
+//        staticSpinner.setAdapter(petAdapter);
+//        staticSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Toast.makeText(PetSalonActivity.this, parent.getItemAtPosition(position) + "", Toast.LENGTH_SHORT);
+//
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
     }
 
 

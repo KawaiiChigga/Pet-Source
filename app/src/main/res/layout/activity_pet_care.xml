@@ -45,26 +45,16 @@
         android:layout_marginLeft="91dp"
         android:id="@+id/imageView6" />
 
-    <Spinner
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/textColor"
-        android:layout_marginLeft="40dp"
-        android:layout_below="@+id/imageView6"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:id="@+id/spinner2" />
 
     <TextView
         android:text="From"
-        android:textSize="10pt"
+        android:textSize="12pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner2"
-        android:layout_alignLeft="@+id/spinner2"
-        android:layout_alignStart="@+id/spinner2"
+        android:layout_below="@+id/textView11"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
         android:id="@+id/textView" />
 
     <TextView
@@ -82,7 +72,7 @@
 
     <TextView
         android:text="To"
-        android:textSize="10pt"
+        android:textSize="12pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,6 +108,17 @@
         android:layout_alignLeft="@+id/txtTo"
         android:layout_alignStart="@+id/txtTo"
         android:onClick="gotoListCare"/>
+
+    <TextView
+        android:text="Select Date :"
+        android:textSize="20pt"
+        android:textColor="@color/textColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/textView11" />
 
 
 </RelativeLayout>

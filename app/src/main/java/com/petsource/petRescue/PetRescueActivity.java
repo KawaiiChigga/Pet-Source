@@ -66,7 +66,7 @@ public class PetRescueActivity extends AppCompatActivity {
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
-        lblPetRescueTitle = (TextView) findViewById(R.id.lblAddRescueTitle);
+        lblPetRescueTitle = (TextView) findViewById(R.id.lblRescueTitle);
         lblPetRescueTitle.setTypeface(typeface);
 
         petRV = (RecyclerView) findViewById(R.id.rvpetrescue);

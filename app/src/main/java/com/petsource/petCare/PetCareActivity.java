@@ -37,7 +37,7 @@ import retrofit2.Response;
 public class PetCareActivity extends AppCompatActivity {
 
     private Button btnCare;
-    private TextView lblCareTitle;
+    private TextView lblCareTitle, textView11, textView, textView2;
     private TextView txtFrom, txtTo;
     private Spinner spinner;
     private FirebaseAuth mFirebaseAuth;
@@ -87,6 +87,15 @@ public class PetCareActivity extends AppCompatActivity {
 
         lblCareTitle = (TextView) findViewById(R.id.lblCareTitle);
         lblCareTitle.setTypeface(typeface);
+
+        textView11 = (TextView) findViewById(R.id.textView11);
+        textView11.setTypeface(typeface);
+
+        textView = (TextView) findViewById(R.id.textView);
+        textView.setTypeface(typeface);
+
+        textView2 = (TextView) findViewById(R.id.textView2);
+        textView2.setTypeface(typeface);
 
         txtFrom = (TextView) findViewById(R.id.txtFrom);
         txtTo = (TextView) findViewById(R.id.txtTo);
@@ -139,21 +148,21 @@ public class PetCareActivity extends AppCompatActivity {
         petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 
-        spinner = (Spinner) findViewById(R.id.spinner2);
-        spinner.setAdapter(petAdapter);
-        spinner.setPrompt("Select pets");
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("PO123", position + " hai ");
-                spinner.setOnItemSelectedListener(this);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        spinner = (Spinner) findViewById(R.id.spinner2);
+//        spinner.setAdapter(petAdapter);
+//        spinner.setPrompt("Select pets");
+//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Log.d("PO123", position + " hai ");
+//                spinner.setOnItemSelectedListener(this);
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
     }
 
