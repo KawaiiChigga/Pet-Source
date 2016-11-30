@@ -120,7 +120,7 @@
         android:layout_marginTop="30dp" />
 
     <TextView
-        android:text="Set Date"
+        android:text="Open Until"
         android:textSize="10pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"

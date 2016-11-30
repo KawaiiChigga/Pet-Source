@@ -5,6 +5,7 @@ package com.petsource.model;
  */
 
 public class Shop {
+    private String id;
     private String iduser;
     private String startdate;
     private String starttime;
@@ -17,6 +18,14 @@ public class Shop {
     private int isClip;
     private int isCare;
     private String price;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getIduser() {
         return iduser;

@@ -17,6 +17,7 @@ import com.petsource.HomeActivity;
 import com.petsource.LoginActivity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
+import com.petsource.UpdateHomeActivity;
 import com.petsource.model.Login;
 import com.squareup.picasso.Picasso;
 
@@ -61,7 +62,7 @@ public class UpAccountFragment extends Fragment {
                 mFirebaseAuth.signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
-                HomeActivity.homeActivity.finish();
+                UpdateHomeActivity.upHomeActivity.finish();
             }
         });
 

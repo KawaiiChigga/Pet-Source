@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +20,15 @@ import com.petsource.LoginActivity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.UpdateAccActivity;
+import com.petsource.model.Info;
+import com.petsource.network.API;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AccountFragment extends Fragment{
     private TextView lblName;
@@ -57,8 +66,24 @@ public class AccountFragment extends Fragment{
         lblUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UpdateAccActivity.class);
-                startActivity(intent);
+                Call<List<Info>> checkUp = API.Factory.getInstance().checkAccount(mFirebaseAuth.getCurrentUser().getUid());
+                checkUp.enqueue(new Callback<List<Info>>() {
+                    @Override
+                    public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                        if (response.body().get(0).getIsStaff() == 1) {
+                            Toast.makeText(getContext(), "You're already in process of being a staff. Thank you!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intent = new Intent(getActivity(), UpdateAccActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
 

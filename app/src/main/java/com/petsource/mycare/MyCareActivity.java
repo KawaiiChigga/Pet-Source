@@ -11,11 +11,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.model.Shop;
+import com.petsource.mysalon.MySalonActivity;
+import com.petsource.mysalon.MySalonMapsActivity;
 import com.petsource.network.API;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
@@ -24,6 +27,7 @@ import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,7 +44,6 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
     private Button btnOpenCare;
     private TextView lblOpenCare;
 
-    public SharedPreferences shared;
     FirebaseAuth mFirebaseAuth;
 
     @Override
@@ -58,7 +61,7 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
         lblOpenCare = (TextView) findViewById(R.id.lblOpenCare);
         lblOpenCare.setTypeface(typeface);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         txtStartTime = (TextView) findViewById(R.id.txtStartTime);
         txtEndTime = (TextView) findViewById(R.id.txtEndTime);
@@ -145,7 +148,25 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
                 startActivityForResult(intent, REQ_MAPS);
             }
         });
-        mFirebaseAuth = FirebaseAuth.getInstance();
+
+        Call<List<Shop>> getStaff = API.Factory.getInstance().getStaff(mFirebaseAuth.getCurrentUser().getUid(), 1);
+        getStaff.enqueue(new Callback<List<Shop>>() {
+            @Override
+            public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                if (!response.body().isEmpty()) {
+                    txtStartTime.setText(response.body().get(0).getStarttime());
+                    txtEndTime.setText(response.body().get(0).getEndtime());
+                    txtSetPrice.setText(response.body().get(0).getPrice());
+                    txtSetDate.setText(response.body().get(0).getEnddate());
+                    btnOpenCare.setText("Update Care");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Shop>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -153,28 +174,63 @@ public class MyCareActivity extends AppCompatActivity implements DatePickerDialo
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_MAPS) {
             if (resultCode == RESULT_OK) {
-                DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                String sysdate = df.format(Calendar.getInstance().getTime());
-                Call<Shop> addshop = API.Factory.getInstance().addShop(
-                        mFirebaseAuth.getCurrentUser().getUid(),
-                        sysdate,
-                        txtStartTime.getText().toString(),
-                        txtSetDate.getText().toString(),
-                        txtEndTime.getText().toString(),
-                        MyCareMapsActivity.latitude,
-                        MyCareMapsActivity.longitude,
-                        1,
-                        txtSetPrice.getText().toString()
-
-                );
-                addshop.enqueue(new Callback<Shop>() {
+                Call<List<Shop>> getStaff = API.Factory.getInstance().getStaff(mFirebaseAuth.getCurrentUser().getUid(), 1);
+                getStaff.enqueue(new Callback<List<Shop>>() {
                     @Override
-                    public void onResponse(Call<Shop> call, Response<Shop> response) {
+                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                        String sysdate = df.format(Calendar.getInstance().getTime());
+                        if (response.body().isEmpty()) {
+                            Call<Shop> addshop = API.Factory.getInstance().addShop(
+                                    mFirebaseAuth.getCurrentUser().getUid(),
+                                    sysdate,
+                                    txtStartTime.getText().toString(),
+                                    txtSetDate.getText().toString(),
+                                    txtEndTime.getText().toString(),
+                                    MyCareMapsActivity.latitude,
+                                    MyCareMapsActivity.longitude,
+                                    1,
+                                    txtSetPrice.getText().toString()
 
+                            );
+                            addshop.enqueue(new Callback<Shop>() {
+                                @Override
+                                public void onResponse(Call<Shop> call, Response<Shop> response) {
+                                    Toast.makeText(MyCareActivity.this, "My Care has been created!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<Shop> call, Throwable t) {
+
+                                }
+                            });
+                        } else {
+                            Call<Shop> updateshop = API.Factory.getInstance().updateShop(
+                                    response.body().get(0).getId(),
+                                    sysdate,
+                                    txtStartTime.getText().toString(),
+                                    txtSetDate.getText().toString(),
+                                    txtEndTime.getText().toString(),
+                                    MySalonMapsActivity.latitude,
+                                    MySalonMapsActivity.longitude,
+                                    txtSetPrice.getText().toString()
+                            );
+                            updateshop.enqueue(new Callback<Shop>() {
+                                @Override
+                                public void onResponse(Call<Shop> call, Response<Shop> response) {
+                                    Toast.makeText(MyCareActivity.this, "My Care has been updated!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<Shop> call, Throwable t) {
+
+                                }
+                            });
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<Shop> call, Throwable t) {
+                    public void onFailure(Call<List<Shop>> call, Throwable t) {
 
                     }
                 });
