@@ -3,6 +3,7 @@
     import android.app.Activity;
     import android.content.Intent;
     import android.content.SharedPreferences;
+    import android.graphics.Typeface;
     import android.os.Bundle;
     import android.support.design.widget.TabLayout;
     import android.support.v4.app.Fragment;
@@ -31,6 +32,7 @@
 
     private StaffSectionsPagerAdapter mCSectionsPagerAdapter;
     private ViewPager mViewPager;
+    private TextView lblHomeTitle;
 
     public static Activity upHomeActivity;
 
@@ -46,45 +48,50 @@
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblHomeTitle = (TextView) findViewById(R.id.lblHomeTitle);
+        lblHomeTitle.setTypeface(typeface);
+
         mCSectionsPagerAdapter = new StaffSectionsPagerAdapter(getSupportFragmentManager());
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mCSectionsPagerAdapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+    }
+
+    public void gotoPetSalon(View view) {
+        Intent intent = new Intent(this, PetSalonActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoPetCare(View view) {
+        Intent intent = new Intent(this, PetCareActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoPetRescue(View view) {
+        Intent intent = new Intent(this, PetRescueActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoMySalon(View view) {
+        Intent intent = new Intent(this, MySalonActivity.class);
+        startActivity(intent);
+    }
+
+    public void gotoMycare(View view) {
+        Intent intent = new Intent(this, MyCareActivity.class);
+        startActivity(intent);
     }
 
 
-        public void gotoPetSalon(View view) {
-            Intent intent = new Intent(this, PetSalonActivity.class);
-            startActivity(intent);
-        }
-
-        public void gotoPetCare(View view) {
-            Intent intent = new Intent(this, PetCareActivity.class);
-            startActivity(intent);
-        }
-
-        public void gotoPetRescue(View view) {
-            Intent intent = new Intent(this, PetRescueActivity.class);
-            startActivity(intent);
-        }
-
-        public void gotoMySalon(View view) {
-            Intent intent = new Intent(this, MySalonActivity.class);
-            startActivity(intent);
-        }
-
-        public void gotoMycare(View view) {
-            Intent intent = new Intent(this, MyCareActivity.class);
-            startActivity(intent);
-        }
-
-
-        public void gotoPetList(View view) {
-            Intent intent = new Intent(this, PetListActivity.class);
-            startActivity(intent);
-        }
+    public void gotoPetList(View view) {
+        Intent intent = new Intent(this, PetListActivity.class);
+        startActivity(intent);
+    }
 
     public class StaffSectionsPagerAdapter extends FragmentPagerAdapter {
         public StaffSectionsPagerAdapter(FragmentManager fm) {

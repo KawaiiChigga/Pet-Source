@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.petsource.R;
+import com.petsource.petCare.ChosePetCareActivity;
 import com.petsource.petCare.PetCareActivity;
 import com.petsource.petRescue.PetRescueActivity;
+import com.petsource.petSalon.ChosePetSalonActivity;
 import com.petsource.petSalon.PetSalonActivity;
 
 public class UpHomeFragment extends Fragment{
@@ -36,7 +38,7 @@ public class UpHomeFragment extends Fragment{
         btnSalon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PetSalonActivity.class);
+                Intent intent = new Intent(getActivity(), ChosePetSalonActivity.class);
                 startActivity(intent);
             }
         });
@@ -46,7 +48,7 @@ public class UpHomeFragment extends Fragment{
         btnCare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PetCareActivity.class);
+                Intent intent = new Intent(getActivity(), ChosePetCareActivity.class);
                 startActivity(intent);
             }
         });

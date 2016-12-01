@@ -6,25 +6,14 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.petsource.MapsActivity;
-import com.petsource.MapsRescueActivity;
 import com.petsource.R;
-import com.petsource.SplashActivity;
 import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
 import com.petsource.network.API;
 
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,6 +24,7 @@ public class RescueInfoActivity extends AppCompatActivity {
 
     public static String idRescue;
     public static TextView name, gender, race, iscertified, birthdate, description;
+    private TextView lblRescueInfoTitle;
     public static double lat,lng;
 
     private Rescue rescue;
@@ -49,9 +39,15 @@ public class RescueInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rescue_info);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblRescueInfoTitle = (TextView) findViewById(R.id.lblRescueInfoTitle);
+        lblRescueInfoTitle.setTypeface(typeface);
+
         name = (TextView) findViewById(R.id.textName);
         gender = (TextView) findViewById(R.id.textisMale);
         race = (TextView) findViewById(R.id.textRace);

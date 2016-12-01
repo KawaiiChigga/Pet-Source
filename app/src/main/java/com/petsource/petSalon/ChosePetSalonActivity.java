@@ -1,12 +1,10 @@
-package com.petsource.petRescue;
+package com.petsource.petSalon;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,11 +16,8 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.petsource.AddPetActivity;
 import com.petsource.R;
-import com.petsource.SplashActivity;
-import com.petsource.adapter.AddRescueAdapter;
-import com.petsource.adapter.PetListAdapter;
+import com.petsource.adapter.ChosePetSalonAdapter;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
 
@@ -33,45 +28,46 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddRescueActivity extends AppCompatActivity {
+public class ChosePetSalonActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
-    private TextView lblAddRescueTitle;
+    private TextView lblChosePetSalonTitle;
+
+    public static Activity chosePetSalonActivity;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    public AddRescueAdapter adapter;
+    public ChosePetSalonAdapter adapter;
     public SwipeRefreshLayout swipeRefresh;
-    public static Activity addRescueActivity;
 
-    public AddRescueActivity() {
-        addRescueActivity = this;
+    public ChosePetSalonActivity() {
+        chosePetSalonActivity = this;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_rescue);
+        setContentView(R.layout.activity_chose_pet_salon);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
-        lblAddRescueTitle = (TextView) findViewById(R.id.lblAddRescueTitle);
-        lblAddRescueTitle.setTypeface(typeface);
+        lblChosePetSalonTitle = (TextView) findViewById(R.id.lblChosePetSalonTitle);
+        lblChosePetSalonTitle.setTypeface(typeface);
+
+        petRV = (RecyclerView) findViewById(R.id.rvChosePetSalon);
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshChosePetSalon);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-        petRV = (RecyclerView) findViewById(R.id.rvpetlist);
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
-
         data = new ArrayList<>();
         prepareData();
 
-        adapter = new AddRescueAdapter(data);
+        adapter = new ChosePetSalonAdapter(data);
         LinearLayoutManager manager = new LinearLayoutManager(this);
         petRV.setHasFixedSize(true);
         petRV.setLayoutManager(manager);
@@ -97,7 +93,7 @@ public class AddRescueActivity extends AppCompatActivity {
                 for (Pet p : response.body() ) {
                     data.add(p);
                 }
-                adapter = new AddRescueAdapter(data);
+                adapter = new ChosePetSalonAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
                 petRV.setHasFixedSize(true);
                 petRV.setLayoutManager(manager);
@@ -107,7 +103,7 @@ public class AddRescueActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<Pet>> call, Throwable t) {
                 swipeRefresh.setRefreshing(false);
-                Toast.makeText(AddRescueActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ChosePetSalonActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
             }
         });
     }

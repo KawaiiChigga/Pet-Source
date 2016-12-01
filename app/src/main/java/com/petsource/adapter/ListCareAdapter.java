@@ -1,41 +1,29 @@
 package com.petsource.adapter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.petsource.HomeActivity;
-import com.petsource.Maps2Activity;
+import com.petsource.petCare.ListCareActivity;
+import com.petsource.petCare.Maps2Activity;
 import com.petsource.R;
-import com.petsource.SplashActivity;
-import com.petsource.UpdateHomeActivity;
 import com.petsource.model.Info;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
 
 
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static android.app.Activity.RESULT_OK;
-
-
 
 public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyViewHolder>{
     private List<Shop> data;
-    private List<Shop> data2;
 
     public ListCareAdapter(List<Shop> data){
         this.data = data;
@@ -59,13 +47,13 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtJob, txtAlamat;
+        TextView txtName, txtDate, txtTime;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             txtName = (TextView) itemView.findViewById(R.id.lblListCareName);
-            txtJob = (TextView) itemView.findViewById(R.id.lblListCareDate);
-            txtAlamat = (TextView) itemView.findViewById(R.id.lblListCareTime);
+            txtDate = (TextView) itemView.findViewById(R.id.lblListCareDate);
+            txtTime = (TextView) itemView.findViewById(R.id.lblListCareTime);
             itemView.setOnClickListener(this);
         }
 
@@ -83,38 +71,43 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
                 }
             });
 //            txtName.setText(user.getIduser());
-            txtJob.setText(user.getStartdate() + " - " + user.getEnddate());
-            txtAlamat.setText(user.getStarttime() + " - " + user.getEndtime());
+            txtDate.setText(user.getStartdate() + " - " + user.getEnddate());
+            txtTime.setText(user.getStarttime() + " - " + user.getEndtime());
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if(v.getId()==itemView.getId())
             {
-                Maps2Activity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getIduser();
-//                Maps2Activity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
-//                Maps2Activity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
-//                Maps2Activity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
-//                Maps2Activity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
+                Call<List<Shop>> a = API.Factory.getInstance().getSalonStaff(data.get(Integer.valueOf(getAdapterPosition())).getIduser());
+                a.enqueue(new Callback<List<Shop>>() {
+                    @Override
+                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                        Maps2Activity.staff = data.get(Integer.valueOf(getAdapterPosition()));
+                        Call<List<Info>> i = API.Factory.getInstance().checkAccount(response.body().get(0).getIduser());
+                        i.enqueue(new Callback<List<Info>>() {
+                            @Override
+                            public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                                Maps2Activity.ChosePet = ListCareActivity.ChosePet;
+                                Maps2Activity.infoStaff = response.body().get(0);
+                                Intent intent = new Intent(v.getContext(), Maps2Activity.class);
+                                v.getContext().startActivity(intent);
+                            }
 
-//                Call<List<Shop>> a = API.Factory.getInstance().getCareStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
-//                a.enqueue(new Callback<List<Shop>>() {
-//                    @Override
-//                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-//                        Maps2Activity.latitudeStaff = response.body().get(0).getLatitude();
-//                        Maps2Activity.longtitudeStaff = response.body().get(0).getLongitude();
-//                        Maps2Activity.priceStaff = response.body().get(0).getPrice();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<Shop>> call, Throwable t) {
-//
-//                    }
-//                });
+                            @Override
+                            public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Shop>> call, Throwable t) {
+
+                    }
+                });
 
 
-                Intent intent = new Intent(v.getContext(), Maps2Activity.class);
-                v.getContext().startActivity(intent);
             }
         }
     }

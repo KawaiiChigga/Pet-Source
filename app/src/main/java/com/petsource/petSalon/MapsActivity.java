@@ -1,4 +1,4 @@
-package com.petsource;
+package com.petsource.petSalon;
 
 import android.Manifest;
 import android.app.Activity;
@@ -9,12 +9,10 @@ import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.petsource.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -24,23 +22,30 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petCare.FinalCareActivity;
+import com.petsource.model.Info;
+import com.petsource.model.Pet;
+import com.petsource.model.Shop;
 
-public class Maps2Activity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    public static String idStaff = new String();
-    public static String nameStaff;
-    public static double latitudeStaff;
-    public static double longtitudeStaff;
-    public static String addressStaff;
-    public static String cityStaff;
-    public static String jobStaff;
-    public static String priceStaff;
-    public static Activity maps2Activity;
-
-    public Maps2Activity() {
-        maps2Activity = this;
+    public static Shop staff;
+    public static Info infoStaff;
+//    public static String idStaff = new String();
+//    public static String nameStaff;
+//    public static double latitudeStaff;
+//    public static double longtitudeStaff;
+//    public static String addressStaff;
+//    public static String cityStaff;
+//    public static String jobStaff;
+//    public static String priceStaff;
+    public static Activity mapsActivity;
+    public static Pet ChosePet;
+    public static int isWashing;
+    public static int isTrimming;
+    public static int isClipping;
+    public MapsActivity() {
+        mapsActivity = this;
     }
 
     GoogleMapOptions options = new GoogleMapOptions();
@@ -62,23 +67,7 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
 
         btnNext = (Button) findViewById(R.id.btnNext);
         btnNext.setTypeface(typeface);
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Location findme = mMap.getMyLocation();
-                    double latitude = findme.getLatitude();
-                    double longitude = findme.getLongitude();
-                    LatLng latLng = new LatLng(latitude, longitude);
-                    Intent intent = new Intent(Maps2Activity.this, FinalCareActivity.class);
-                    startActivity(intent);
-                }
-                catch(Exception e){
-                    Toast.makeText(Maps2Activity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
-                }
 
-            }
-        });
         lblLocation = (TextView) findViewById(R.id.lblLocation);
         lblLocation.setTypeface(typeface);
     }
@@ -100,7 +89,7 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
                 .rotateGesturesEnabled(true)
                 .tiltGesturesEnabled(true)
                 .mapToolbarEnabled(true)
-        ;
+                ;
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -118,11 +107,25 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
 
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-        LatLng ithb = new LatLng(latitudeStaff, longtitudeStaff);
-        //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.addMarker(new MarkerOptions().position(ithb).title(nameStaff));
+        LatLng ithb = new LatLng(staff.getLatitude(), staff.getLongitude());
+     //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
+        mMap.addMarker(new MarkerOptions().position(ithb).title(infoStaff.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
+
+    }
+    public void testToast(View view) {
+        try {
+            Location findme = mMap.getMyLocation();
+            double latitude = findme.getLatitude();
+            double longitude = findme.getLongitude();
+            LatLng latLng = new LatLng(latitude, longitude);
+            Intent intent = new Intent(this, FinalSalonActivity.class);
+            startActivity(intent);
+        }
+        catch(Exception e){
+            Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

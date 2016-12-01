@@ -12,27 +12,26 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:text="Add Pet"
-            android:textSize="16pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="240dp"
-            android:id="@+id/lblAddTitle" />
+            <TextView
+                android:text="Add Pet"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblAddTitle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
+
     </android.support.design.widget.AppBarLayout>
-
-    <EditText
-        android:inputType="textPersonName"
-        android:layout_width="310dp"
-        android:layout_height="35dp"
-        android:background="#444545"
-        android:textColor="#FDBD15"
-        android:ems="10"
-        android:id="@+id/txtPetName"
-        android:layout_below="@+id/lblPetName"
-        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="Birthdate"
@@ -163,9 +162,10 @@
         android:id="@+id/switchCertified"
         android:layout_alignBaseline="@+id/textView7"
         android:layout_alignBottom="@+id/textView7"
-        android:layout_alignRight="@+id/radioPet"
-        android:layout_alignEnd="@+id/radioPet"
-        android:switchTextAppearance="@style/TextAppearance.AppCompat" />
+        android:switchTextAppearance="@style/TextAppearance.AppCompat"
+        android:layout_alignLeft="@+id/radioPet"
+        android:layout_alignStart="@+id/radioPet"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:text="Name"
@@ -201,8 +201,20 @@
         android:background="@color/colorPrimary"
         android:id="@+id/btnAddPet"
         android:onClick="addpet"
-        android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
+        android:layout_alignStart="@+id/textView7"
+        android:layout_below="@+id/textView7"
+        android:layout_marginTop="25dp"/>
+
+    <EditText
+        android:inputType="textPersonName"
+        android:layout_width="310dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:ems="10"
+        android:id="@+id/txtPetName"
+        android:layout_below="@+id/lblPetName"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

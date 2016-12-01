@@ -33,4 +33,6 @@
     <string name="title_activity_final_salon">FinalSalonActivity</string>
     <string name="title_activity_list_care">ListCareActivity</string>
     <string name="title_activity_final_care">FinalCareActivity</string>
+    <string name="title_activity_chose_pet_salon">ChosePetSalonActivity</string>
+    <string name="title_activity_chose_pet_care">ChosePetCareActivity</string>
 </resources>

@@ -15,7 +15,10 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.model.Shop;
@@ -25,6 +28,8 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.RadialPickerLayout;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -39,15 +44,13 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
     private TextView txtSetDate;
     private TextView txtStartTime;
     private TextView txtEndTime;
-    private CheckBox cbWashing;
-    private CheckBox cbNail;
-    private CheckBox cbTrimming;
     private EditText txtSetPrice;
 
     private Button btnOpenSalon;
     private TextView lblOpenSalon;
 
-    public SharedPreferences shared;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,13 +61,14 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         btnOpenSalon = (Button) findViewById(R.id.btnOpenSalon);
         btnOpenSalon.setTypeface(typeface);
 
         lblOpenSalon = (TextView) findViewById(R.id.lblOpenSalon);
         lblOpenSalon.setTypeface(typeface);
-
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
 
         txtStartTime = (TextView) findViewById(R.id.txtStartTime);
         txtEndTime = (TextView) findViewById(R.id.txtEndTime);
@@ -154,6 +158,25 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
 
             }
         });
+
+        Call<List<Shop>> getStaff = API.Factory.getInstance().getStaff(mFirebaseAuth.getCurrentUser().getUid(), 0);
+        getStaff.enqueue(new Callback<List<Shop>>() {
+            @Override
+            public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                if (!response.body().isEmpty()) {
+                    txtStartTime.setText(response.body().get(0).getStarttime());
+                    txtEndTime.setText(response.body().get(0).getEndtime());
+                    txtSetPrice.setText(response.body().get(0).getPrice());
+                    txtSetDate.setText(response.body().get(0).getEnddate());
+                    btnOpenSalon.setText("Update Salon");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Shop>> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
@@ -161,31 +184,65 @@ public class MySalonActivity extends AppCompatActivity implements DatePickerDial
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == REQ_MAPS){
             if(resultCode == RESULT_OK){
-                Call<Shop> addshop = API.Factory.getInstance().addShop(
-                        SplashActivity.mFirebaseAuth.getCurrentUser().getUid(),
-                        txtSetDate.getText().toString(),
-                        txtStartTime.getText().toString(),
-                        txtSetDate.getText().toString(),
-                        txtEndTime.getText().toString(),
-                        MySalonMapsActivity.latitude,
-                        MySalonMapsActivity.longitude,
-                        0,
-                        txtSetPrice.getText().toString()
-
-                );
-                addshop.enqueue(new Callback<Shop>() {
+                Call<List<Shop>> getStaff = API.Factory.getInstance().getStaff(mFirebaseAuth.getCurrentUser().getUid(), 0);
+                getStaff.enqueue(new Callback<List<Shop>>() {
                     @Override
-                    public void onResponse(Call<Shop> call, Response<Shop> response) {
+                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                        String sysdate = df.format(Calendar.getInstance().getTime());
+                        if (response.body().isEmpty()) {
+                            Call<Shop> addshop = API.Factory.getInstance().addShop(
+                                    mFirebaseAuth.getCurrentUser().getUid(),
+                                    sysdate,
+                                    txtStartTime.getText().toString(),
+                                    txtSetDate.getText().toString(),
+                                    txtEndTime.getText().toString(),
+                                    MySalonMapsActivity.latitude,
+                                    MySalonMapsActivity.longitude,
+                                    0,
+                                    txtSetPrice.getText().toString()
+                            );
+                            addshop.enqueue(new Callback<Shop>() {
+                                @Override
+                                public void onResponse(Call<Shop> call, Response<Shop> response) {
+                                    Toast.makeText(MySalonActivity.this, "My Salon has been created!", Toast.LENGTH_SHORT).show();
+                                }
 
+                                @Override
+                                public void onFailure(Call<Shop> call, Throwable t) {
+
+                                }
+                            });
+                        } else {
+                            Call<Shop> updateshop = API.Factory.getInstance().updateShop(
+                                    response.body().get(0).getId(),
+                                    sysdate,
+                                    txtStartTime.getText().toString(),
+                                    txtSetDate.getText().toString(),
+                                    txtEndTime.getText().toString(),
+                                    MySalonMapsActivity.latitude,
+                                    MySalonMapsActivity.longitude,
+                                    txtSetPrice.getText().toString()
+                            );
+                            updateshop.enqueue(new Callback<Shop>() {
+                                @Override
+                                public void onResponse(Call<Shop> call, Response<Shop> response) {
+                                    Toast.makeText(MySalonActivity.this, "My Salon has been updated!", Toast.LENGTH_SHORT).show();
+                                }
+
+                                @Override
+                                public void onFailure(Call<Shop> call, Throwable t) {
+
+                                }
+                            });
+                        }
                     }
 
                     @Override
-                    public void onFailure(Call<Shop> call, Throwable t) {
+                    public void onFailure(Call<List<Shop>> call, Throwable t) {
 
                     }
                 });
-//                Intent intent = new Intent(this, ListSalonActivity.class);
-//                startActivity(intent);
                 finish();
 
             }else if(resultCode == RESULT_CANCELED);

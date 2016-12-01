@@ -3,6 +3,7 @@ package com.petsource;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -11,8 +12,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.adapter.PetListAdapter;
 import com.petsource.model.Pet;
 import com.petsource.network.API;
@@ -28,6 +32,11 @@ public class PetListActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
+    private TextView lblPetListTitle;
+
+
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     public PetListAdapter adapter;
     public static SharedPreferences shared;
@@ -38,12 +47,18 @@ public class PetListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pet_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Pet List");
         setSupportActionBar(toolbar);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblPetListTitle = (TextView) findViewById(R.id.lblPetListTitle);
+        lblPetListTitle.setTypeface(typeface);
+
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
         data = new ArrayList<>();
         prepareData();
@@ -74,7 +89,7 @@ public class PetListActivity extends AppCompatActivity {
     }
 
     public void prepareData() {
-        Call<List<Pet>> p = API.Factory.getInstance().getPets(SplashActivity.mFirebaseAuth.getCurrentUser().getUid());
+        Call<List<Pet>> p = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
         p.enqueue(new Callback<List<Pet>>() {
             @Override
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {

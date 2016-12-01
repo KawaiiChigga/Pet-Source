@@ -11,14 +11,24 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.petsource.HomeActivity;
 import com.petsource.LoginActivity;
 import com.petsource.R;
 import com.petsource.SplashActivity;
 import com.petsource.UpdateAccActivity;
+import com.petsource.model.Info;
+import com.petsource.network.API;
 import com.squareup.picasso.Picasso;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AccountFragment extends Fragment{
     private TextView lblName;
@@ -26,6 +36,8 @@ public class AccountFragment extends Fragment{
     private TextView lblUpdate;
     private Button btnSignout;
     private ImageView imgProfile;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     public AccountFragment() {
 
@@ -41,18 +53,37 @@ public class AccountFragment extends Fragment{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        mFirebaseAuth = FirebaseAuth.getInstance();
+        mFirebaseUser = mFirebaseAuth.getCurrentUser();
+
         lblName = (TextView) getActivity().findViewById(R.id.lblFAccountName);
         lblEmail = (TextView) getActivity().findViewById(R.id.lblFAccountEmail);
 
-        lblName.setText(SplashActivity.mFirebaseAuth.getCurrentUser().getDisplayName());
-        lblEmail.setText(SplashActivity.mFirebaseAuth.getCurrentUser().getEmail());
+        lblName.setText(mFirebaseAuth.getCurrentUser().getDisplayName());
+        lblEmail.setText(mFirebaseAuth.getCurrentUser().getEmail());
 
         lblUpdate = (TextView) getActivity().findViewById(R.id.lblUpdateAccount);
         lblUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), UpdateAccActivity.class);
-                startActivity(intent);
+                Call<List<Info>> checkUp = API.Factory.getInstance().checkAccount(mFirebaseAuth.getCurrentUser().getUid());
+                checkUp.enqueue(new Callback<List<Info>>() {
+                    @Override
+                    public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                        if (response.body().get(0).getIsStaff() == 1) {
+                            Toast.makeText(getContext(), "You're already in process of being a staff. Thank you!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent intent = new Intent(getActivity(), UpdateAccActivity.class);
+                            startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                    }
+                });
+
             }
         });
 
@@ -60,7 +91,7 @@ public class AccountFragment extends Fragment{
         btnSignout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SplashActivity.mFirebaseAuth.signOut();
+                mFirebaseAuth.signOut();
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 HomeActivity.homeActivity.finish();
@@ -68,7 +99,7 @@ public class AccountFragment extends Fragment{
         });
 
         imgProfile = (ImageView) getActivity().findViewById(R.id.profilepicture);
-        Picasso.with(imgProfile.getContext()).load(SplashActivity.mFirebaseAuth.getCurrentUser().getPhotoUrl()).into(imgProfile);
+        Picasso.with(imgProfile.getContext()).load(mFirebaseAuth.getCurrentUser().getPhotoUrl()).into(imgProfile);
 
     }
 }

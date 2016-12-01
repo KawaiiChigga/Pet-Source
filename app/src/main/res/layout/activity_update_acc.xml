@@ -13,31 +13,27 @@
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
 
-        <TextView
-            android:text="Update"
-            android:textSize="16pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="250dp"
-            android:id="@+id/lblUpdateTitle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Update"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblUpdateTitle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
 
     </android.support.design.widget.AppBarLayout>
-
-    <TextView
-        android:text="Address"
-        android:textSize="10pt"
-        android:textColor="#444545"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/appbar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="33dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginTop="47dp"
-        android:id="@+id/textView3" />
 
     <EditText
         android:layout_width="310dp"
@@ -48,8 +44,7 @@
         android:ems="10"
         android:id="@+id/txtUpAccountStreet"
         android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:layout_width="310dp"
@@ -59,8 +54,8 @@
         android:paddingTop="3pt"
         android:textSize="8pt"
         android:layout_below="@+id/textView4"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4"
+        android:layout_alignLeft="@+id/txtUpAccountStreet"
+        android:layout_alignStart="@+id/txtUpAccountStreet"
         android:id="@+id/txtUpAccountBirthdate" />
 
     <TextView
@@ -133,6 +128,18 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="42dp"
         android:id="@+id/btnUpAccountGo" />
+
+    <TextView
+        android:text="Address"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="47dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/appbar"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6" />
 
 
 </RelativeLayout>

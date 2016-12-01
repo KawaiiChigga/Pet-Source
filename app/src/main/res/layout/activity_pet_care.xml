@@ -13,14 +13,24 @@
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
 
-        <TextView
-            android:text="Pet Care"
-            android:textSize="20pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="200dp"
-            android:id="@+id/lblCareTitle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Pet Care"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblCareTitle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
 
     </android.support.design.widget.AppBarLayout>
@@ -32,30 +42,9 @@
         android:layout_below="@+id/appbar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
-        android:layout_marginLeft="91dp"
-        android:id="@+id/imageView6" />
+        android:id="@+id/imageView6"
+        />
 
-    <Spinner
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:backgroundTint="@color/textColor"
-        android:layout_marginLeft="40dp"
-        android:layout_below="@+id/imageView6"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="74dp"
-        android:id="@+id/spinner2" />
-
-    <TextView
-        android:text="From"
-        android:textSize="10pt"
-        android:textColor="#444545"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spinner2"
-        android:layout_alignLeft="@+id/spinner2"
-        android:layout_alignStart="@+id/spinner2"
-        android:layout_marginTop="20dp"
-        android:id="@+id/textView" />
 
     <TextView
         android:layout_width="310dp"
@@ -66,13 +55,12 @@
         android:ems="10"
         android:textSize="10pt"
         android:layout_below="@+id/textView"
-        android:layout_alignLeft="@+id/textView"
-        android:layout_alignStart="@+id/textView"
-        android:id="@+id/txtFrom" />
+        android:id="@+id/txtFrom"
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:text="To"
-        android:textSize="10pt"
+        android:textSize="12pt"
         android:textColor="#444545"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,6 +96,40 @@
         android:layout_alignLeft="@+id/txtTo"
         android:layout_alignStart="@+id/txtTo"
         android:onClick="gotoListCare"/>
+
+    <TextView
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:paddingTop="1dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:id="@+id/textPetName"
+        android:layout_below="@+id/imageView6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp" />
+
+    <TextView
+        android:text="Select Date :"
+        android:textSize="20pt"
+        android:textColor="@color/textColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="From"
+        android:textSize="12pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/txtFrom"
+        android:layout_alignStart="@+id/txtFrom" />
 
 
 </RelativeLayout>

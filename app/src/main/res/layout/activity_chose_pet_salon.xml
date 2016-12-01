@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.petsource.PetListActivity">
+    tools:context="com.petsource.petSalon.ChosePetSalonActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -18,14 +18,14 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:text="Pet List"
+                android:text="Choose Pet"
                 android:textSize="16pt"
                 android:textColor="@color/textColor"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_marginRight="30dp"
 
-                android:id="@+id/lblPetListTitle"
+                android:id="@+id/lblChosePetSalonTitle"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -35,14 +35,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_pet_list" />
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add" />
+    <include layout="@layout/content_chose_pet_salon" />
 
 </android.support.design.widget.CoordinatorLayout>

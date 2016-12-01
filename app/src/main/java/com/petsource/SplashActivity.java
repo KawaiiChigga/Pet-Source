@@ -24,8 +24,8 @@ public class SplashActivity extends AppCompatActivity {
     private final int SPLASH_DISPLAY_LENGTH = 2000;
 
     public static SharedPreferences shared;
-    public static FirebaseAuth mFirebaseAuth;
-    public static FirebaseUser mFirebaseUser;
+    private FirebaseAuth mFirebaseAuth;
+    private FirebaseUser mFirebaseUser;
 
     private int isStaff;
     private int isApprove;

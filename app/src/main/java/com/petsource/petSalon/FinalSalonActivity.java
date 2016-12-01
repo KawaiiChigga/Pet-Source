@@ -1,10 +1,7 @@
 package com.petsource.petSalon;
 
-import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -12,11 +9,22 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.petsource.HomeActivity;
-import com.petsource.MapsActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
+import com.petsource.model.Transaction;
+import com.petsource.network.API;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class FinalSalonActivity extends AppCompatActivity {
+
+    private FirebaseAuth mFirebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,8 @@ public class FinalSalonActivity extends AppCompatActivity {
 
         TextView txtName, txtCity, txtAddress, txtJob, txtPrice, lblDealing;
         Button btnDeal;
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
 
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
@@ -45,20 +55,45 @@ public class FinalSalonActivity extends AppCompatActivity {
         txtJob = (TextView) findViewById(R.id.txtJob);
         txtPrice = (TextView) findViewById(R.id.txtPrice);
 
-        txtName.setText(MapsActivity.nameStaff);
-        txtCity.setText(MapsActivity.cityStaff);
-        txtAddress.setText(MapsActivity.addressStaff);
-        txtJob.setText(MapsActivity.jobStaff);
-        txtPrice.setText(MapsActivity.priceStaff);
+        txtName.setText(MapsActivity.infoStaff.getName());
+        txtCity.setText(MapsActivity.infoStaff.getCity());
+        txtAddress.setText(MapsActivity.infoStaff.getAddress());
+        txtJob.setText(MapsActivity.infoStaff.getJob());
+        txtPrice.setText(MapsActivity.staff.getPrice());
 
 
     }
 
     public void gotoHome(View view) {
-        PetSalonActivity.petSalonActivity.finish();
-        ListSalonActivity.listSalonActivity.finish();
-        MapsActivity.mapsActivity.finish();
-        finish();
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String sysdate = df.format(Calendar.getInstance().getTime());
+        Call<Transaction> addTrans = API.Factory.getInstance().addTrans(
+                mFirebaseAuth.getCurrentUser().getUid(),
+                MapsActivity.ChosePet.getId(),
+                sysdate,
+                MapsActivity.staff.getId(),
+                MapsActivity.staff.getPrice(),
+                0,
+                MapsActivity.isWashing,
+                MapsActivity.isClipping,
+                MapsActivity.isTrimming,
+                "Pending"
+        );
+        addTrans.enqueue(new Callback<Transaction>() {
+            @Override
+            public void onResponse(Call<Transaction> call, Response<Transaction> response) {
+                ChosePetSalonActivity.chosePetSalonActivity.finish();
+                PetSalonActivity.petSalonActivity.finish();
+                ListSalonActivity.listSalonActivity.finish();
+                MapsActivity.mapsActivity.finish();
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<Transaction> call, Throwable t) {
+                Toast.makeText(FinalSalonActivity.this, "Please check your internet connection!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

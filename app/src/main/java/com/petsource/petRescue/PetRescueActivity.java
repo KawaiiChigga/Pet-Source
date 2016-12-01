@@ -1,13 +1,12 @@
 package com.petsource.petRescue;
 
 import android.app.Activity;
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,18 +14,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.petsource.AddPetActivity;
-import com.petsource.MapsActivity;
 import com.petsource.R;
-import com.petsource.SplashActivity;
-import com.petsource.adapter.ListSalonAdapter;
 import com.petsource.adapter.RescueListAdapter;
-import com.petsource.model.Info;
 import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
-import com.petsource.model.User;
 import com.petsource.network.API;
 
 import java.util.ArrayList;
@@ -35,8 +29,6 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 
 public class PetRescueActivity extends AppCompatActivity {
 
@@ -55,9 +47,9 @@ public class PetRescueActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
+    private TextView lblPetRescueTitle;
 
     public RescueListAdapter adapter;
-    public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
     public static Activity petRescueActivity;
 
@@ -72,9 +64,13 @@ public class PetRescueActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        shared = getSharedPreferences("MySession", Context.MODE_PRIVATE);
+        Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblPetRescueTitle = (TextView) findViewById(R.id.lblRescueTitle);
+        lblPetRescueTitle.setTypeface(typeface);
+
         petRV = (RecyclerView) findViewById(R.id.rvpetrescue);
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
+        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetrescue);
 
         data = new ArrayList<>();
         prepareData();
@@ -110,13 +106,14 @@ public class PetRescueActivity extends AppCompatActivity {
         p.enqueue(new Callback<List<Rescue>>() {
             @Override
             public void onResponse(Call<List<Rescue>> call, Response<List<Rescue>> response) {
+                data.clear();
                 for (Rescue s : response.body()) {
                     Call<Pet> itemCall = API.Factory.getInstance().getPet(s.getPetid());
                     itemCall.enqueue(new Callback<Pet>() {
                         @Override
                         public void onResponse(Call<Pet> call, Response<Pet> response) {
-                            data.clear();
                             data.add(response.body());
+
                             adapter = new RescueListAdapter(data);
                             LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
                             petRV.setHasFixedSize(true);
@@ -130,7 +127,6 @@ public class PetRescueActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             }
             @Override
             public void onFailure(Call<List<Rescue>> call, Throwable t) {

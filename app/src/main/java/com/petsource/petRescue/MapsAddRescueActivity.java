@@ -1,7 +1,6 @@
-package com.petsource;
+package com.petsource.petRescue;
 
 import android.Manifest;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.Location;
@@ -13,17 +12,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.petsource.petRescue.AddRescueActivity;
-import com.petsource.petRescue.PetRescueActivity;
-import com.petsource.petRescue.RescueDescActivity;
-import com.petsource.petSalon.FinalSalonActivity;
+import com.petsource.R;
 
 public class MapsAddRescueActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -102,7 +96,7 @@ public class MapsAddRescueActivity extends FragmentActivity implements OnMapRead
             Toast.makeText(MapsAddRescueActivity.this, "Thank you. You will be notified when someone is willing to adopt.", Toast.LENGTH_SHORT).show();
             PetRescueActivity.petRescueActivity.finish();
             AddRescueActivity.addRescueActivity.finish();
-            RescueDe9optscActivity.rescueDescActivity.finish();
+            RescueDescActivity.rescueDescActivity.finish();
             finish();
         }
         catch(Exception e){

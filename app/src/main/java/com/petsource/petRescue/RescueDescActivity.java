@@ -9,8 +9,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
-import com.petsource.MapsAddRescueActivity;
-import com.petsource.MapsRescueActivity;
 import com.petsource.R;
 import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
@@ -26,6 +24,7 @@ public class RescueDescActivity extends AppCompatActivity {
 
     public static String idPet;
     public static TextView name, gender, race, iscertified, birthdate, description;
+    private TextView lblRescueDescTitle;
     public static double lat,lng;
     public static Activity rescueDescActivity;
     private Rescue rescue;
@@ -39,9 +38,15 @@ public class RescueDescActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rescue_desc);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
+
+        lblRescueDescTitle = (TextView) findViewById(R.id.lblRescueDescTitle);
+        lblRescueDescTitle.setTypeface(typeface);
+
         name = (TextView) findViewById(R.id.textName);
         gender = (TextView) findViewById(R.id.textisMale);
         race = (TextView) findViewById(R.id.textRace);

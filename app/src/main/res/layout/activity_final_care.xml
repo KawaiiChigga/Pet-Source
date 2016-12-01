@@ -13,14 +13,24 @@
         android:theme="@style/AppTheme.NoActionBar.AppBarOverlay"
         android:paddingTop="8dp">
 
-        <TextView
-            android:text="Dealing"
-            android:textSize="20pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="210dp"
-            android:id="@+id/lblDealing" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Dealing"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblDealing"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
 
@@ -33,7 +43,7 @@
         android:layout_marginTop="70dp"/>
 
     <TextView
-        android:text="Name2"
+        android:text="Name"
         android:textSize="10pt"
         android:textColor="#444545"
         android:layout_marginLeft="30dp"

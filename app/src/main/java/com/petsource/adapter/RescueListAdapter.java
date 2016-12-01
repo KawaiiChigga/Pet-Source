@@ -1,39 +1,23 @@
 package com.petsource.adapter;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v7.view.menu.MenuView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.petsource.HomeActivity;
-import com.petsource.MapsActivity;
 import com.petsource.R;
-import com.petsource.SplashActivity;
-import com.petsource.UpdateHomeActivity;
-import com.petsource.model.Info;
 import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
-import com.petsource.model.Shop;
 import com.petsource.network.API;
 import com.petsource.petRescue.RescueInfoActivity;
-import com.petsource.petSalon.ListSalonActivity;
 
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import static android.app.Activity.RESULT_OK;
-import static com.petsource.petSalon.PetSalonActivity.REQ_MAPS;
 
 
 public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.MyViewHolder>{
@@ -45,7 +29,7 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_salon, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_rescue, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -61,24 +45,24 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtName, txtJob, txtAlamat, btnPickMe;
+        TextView txtName, txtRace, txtType;
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
-            txtJob = (TextView) itemView.findViewById(R.id.lblListSalonJob);
-            txtAlamat = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
+            txtName = (TextView) itemView.findViewById(R.id.lblListRescueName);
+            txtRace = (TextView) itemView.findViewById(R.id.lblListRescueRace);
+            txtType = (TextView) itemView.findViewById(R.id.lblListRescueBirth);
             itemView.setOnClickListener(this);
         }
 
         public void bind(Pet pet) {
             txtName.setText(pet.getName());
-            txtJob.setText(pet.getRace());
+            txtRace.setText(pet.getRace());
             if(pet.isDog()==1){
-                txtAlamat.setText("Dog");
+                txtType.setText("Dog");
             }
             else{
-                txtAlamat.setText("Cat");
+                txtType.setText("Cat");
             }
         }
 
@@ -101,8 +85,6 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
 
                     }
                 });
-
-
             }
         }
     }

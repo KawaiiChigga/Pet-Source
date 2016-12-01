@@ -13,14 +13,24 @@
         android:theme="@style/AppTheme.NoActionBar.AppBarOverlay"
         android:paddingTop="8dp">
 
-        <TextView
-            android:text="My Care"
-            android:textSize="16pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="230dp"
-            android:id="@+id/lblOpenCare" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="My Care"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblOpenCare"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
 

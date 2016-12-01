@@ -45,13 +45,13 @@ public interface API {
     Call<List<Shop>> getSalon(@Query("isCare") int isCare);
 
     @GET("shop/")
-    Call<List<Shop>> getSalonStaff(@Query("idUser") String idUser);
+    Call<List<Shop>> getSalonStaff(@Query("iduser") String idUser);
 
     @GET("shop/")
     Call<List<Shop>> getCare(@Query("isCare") int isCare);
 
     @GET("shop/")
-    Call<List<Shop>> getCareStaff(@Query("idUser") String idUser);
+    Call<List<Shop>> getStaff(@Query("iduser") String iduser, @Query("isCare") int isCare);
 
     @GET("rescue/")
     Call<List<Rescue>> getRescue();
@@ -87,8 +87,8 @@ public interface API {
                                @Field("isApprove") int isApprove);
 
     @FormUrlEncoded
-    @PUT("users/")
-    Call<Info> updateAccount(@Query("userid") String userid, @Field("address") String address, @Field("city") String city,
+    @PUT("infouser/{id}")
+    Call<Info> updateAccount(@Path("id") String id, @Field("address") String address, @Field("city") String city,
                              @Field("birthday") String birthday, @Field("job") String job, @Field("isStaff") int isStaff,
                              @Field("isApprove") int isApprove);
 
@@ -97,6 +97,12 @@ public interface API {
     Call<Pet> registerPet(@Field("name") String name, @Field("birthdate") String birthdate, @Field("race") String race,
                           @Field("userid") String userid, @Field("isMale") int isMale, @Field("isDog") int isDog,
                           @Field("isCertified") int isCertified);
+
+    @FormUrlEncoded
+    @PUT("shop/{id}")
+    Call<Shop> updateShop(@Path("id") String id, @Field("startdate") String startdate, @Field("starttime") String starttime,
+                          @Field("enddate") String enddate, @Field("endtime") String endtime, @Field("latitude") double latitude,
+                          @Field("longitude") double longitude, @Field("price") String price);
 
     @FormUrlEncoded
     @POST("transaction/")

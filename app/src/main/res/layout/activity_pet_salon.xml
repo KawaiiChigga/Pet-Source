@@ -13,31 +13,31 @@
         android:layout_width="match_parent"
         android:paddingTop="@dimen/appbar_padding_top">
 
-        <TextView
-            android:text="Pet Salon"
-            android:textSize="20pt"
-            android:textColor="@color/textColor"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginLeft="200dp"
-            android:id="@+id/lblSalonTitle" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:text="Pet Salon"
+                android:textSize="16pt"
+                android:textColor="@color/textColor"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginRight="30dp"
+
+                android:id="@+id/lblSalonTitle"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="30dp" />
+        </RelativeLayout>
 
     </android.support.design.widget.AppBarLayout>
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="40dp"
-        android:backgroundTint="@color/textColor"
-        android:id="@+id/spinnerONE"
-        android:contextClickable="true"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        />
 
 
     <CheckBox
         android:text="Nail Clipping"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkBox"
@@ -48,6 +48,7 @@
 
     <CheckBox
         android:text="Trimming"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/checkBox2"
@@ -81,15 +82,40 @@
 
     <CheckBox
         android:text="Washing"
+        android:textSize="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="27dp"
         android:id="@+id/checkBox"
-        android:layout_below="@+id/spinnerONE"
+        android:layout_below="@+id/textView8"
         android:layout_alignRight="@+id/imageView5"
         android:layout_alignEnd="@+id/imageView5"
-        android:layout_marginRight="28dp"
-        android:layout_marginEnd="28dp" />
+        />
+
+    <TextView
+        android:text="Select Service :"
+        android:textSize="20pt"
+        android:textColor="@color/textColor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView5"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:id="@+id/textView8" />
+
+    <TextView
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:paddingTop="1dp"
+        android:textColor="@color/textColor"
+        android:background="@color/colorPrimary"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_alignTop="@+id/textView8"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-30dp"
+        android:id="@+id/textPetName"
+        />
 
 
 </RelativeLayout>
