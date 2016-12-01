@@ -67,7 +67,7 @@ public class FinalCareActivity extends AppCompatActivity {
                 mFirebaseAuth.getCurrentUser().getUid(),
                 Maps2Activity.ChosePet.getId(),
                 sysdate,
-                Maps2Activity.staff.getId(),
+                Maps2Activity.staff.getIduser(),
                 Maps2Activity.staff.getPrice(),
                 1,
                 0,

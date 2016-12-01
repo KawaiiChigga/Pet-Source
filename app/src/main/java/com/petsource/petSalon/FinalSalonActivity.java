@@ -71,7 +71,7 @@ public class FinalSalonActivity extends AppCompatActivity {
                 mFirebaseAuth.getCurrentUser().getUid(),
                 MapsActivity.ChosePet.getId(),
                 sysdate,
-                MapsActivity.staff.getId(),
+                MapsActivity.staff.getIduser(),
                 MapsActivity.staff.getPrice(),
                 0,
                 MapsActivity.isWashing,

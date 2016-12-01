@@ -65,9 +65,9 @@ public class UpdateAccActivity extends AppCompatActivity implements DatePickerDi
                 Calendar now = Calendar.getInstance();
                 DatePickerDialog dpd = DatePickerDialog.newInstance(
                         UpdateAccActivity.this,
-                        now.get(Calendar.YEAR),
-                        now.get(Calendar.MONTH),
-                        now.get(Calendar.DAY_OF_MONTH)
+                        2000,
+                        0,
+                        1
                 );
                 dpd.vibrate(false);
                 dpd.show(getFragmentManager(), "Datepickerdialog");
