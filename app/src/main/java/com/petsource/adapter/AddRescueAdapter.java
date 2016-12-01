@@ -1,5 +1,6 @@
 package com.petsource.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,6 +15,8 @@ import com.petsource.model.Pet;
 import com.petsource.model.Rescue;
 import com.petsource.network.API;
 import com.petsource.petRescue.PetRescueActivity;
+import com.petsource.petRescue.RescueDescActivity;
+import com.petsource.petRescue.RescueInfoActivity;
 
 import java.util.List;
 
@@ -27,7 +30,6 @@ import retrofit2.Response;
 
 public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyViewHolder>{
     private List<Pet> data;
-    private List<Rescue> data2;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
@@ -59,9 +61,10 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            txtName = (TextView) itemView.findViewById(R.id.lblListSalonName);
-            txtRace = (TextView) itemView.findViewById(R.id.lblListSalonJob);
-            txtYear = (TextView) itemView.findViewById(R.id.lblListSalonAlamat);
+            txtName = (TextView) itemView.findViewById(R.id.lblListRescueName);
+            txtRace = (TextView) itemView.findViewById(R.id.lblListRescueRace);
+            txtYear = (TextView) itemView.findViewById(R.id.lblListRescueBirth);
+            itemView.setOnClickListener(this);
         }
 
         public void bind(Pet user) {
@@ -71,7 +74,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if(v.getId()==itemView.getId()) {
                 mFirebaseAuth = FirebaseAuth.getInstance();
                 mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -91,9 +94,8 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
                 a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-//                        PetRescueActivity.rescueDecript = response.body().get(0).getDescription();
-//                        PetRescueActivity.rescueLatitude = response.body().get(0).getLatitude();
-//                        PetRescueActivity.rescueLongtitude = response.body().get(0).getLongitude();
+                        Intent intent = new Intent(v.getContext(), RescueDescActivity.class);
+                        v.getContext().startActivity(intent); 
                     }
 
                     @Override

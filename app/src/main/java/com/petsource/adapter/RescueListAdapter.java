@@ -51,7 +51,7 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
             super(itemView);
             txtName = (TextView) itemView.findViewById(R.id.lblListRescueName);
             txtRace = (TextView) itemView.findViewById(R.id.lblListRescueRace);
-            txtType = (TextView) itemView.findViewById(R.id.lblListRescueType);
+            txtType = (TextView) itemView.findViewById(R.id.lblListRescueBirth);
             itemView.setOnClickListener(this);
         }
 

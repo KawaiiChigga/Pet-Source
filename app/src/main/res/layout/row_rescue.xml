@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/lblListRescueType"
+        android:id="@+id/lblListRescueBirth"
         android:textSize="12sp"
         android:layout_alignBottom="@+id/petpicture"
         android:layout_alignLeft="@+id/lblListRescueRace"
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/lblListRescueRace"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:layout_above="@+id/lblListRescueType"
+        android:layout_above="@+id/lblListRescueBirth"
         android:layout_alignLeft="@+id/lblListRescueName"
         android:layout_alignStart="@+id/lblListRescueName" />
 
