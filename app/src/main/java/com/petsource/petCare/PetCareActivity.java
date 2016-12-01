@@ -36,15 +36,12 @@ import retrofit2.Response;
 
 public class PetCareActivity extends AppCompatActivity {
 
-    public static String ChosePet;
+    public static Pet ChosePet;
     private Button btnCare;
     private TextView lblCareTitle, textView11, textView, textView2, textPetName;
     private TextView txtFrom, txtTo;
-    private Spinner spinner;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
 
-    List<String> mypet;
+    private FirebaseAuth mFirebaseAuth;
 
     public static Activity petCareActivity;
 
@@ -64,24 +61,6 @@ public class PetCareActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mypet = new ArrayList<String>();
-
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
-        getpet.enqueue(new Callback<List<Pet>>() {
-            @Override
-            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                for (Pet p : response.body() ) {
-                    mypet.add(p.getName());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Pet>> call, Throwable t) {
-
-            }
-        });
-
 
         btnCare = (Button) findViewById(R.id.btnCare);
         btnCare.setTypeface(typeface);
@@ -100,7 +79,7 @@ public class PetCareActivity extends AppCompatActivity {
 
         textPetName = (TextView) findViewById(R.id.textPetName);
         textPetName.setTypeface(typeface);
-        textPetName.setText(ChosePet);
+        textPetName.setText(ChosePet.getName());
 
         txtFrom = (TextView) findViewById(R.id.txtFrom);
         txtTo = (TextView) findViewById(R.id.txtTo);
@@ -146,33 +125,10 @@ public class PetCareActivity extends AppCompatActivity {
                 dpd.show(getFragmentManager(), "Datepickerdialog");
             }
         });
-
-        ArrayAdapter<String> petAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_layout, mypet);
-
-
-        petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-//        spinner = (Spinner) findViewById(R.id.spinner2);
-//        spinner.setAdapter(petAdapter);
-//        spinner.setPrompt("Select pets");
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d("PO123", position + " hai ");
-//                spinner.setOnItemSelectedListener(this);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-
     }
 
     public void gotoListCare(View view) {
-
+        ListCareActivity.ChosePet = this.ChosePet;
         if (txtFrom.getText().toString().equalsIgnoreCase("")) {
             txtFrom.setError("This field can not be blank");
         }else if (txtTo.getText().toString().trim().equalsIgnoreCase("")) {

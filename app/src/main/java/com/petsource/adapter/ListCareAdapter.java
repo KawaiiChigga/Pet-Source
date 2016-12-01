@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.petsource.petCare.ListCareActivity;
 import com.petsource.petCare.Maps2Activity;
 import com.petsource.R;
 import com.petsource.model.Info;
@@ -75,33 +76,38 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if(v.getId()==itemView.getId())
             {
-                Maps2Activity.idStaff = data.get(Integer.valueOf(getAdapterPosition())).getIduser();
-//                Maps2Activity.nameStaff = data.get(Integer.valueOf(getAdapterPosition())).getName();
-//                Maps2Activity.addressStaff = data.get(Integer.valueOf(getAdapterPosition())).getAddress();
-//                Maps2Activity.cityStaff = data.get(Integer.valueOf(getAdapterPosition())).getCity();
-//                Maps2Activity.jobStaff = data.get(Integer.valueOf(getAdapterPosition())).getJob();
+                Call<List<Shop>> a = API.Factory.getInstance().getSalonStaff(data.get(Integer.valueOf(getAdapterPosition())).getIduser());
+                a.enqueue(new Callback<List<Shop>>() {
+                    @Override
+                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
+                        Maps2Activity.staff = data.get(Integer.valueOf(getAdapterPosition()));
+                        Call<List<Info>> i = API.Factory.getInstance().checkAccount(response.body().get(0).getIduser());
+                        i.enqueue(new Callback<List<Info>>() {
+                            @Override
+                            public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                                Maps2Activity.ChosePet = ListCareActivity.ChosePet;
+                                Maps2Activity.infoStaff = response.body().get(0);
+                                Intent intent = new Intent(v.getContext(), Maps2Activity.class);
+                                v.getContext().startActivity(intent);
+                            }
 
-//                Call<List<Shop>> a = API.Factory.getInstance().getCareStaff(data.get(Integer.valueOf(getAdapterPosition())).getUserid());
-//                a.enqueue(new Callback<List<Shop>>() {
-//                    @Override
-//                    public void onResponse(Call<List<Shop>> call, Response<List<Shop>> response) {
-//                        Maps2Activity.latitudeStaff = response.body().get(0).getLatitude();
-//                        Maps2Activity.longtitudeStaff = response.body().get(0).getLongitude();
-//                        Maps2Activity.priceStaff = response.body().get(0).getPrice();
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<List<Shop>> call, Throwable t) {
-//
-//                    }
-//                });
+                            @Override
+                            public void onFailure(Call<List<Info>> call, Throwable t) {
+
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Shop>> call, Throwable t) {
+
+                    }
+                });
 
 
-                Intent intent = new Intent(v.getContext(), Maps2Activity.class);
-                v.getContext().startActivity(intent);
             }
         }
     }

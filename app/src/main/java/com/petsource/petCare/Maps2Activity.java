@@ -22,20 +22,24 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.petsource.model.Info;
+import com.petsource.model.Pet;
+import com.petsource.model.Shop;
 
 public class Maps2Activity extends FragmentActivity implements OnMapReadyCallback {
-
+    public static Pet ChosePet;
     private GoogleMap mMap;
-    public static String idStaff = new String();
-    public static String nameStaff;
-    public static double latitudeStaff;
-    public static double longtitudeStaff;
-    public static String addressStaff;
-    public static String cityStaff;
-    public static String jobStaff;
-    public static String priceStaff;
+//    public static String nameStaff;
+//    public static double latitudeStaff;
+//    public static double longtitudeStaff;
+//    public static String addressStaff;
+//    public static String cityStaff;
+//    public static String jobStaff;
+//    public static String priceStaff;
     public static Activity maps2Activity;
 
+    public static Shop staff;
+    public static Info infoStaff;
     public Maps2Activity() {
         maps2Activity = this;
     }
@@ -115,9 +119,9 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
 
         // Add a marker in Sydney and move the camera
         mMap.setMyLocationEnabled(true);
-        LatLng ithb = new LatLng(latitudeStaff, longtitudeStaff);
+        LatLng ithb = new LatLng(staff.getLatitude(), staff.getLongitude());
         //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.addMarker(new MarkerOptions().position(ithb).title(nameStaff));
+        mMap.addMarker(new MarkerOptions().position(ithb).title(infoStaff.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
 

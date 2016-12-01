@@ -23,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.petsource.model.Info;
+import com.petsource.model.Pet;
 import com.petsource.model.Shop;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
@@ -39,7 +40,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //    public static String jobStaff;
 //    public static String priceStaff;
     public static Activity mapsActivity;
-
+    public static Pet ChosePet;
+    public static int isWashing;
+    public static int isTrimming;
+    public static int isClipping;
     public MapsActivity() {
         mapsActivity = this;
     }
@@ -116,8 +120,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             double latitude = findme.getLatitude();
             double longitude = findme.getLongitude();
             LatLng latLng = new LatLng(latitude, longitude);
-                Intent intent = new Intent(this, FinalSalonActivity.class);
-                startActivity(intent);
+            Intent intent = new Intent(this, FinalSalonActivity.class);
+            startActivity(intent);
         }
         catch(Exception e){
             Toast.makeText(MapsActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();

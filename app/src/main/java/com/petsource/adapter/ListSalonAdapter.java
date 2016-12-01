@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.petsource.petSalon.ListSalonActivity;
 import com.petsource.petSalon.MapsActivity;
 import com.petsource.R;
 import com.petsource.model.Info;
@@ -89,6 +90,10 @@ public class ListSalonAdapter extends RecyclerView.Adapter<ListSalonAdapter.MyVi
 
                             @Override
                             public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
+                                MapsActivity.isWashing = ListSalonActivity.isWashing;
+                                MapsActivity.isClipping = ListSalonActivity.isClipping;
+                                MapsActivity.isTrimming = ListSalonActivity.isTrimming;
+                                MapsActivity.ChosePet = ListSalonActivity.ChosePet;
                                 MapsActivity.infoStaff = response.body().get(0);
                                 Intent intent = new Intent(v.getContext(), MapsActivity.class);
                                 v.getContext().startActivity(intent);

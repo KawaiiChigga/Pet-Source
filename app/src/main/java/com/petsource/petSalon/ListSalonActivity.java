@@ -17,6 +17,7 @@ import com.petsource.R;
 import com.petsource.adapter.ListCareAdapter;
 import com.petsource.adapter.ListSalonAdapter;
 import com.petsource.model.Info;
+import com.petsource.model.Pet;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
 
@@ -37,7 +38,10 @@ public class ListSalonActivity extends AppCompatActivity {
     public ListSalonAdapter adapter;
     public SwipeRefreshLayout swipeRefresh;
     public static Activity listSalonActivity;
-
+    public static Pet ChosePet;
+    public static int isWashing;
+    public static int isTrimming;
+    public static int isClipping;
     public ListSalonActivity() {
         listSalonActivity = this;
     }

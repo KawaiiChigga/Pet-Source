@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.petsource.R;
 import com.petsource.adapter.ListCareAdapter;
 
+import com.petsource.model.Pet;
 import com.petsource.model.Shop;
 import com.petsource.network.API;
 
@@ -27,7 +28,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class ListCareActivity extends AppCompatActivity {
-
+    public static Pet ChosePet;
     public static String idStaff;
     private List<Shop> data;
     private RecyclerView petRV;
