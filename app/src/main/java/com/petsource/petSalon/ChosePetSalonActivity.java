@@ -1,5 +1,6 @@
 package com.petsource.petSalon;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -33,13 +34,17 @@ public class ChosePetSalonActivity extends AppCompatActivity {
     private RecyclerView petRV;
     private TextView lblChosePetSalonTitle;
 
+    public static Activity chosePetSalonActivity;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
     public ChosePetSalonAdapter adapter;
-    public static SharedPreferences shared;
     public SwipeRefreshLayout swipeRefresh;
+
+    public ChosePetSalonActivity() {
+        chosePetSalonActivity = this;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

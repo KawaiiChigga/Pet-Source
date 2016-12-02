@@ -39,17 +39,18 @@ import retrofit2.Response;
 
 public class PetCareActivity extends AppCompatActivity {
 
-    public static String ChosePet;
+    public static Pet ChosePet;
     private Button btnCare;
     private TextView lblCareTitle, textView11, textView, textView2, textPetName;
     private TextView txtFrom, txtTo;
-    private Spinner spinner;
-    private FirebaseAuth mFirebaseAuth;
-    private FirebaseUser mFirebaseUser;
 
+<<<<<<< HEAD
     private long nToday, nDays1, nDays2, diff1, diff2;
 
     List<String> mypet;
+=======
+    private FirebaseAuth mFirebaseAuth;
+>>>>>>> origin/master
 
     public static Activity petCareActivity;
 
@@ -69,24 +70,6 @@ public class PetCareActivity extends AppCompatActivity {
         Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/FRADMCN.TTF");
 
         mFirebaseAuth = FirebaseAuth.getInstance();
-        mFirebaseUser = mFirebaseAuth.getCurrentUser();
-        mypet = new ArrayList<String>();
-
-        Call<List<Pet>> getpet = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
-        getpet.enqueue(new Callback<List<Pet>>() {
-            @Override
-            public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                for (Pet p : response.body() ) {
-                    mypet.add(p.getName());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Pet>> call, Throwable t) {
-
-            }
-        });
-
 
         btnCare = (Button) findViewById(R.id.btnCare);
         btnCare.setTypeface(typeface);
@@ -105,7 +88,7 @@ public class PetCareActivity extends AppCompatActivity {
 
         textPetName = (TextView) findViewById(R.id.textPetName);
         textPetName.setTypeface(typeface);
-        textPetName.setText(ChosePet);
+        textPetName.setText(ChosePet.getName());
 
         txtFrom = (TextView) findViewById(R.id.txtFrom);
         txtTo = (TextView) findViewById(R.id.txtTo);
@@ -161,6 +144,7 @@ public class PetCareActivity extends AppCompatActivity {
                 System.out.println("day 2 = " + nDays2);
             }
         });
+<<<<<<< HEAD
 
 
 
@@ -175,6 +159,14 @@ public class PetCareActivity extends AppCompatActivity {
             toast.setGravity(Gravity.LEFT| Gravity.TOP, 280, 1470);
             toast.show();
 
+=======
+    }
+
+    public void gotoListCare(View view) {
+        ListCareActivity.ChosePet = this.ChosePet;
+        if (txtFrom.getText().toString().equalsIgnoreCase("")) {
+            txtFrom.setError("This field can not be blank");
+>>>>>>> origin/master
         }else if (txtTo.getText().toString().trim().equalsIgnoreCase("")) {
             Toast toast = Toast.makeText(PetCareActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);

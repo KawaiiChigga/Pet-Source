@@ -5,41 +5,49 @@
     android:fitsSystemWindows="true"
     tools:context="com.petsource.upHomeFragments.UpHistoryFragment">
 
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="10dp">
-        <RelativeLayout
+        android:layout_height="wrap_content"
+        android:id="@+id/refreshUpHistory"
+        android:layout_below="@+id/appbar"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
+            android:layout_height="match_parent"
+            android:padding="10dp">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:text="My Transaction"
-                android:layout_height="wrap_content"
-                android:id="@+id/lblMyHistory"/>
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="My Transaction"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/lblMyHistory"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rvstaffhistory"
-                android:layout_below="@+id/lblMyHistory"
-                android:scrollbars="vertical">
-            </android.support.v7.widget.RecyclerView>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rvstaffhistory"
+                    android:layout_below="@+id/lblMyHistory"
+                    android:scrollbars="vertical">
+                </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/rvstaffhistory"
-                android:text="My Shop"
-                android:id="@+id/lblMyShop"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rvstaffhistory"
+                    android:text="My Shop"
+                    android:id="@+id/lblMyShop"/>
 
-            <android.support.v7.widget.RecyclerView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/rvstaffshop"
-                android:layout_below="@+id/lblMyShop"
-                android:scrollbars="vertical">
-            </android.support.v7.widget.RecyclerView>
-        </RelativeLayout>
-    </ScrollView>
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rvstaffshop"
+                    android:layout_below="@+id/lblMyShop"
+                    android:scrollbars="vertical">
+                </android.support.v7.widget.RecyclerView>
+            </RelativeLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

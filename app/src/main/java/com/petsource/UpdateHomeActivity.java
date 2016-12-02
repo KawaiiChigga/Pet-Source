@@ -12,10 +12,13 @@
     import android.support.v4.view.ViewPager;
     import android.support.v7.app.AppCompatActivity;
     import android.support.v7.widget.Toolbar;
+    import android.util.Log;
     import android.view.View;
     import android.widget.TextView;
 
     import com.google.android.gms.common.api.GoogleApiClient;
+    import com.google.firebase.iid.FirebaseInstanceId;
+    import com.google.firebase.iid.FirebaseInstanceIdService;
     import com.petsource.homeFragments.AccountFragment;
     import com.petsource.homeFragments.HistoryFragment;
     import com.petsource.homeFragments.HomeFragment;
@@ -59,7 +62,6 @@
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
-
     }
 
     public void gotoPetSalon(View view) {

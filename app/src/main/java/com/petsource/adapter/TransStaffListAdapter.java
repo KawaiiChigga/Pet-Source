@@ -57,12 +57,18 @@ public class TransStaffListAdapter extends RecyclerView.Adapter<TransStaffListAd
             status = (TextView) itemView.findViewById(R.id.lblFHistoryStatus);
         }
 
-        public void bind (Transaction t) {
+        public void bind (final Transaction t) {
             Call<Pet> getPetName = API.Factory.getInstance().getPet(t.getIdpet());
             getPetName.enqueue(new Callback<Pet>() {
                 @Override
                 public void onResponse(Call<Pet> call, Response<Pet> response) {
-                    petname.setText(response.body().getName());
+                    String type;
+                    if (t.getType() == 0) {
+                        type = "Salon";
+                    } else {
+                        type = "Care";
+                    }
+                    petname.setText(response.body().getName() + " (" + type + ")");
                 }
 
                 @Override

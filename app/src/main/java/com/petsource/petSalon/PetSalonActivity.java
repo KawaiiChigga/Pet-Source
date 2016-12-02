@@ -33,12 +33,9 @@ import retrofit2.Response;
 public class PetSalonActivity extends AppCompatActivity {
 
     public static final int REQ_MAPS = 100;
-    public static String ChosePet;
+    public static Pet ChosePet;
 
     public static Activity petSalonActivity;
-    List<Pet> mypet;
-    Spinner staticSpinner;
-    double latitude, longtitude;
 
     private Button btnSalon;
     private TextView lblSalonTitle, textView8, textPetName;
@@ -83,11 +80,17 @@ public class PetSalonActivity extends AppCompatActivity {
 
         textPetName = (TextView) findViewById(R.id.textPetName);
         textPetName.setTypeface(typeface);
+<<<<<<< HEAD
         textPetName.setText(ChosePet);
+=======
+        textPetName.setText(ChosePet.getName());
+
+>>>>>>> origin/master
     }
 
 
     public void gotoListSalon(View view) {
+<<<<<<< HEAD
 
         if(checkBox.isChecked() || checkBox2.isChecked() || checkBox3.isChecked()){
             Intent intent = new Intent(this, ListSalonActivity.class);
@@ -100,6 +103,26 @@ public class PetSalonActivity extends AppCompatActivity {
             toast.show();
         }
 
+=======
+        if (checkBox.isChecked()) {
+            ListSalonActivity.isWashing = 1;
+        } else {
+            ListSalonActivity.isWashing = 0;
+        }
+        if (checkBox2.isChecked()) {
+            ListSalonActivity.isClipping = 1;
+        } else {
+            ListSalonActivity.isClipping = 0;
+        }
+        if (checkBox3.isChecked()) {
+            ListSalonActivity.isTrimming = 1;
+        } else {
+            ListSalonActivity.isTrimming = 0;
+        }
+        ListSalonActivity.ChosePet = this.ChosePet;
+        Intent intent = new Intent(this, ListSalonActivity.class);
+        startActivity(intent);
+>>>>>>> origin/master
     }
 
 }

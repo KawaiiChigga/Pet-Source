@@ -79,7 +79,7 @@ public class ChosePetCareAdapter extends RecyclerView.Adapter<ChosePetCareAdapte
                 a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                        PetCareActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition())).getName();
+                        PetCareActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition()));
 
                         Intent intent = new Intent(v.getContext(), PetCareActivity.class);
                         v.getContext().startActivity(intent);
