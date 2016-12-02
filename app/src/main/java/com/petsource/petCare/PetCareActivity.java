@@ -44,13 +44,10 @@ public class PetCareActivity extends AppCompatActivity {
     private TextView lblCareTitle, textView11, textView, textView2, textPetName;
     private TextView txtFrom, txtTo;
 
-<<<<<<< HEAD
     private long nToday, nDays1, nDays2, diff1, diff2;
 
     List<String> mypet;
-=======
     private FirebaseAuth mFirebaseAuth;
->>>>>>> origin/master
 
     public static Activity petCareActivity;
 
@@ -101,7 +98,7 @@ public class PetCareActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+                                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                                 txtFrom.setText(date);
                             }
                         },
@@ -114,7 +111,7 @@ public class PetCareActivity extends AppCompatActivity {
 
                 Calendar today = Calendar.getInstance();
                 diff1 = today.getTimeInMillis() - now.getTimeInMillis();
-                nDays1 = diff1/(24 * 60 * 60 * 1000);
+                nDays1 = diff1 / (24 * 60 * 60 * 1000);
                 System.out.println("day 1 = " + nDays1);
             }
         });
@@ -127,7 +124,7 @@ public class PetCareActivity extends AppCompatActivity {
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
                             public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-                                String date = dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
+                                String date = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
                                 txtTo.setText(date);
                             }
                         },
@@ -140,34 +137,23 @@ public class PetCareActivity extends AppCompatActivity {
 
                 Calendar today = Calendar.getInstance();
                 diff2 = today.getTimeInMillis() - now.getTimeInMillis();
-                nDays2 = diff1/(24 * 60 * 60 * 1000);
+                nDays2 = diff1 / (24 * 60 * 60 * 1000);
                 System.out.println("day 2 = " + nDays2);
             }
         });
-<<<<<<< HEAD
-
-
-
     }
 
     public void gotoListCare(View view) {
-
-        if (txtFrom.getText().toString().trim().equalsIgnoreCase("")) {
+        ListCareActivity.ChosePet = this.ChosePet;
+        if (txtFrom.getText().toString().equalsIgnoreCase("")) {
             Toast toast = Toast.makeText(PetCareActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
             v.setTextColor(Color.parseColor("#FDBD15"));
             toast.setGravity(Gravity.LEFT| Gravity.TOP, 280, 1470);
             toast.show();
 
-=======
-    }
-
-    public void gotoListCare(View view) {
-        ListCareActivity.ChosePet = this.ChosePet;
-        if (txtFrom.getText().toString().equalsIgnoreCase("")) {
-            txtFrom.setError("This field can not be blank");
->>>>>>> origin/master
         }else if (txtTo.getText().toString().trim().equalsIgnoreCase("")) {
+
             Toast toast = Toast.makeText(PetCareActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
             v.setTextColor(Color.parseColor("#FDBD15"));

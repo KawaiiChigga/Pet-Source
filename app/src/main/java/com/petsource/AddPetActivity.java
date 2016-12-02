@@ -71,6 +71,7 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
         rbtSpecies = (RadioGroup) findViewById(R.id.radioPet);
         isCertified = (Switch) findViewById(R.id.switchCertified);
 
+
         txtBirthdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,9 +92,9 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
 
         if(txtName.getText().toString().trim().equalsIgnoreCase("") ||
            txtBirthdate.getText().toString().trim().equalsIgnoreCase("") ||
-            txtRace.getText().toString().trim().equalsIgnoreCase("")
-//                ||
-//                !rbtGender.isSelected() || !rbtSpecies.isSelected()
+            txtRace.getText().toString().trim().equalsIgnoreCase("") ||
+                rbtGender.getCheckedRadioButtonId()==-1 ||
+                rbtSpecies.getCheckedRadioButtonId()==-1
                 ){
             Toast toast = Toast.makeText(AddPetActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
             TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
