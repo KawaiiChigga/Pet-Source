@@ -142,13 +142,30 @@
         <activity
             android:name=".petCare.ChosePetCareActivity"
             android:label="@string/title_activity_chose_pet_care"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service
-            android:name=".FirebaseMessagingService">
+            android:name=".FirebaseMessagingService"
+            android:enabled="true"
+            android:exported="true">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+        <service android:name=".FirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name=".ViewTransActivity"
+            android:label="@string/title_activity_view_trans"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ViewTransStaffActivity"
+            android:label="@string/title_activity_view_trans_staff"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package com.petsource.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.petsource.R;
+import com.petsource.ViewTransActivity;
 import com.petsource.model.Info;
 import com.petsource.model.Pet;
 import com.petsource.model.Transaction;
@@ -47,7 +49,7 @@ public class TransListAdapter extends RecyclerView.Adapter<TransListAdapter.MyVi
         return data.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView shopname, petname, transdate, status;
 
         public MyViewHolder(View itemView) {
@@ -56,6 +58,7 @@ public class TransListAdapter extends RecyclerView.Adapter<TransListAdapter.MyVi
             shopname = (TextView) itemView.findViewById(R.id.lblFHistoryShopName);
             transdate = (TextView) itemView.findViewById(R.id.lblFHistoryDate);
             status = (TextView) itemView.findViewById(R.id.lblFHistoryStatus);
+            itemView.setOnClickListener(this);
         }
 
         public void bind (Transaction t) {
@@ -86,6 +89,14 @@ public class TransListAdapter extends RecyclerView.Adapter<TransListAdapter.MyVi
 
             transdate.setText(t.getDate());
             status.setText(t.getStatus());
+        }
+
+        @Override
+        public void onClick(View v) {
+            if(v.getId()==itemView.getId()) {
+                Intent intent = new Intent(v.getContext(), ViewTransActivity.class);
+                v.getContext().startActivity(intent);
+            }
         }
     }
 }
