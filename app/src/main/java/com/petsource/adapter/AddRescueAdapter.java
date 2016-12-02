@@ -95,7 +95,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
                         Intent intent = new Intent(v.getContext(), RescueDescActivity.class);
-                        v.getContext().startActivity(intent); 
+                        v.getContext().startActivity(intent);
                     }
 
                     @Override

@@ -2,6 +2,7 @@ package com.petsource.petCare;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +19,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,6 +46,8 @@ public class PetCareActivity extends AppCompatActivity {
     private Spinner spinner;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
+
+    private long nToday, nDays1, nDays2, diff1, diff2;
 
     List<String> mypet;
 
@@ -123,6 +128,11 @@ public class PetCareActivity extends AppCompatActivity {
                 );
                 dpd.vibrate(false);
                 dpd.show(getFragmentManager(), "Datepickerdialog");
+
+                Calendar today = Calendar.getInstance();
+                diff1 = today.getTimeInMillis() - now.getTimeInMillis();
+                nDays1 = diff1/(24 * 60 * 60 * 1000);
+                System.out.println("day 1 = " + nDays1);
             }
         });
 
@@ -144,45 +154,42 @@ public class PetCareActivity extends AppCompatActivity {
                 );
                 dpd.vibrate(false);
                 dpd.show(getFragmentManager(), "Datepickerdialog");
+
+                Calendar today = Calendar.getInstance();
+                diff2 = today.getTimeInMillis() - now.getTimeInMillis();
+                nDays2 = diff1/(24 * 60 * 60 * 1000);
+                System.out.println("day 2 = " + nDays2);
             }
         });
 
-        ArrayAdapter<String> petAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.spinner_layout, mypet);
 
-
-        petAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-//        spinner = (Spinner) findViewById(R.id.spinner2);
-//        spinner.setAdapter(petAdapter);
-//        spinner.setPrompt("Select pets");
-//        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                Log.d("PO123", position + " hai ");
-//                spinner.setOnItemSelectedListener(this);
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
     }
 
     public void gotoListCare(View view) {
 
-        if (txtFrom.getText().toString().equalsIgnoreCase("")) {
-            txtFrom.setError("This field can not be blank");
+        if (txtFrom.getText().toString().trim().equalsIgnoreCase("")) {
+            Toast toast = Toast.makeText(PetCareActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
+            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+            v.setTextColor(Color.parseColor("#FDBD15"));
+            toast.setGravity(Gravity.LEFT| Gravity.TOP, 280, 1470);
+            toast.show();
+
         }else if (txtTo.getText().toString().trim().equalsIgnoreCase("")) {
-            txtTo.setError("This field can not be blank");
+            Toast toast = Toast.makeText(PetCareActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
+            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+            v.setTextColor(Color.parseColor("#FDBD15"));
+            toast.setGravity(Gravity.LEFT| Gravity.TOP, 280, 1470);
+            toast.show();
+
         }else{
             ListCareActivity.cusDateStart = txtFrom.getText().toString();
             ListCareActivity.cusDateEnd = txtTo.getText().toString();
             Intent intent = new Intent(this, ListCareActivity.class);
             startActivity(intent);
         }
+
+
 
     }
 

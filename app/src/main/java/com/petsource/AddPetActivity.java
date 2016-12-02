@@ -2,10 +2,12 @@ package com.petsource;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,39 +88,55 @@ public class AddPetActivity extends AppCompatActivity implements DatePickerDialo
     }
 
     public void addpet(View view) {
-        switch (rbtGender.getCheckedRadioButtonId()) {
-            case R.id.radioMale : isMale = 1; break;
-            case R.id.radioFemale : isMale = 0; break;
-        }
-        switch (rbtSpecies.getCheckedRadioButtonId()) {
-            case R.id.radioDog : isDog = 1; break;
-            case R.id.radioCat : isDog = 0; break;
-        }
-        if (isCertified.isChecked()) {
-            certified = 1;
-        } else {
-            certified = 0;
-        }
-        Call<Pet> add_pet = API.Factory.getInstance().registerPet(
-                txtName.getText().toString(),
-                txtBirthdate.getText().toString(),
-                txtRace.getText().toString(),
-                mFirebaseAuth.getCurrentUser().getUid(),
-                isMale,
-                isDog,
-                certified
-        );
-        add_pet.enqueue(new Callback<Pet>() {
-            @Override
-            public void onResponse(Call<Pet> call, Response<Pet> response) {
-                finish();
-            }
 
-            @Override
-            public void onFailure(Call<Pet> call, Throwable t) {
-                Toast.makeText(AddPetActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+        if(txtName.getText().toString().trim().equalsIgnoreCase("") ||
+           txtBirthdate.getText().toString().trim().equalsIgnoreCase("") ||
+            txtRace.getText().toString().trim().equalsIgnoreCase("")
+//                ||
+//                !rbtGender.isSelected() || !rbtSpecies.isSelected()
+                ){
+            Toast toast = Toast.makeText(AddPetActivity.this, "Field can not be blank!" , Toast.LENGTH_SHORT);
+            TextView v = (TextView) toast.getView().findViewById(android.R.id.message);
+            v.setTextColor(Color.parseColor("#FDBD15"));
+            toast.setGravity(Gravity.LEFT| Gravity.TOP, 280, 1470);
+            toast.show();
+        }else{
+            switch (rbtGender.getCheckedRadioButtonId()) {
+                case R.id.radioMale : isMale = 1; break;
+                case R.id.radioFemale : isMale = 0; break;
             }
-        });
+            switch (rbtSpecies.getCheckedRadioButtonId()) {
+                case R.id.radioDog : isDog = 1; break;
+                case R.id.radioCat : isDog = 0; break;
+            }
+            if (isCertified.isChecked()) {
+                certified = 1;
+            } else {
+                certified = 0;
+            }
+            Call<Pet> add_pet = API.Factory.getInstance().registerPet(
+                    txtName.getText().toString(),
+                    txtBirthdate.getText().toString(),
+                    txtRace.getText().toString(),
+                    mFirebaseAuth.getCurrentUser().getUid(),
+                    isMale,
+                    isDog,
+                    certified
+            );
+            add_pet.enqueue(new Callback<Pet>() {
+                @Override
+                public void onResponse(Call<Pet> call, Response<Pet> response) {
+                    finish();
+                }
+
+                @Override
+                public void onFailure(Call<Pet> call, Throwable t) {
+                    Toast.makeText(AddPetActivity.this, "Check your internet connection", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
     }
 
     @Override
