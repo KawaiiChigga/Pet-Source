@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.petsource.R;
@@ -22,14 +23,10 @@ import retrofit2.Response;
 
 public class RescueDescActivity extends AppCompatActivity {
 
-    public static String idPet;
-    public static TextView name, gender, race, iscertified, birthdate, description;
     public static Pet ChosePet;
     private TextView lblRescueDescTitle;
-    public static double lat,lng;
+    private EditText txtDescription;
     public static Activity rescueDescActivity;
-    private Rescue rescue;
-    List<String> mypet;
 
     public RescueDescActivity() {
         rescueDescActivity=this;
@@ -48,43 +45,14 @@ public class RescueDescActivity extends AppCompatActivity {
         lblRescueDescTitle = (TextView) findViewById(R.id.lblRescueDescTitle);
         lblRescueDescTitle.setTypeface(typeface);
 
-        name = (TextView) findViewById(R.id.textName);
-        gender = (TextView) findViewById(R.id.textisMale);
-        race = (TextView) findViewById(R.id.textRace);
-        birthdate = (TextView) findViewById(R.id.textBirthdate);
-        description = (TextView) findViewById(R.id.textdescription);
-        iscertified = (TextView) findViewById(R.id.textisCertified);
+        txtDescription = (EditText) findViewById(R.id.txtDescriptionRescue);
 
-        Call <Pet> p = API.Factory.getInstance().getPet(idPet);
-                p.enqueue(new Callback<Pet>() {
-                    @Override
-                    public void onResponse(Call<Pet> call, Response<Pet> response) {
-                        name.setText(response.body().getName());
-                        if (response.body().isMale() == 1) {
-                            gender.setText("Male");
-                        } else {
-                            gender.setText("Female");
-                        }
-                        if (response.body().isCertified() == 1) {
-                            iscertified.setText("Certified");
-                        } else {
-                            iscertified.setText("Uncertified");
-                        }
-                        race.setText(response.body().getRace());
-                        birthdate.setText(response.body().getBirthdate());
-                    }
-
-                    @Override
-                    public void onFailure(Call<Pet> call, Throwable t) {
-
-                    }
-                });
-            }
+    }
 
 
     public void gotoMaps(View view) {
-        MapsRescueActivity.ChosePet = this.ChosePet;
-        MapsRescueActivity.desc = description.getText().toString();
+        MapsAddRescueActivity.ChosePet = this.ChosePet;
+        MapsAddRescueActivity.desc = txtDescription.getText().toString();
         Intent intent = new Intent(this, MapsAddRescueActivity.class);
         startActivity(intent);
     }

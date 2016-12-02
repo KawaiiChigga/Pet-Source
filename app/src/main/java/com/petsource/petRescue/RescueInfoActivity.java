@@ -22,13 +22,10 @@ import retrofit2.Response;
 
 public class RescueInfoActivity extends AppCompatActivity {
 
-    public static String idRescue;
     public static TextView name, gender, race, iscertified, birthdate, description;
     private TextView lblRescueInfoTitle;
-    public static double lat,lng;
 
-    private Rescue rescue;
-    List<String> mypet;
+    public static Rescue rescue;
     public static Activity rescueInfoActivity;
 
     public RescueInfoActivity() {
@@ -55,42 +52,30 @@ public class RescueInfoActivity extends AppCompatActivity {
         description = (TextView) findViewById(R.id.textdescription);
         iscertified = (TextView) findViewById(R.id.textisCertified);
 
-        Call<Rescue> getRescueUser = API.Factory.getInstance().getRescueUser(idRescue);
-        getRescueUser.enqueue(new Callback<Rescue>() {
+        description.setText(rescue.getDescription());
+        MapsRescueActivity.lat=rescue.getLatitude();
+        MapsRescueActivity.lng=rescue.getLongitude();
+        Call <Pet> p = API.Factory.getInstance().getPet(rescue.getPetid());
+        p.enqueue(new Callback<Pet>() {
             @Override
-            public void onResponse(Call<Rescue> call, Response<Rescue> response) {
-                rescue = response.body();
-                description.setText(rescue.getDescription());
-                MapsRescueActivity.lat=rescue.getLatitude();
-                MapsRescueActivity.lng=rescue.getLongitude();
-                Call <Pet> p = API.Factory.getInstance().getPet(rescue.getPetid());
-                p.enqueue(new Callback<Pet>() {
-                    @Override
-                    public void onResponse(Call<Pet> call, Response<Pet> response) {
-                        name.setText(response.body().getName());
-                        if (response.body().isMale() == 1) {
-                            gender.setText("Male");
-                        } else {
-                            gender.setText("Female");
-                        }
-                        if (response.body().isCertified() == 1) {
-                            iscertified.setText("Certified");
-                        } else {
-                            iscertified.setText("Uncertified");
-                        }
-                        race.setText(response.body().getRace());
-                        birthdate.setText(response.body().getBirthdate());
-                    }
-
-                    @Override
-                    public void onFailure(Call<Pet> call, Throwable t) {
-
-                    }
-                });
+            public void onResponse(Call<Pet> call, Response<Pet> response) {
+                name.setText(response.body().getName());
+                if (response.body().isMale() == 1) {
+                    gender.setText("Male");
+                } else {
+                    gender.setText("Female");
+                }
+                if (response.body().isCertified() == 1) {
+                    iscertified.setText("Certified");
+                } else {
+                    iscertified.setText("Uncertified");
+                }
+                race.setText(response.body().getRace());
+                birthdate.setText(response.body().getBirthdate());
             }
 
             @Override
-            public void onFailure(Call<Rescue> call, Throwable t) {
+            public void onFailure(Call<Pet> call, Throwable t) {
 
             }
         });

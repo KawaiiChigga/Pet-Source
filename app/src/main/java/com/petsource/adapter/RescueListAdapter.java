@@ -2,6 +2,7 @@ package com.petsource.adapter;
 
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,7 +75,8 @@ public class RescueListAdapter extends RecyclerView.Adapter<RescueListAdapter.My
                 a.enqueue(new Callback<List<Rescue>>() {
                     @Override
                     public void onResponse(Call<List<Rescue>> call, Response<List<Rescue>> response) {
-                        RescueInfoActivity.idRescue = response.body().get(Integer.valueOf(getAdapterPosition())).getId();
+                        Log.d("TESTING", Integer.valueOf(getAdapterPosition()) + "");
+                        RescueInfoActivity.rescue = response.body().get(Integer.valueOf(getAdapterPosition()));
 
                         Intent intent = new Intent(v.getContext(), RescueInfoActivity.class);
                         v.getContext().startActivity(intent);

@@ -114,7 +114,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText2"
+        android:id="@+id/txtDescriptionRescue"
         android:layout_alignTop="@+id/textdescription"
         android:layout_centerHorizontal="true"
         android:hint="Enter Description..."

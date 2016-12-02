@@ -85,7 +85,7 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
                 a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
-                        RescueDescActivity.ChosePet = response.body().get(0);
+                        RescueDescActivity.ChosePet = response.body().get(Integer.valueOf(getAdapterPosition()));
                         Intent intent = new Intent(v.getContext(), RescueDescActivity.class);
                         v.getContext().startActivity(intent);
                     }

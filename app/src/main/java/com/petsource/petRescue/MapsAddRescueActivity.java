@@ -18,11 +18,19 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.petsource.R;
+import com.petsource.model.Pet;
+import com.petsource.model.Rescue;
+import com.petsource.network.API;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MapsAddRescueActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    public static String namaPet;
+    public static Pet ChosePet;
+    public static String desc;
     public static double lat;
     public static double lng;
 
@@ -93,11 +101,29 @@ public class MapsAddRescueActivity extends FragmentActivity implements OnMapRead
             double longitude = findme.getLongitude();
             LatLng latLng = new LatLng(latitude, longitude);
 //            Toast.makeText(MapsActivity.this, "Lat : " + latitude + " | Long : " + longitude, Toast.LENGTH_SHORT).show();
-            Toast.makeText(MapsAddRescueActivity.this, "Thank you. You will be notified when someone is willing to adopt.", Toast.LENGTH_SHORT).show();
-            PetRescueActivity.petRescueActivity.finish();
-            AddRescueActivity.addRescueActivity.finish();
-            RescueDescActivity.rescueDescActivity.finish();
-            finish();
+            Call<Rescue> addRescue = API.Factory.getInstance().addRescue(
+                    ChosePet.getId(),
+                    ChosePet.getUserid(),
+                    findme.getLatitude(),
+                    findme.getLongitude(),
+                    desc
+            );
+            addRescue.enqueue(new Callback<Rescue>() {
+                @Override
+                public void onResponse(Call<Rescue> call, Response<Rescue> response) {
+                    Toast.makeText(MapsAddRescueActivity.this, "Thank you. You will be notified when someone is willing to adopt.", Toast.LENGTH_SHORT).show();
+                    PetRescueActivity.petRescueActivity.finish();
+                    AddRescueActivity.addRescueActivity.finish();
+                    RescueDescActivity.rescueDescActivity.finish();
+                    finish();
+                }
+
+                @Override
+                public void onFailure(Call<Rescue> call, Throwable t) {
+                    Toast.makeText(MapsAddRescueActivity.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                }
+            });
+
         }
         catch(Exception e){
             Toast.makeText(MapsAddRescueActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
