@@ -3,6 +3,7 @@ package com.petsource.petRescue;
 import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
@@ -19,11 +20,18 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.petsource.R;
+import com.petsource.model.Pet;
+import com.petsource.model.Rescue;
+import com.petsource.network.API;
+import com.petsource.petSalon.MapsActivity;
+
+import retrofit2.Call;
 
 public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    public static String namaPet;
+    public static Pet ChosePet;
+    public static String desc;
     public static double lat;
     public static double lng;
 
@@ -88,16 +96,28 @@ public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCa
         mMap.setMyLocationEnabled(true);
         LatLng ithb = new LatLng(lat, lng);
      //   mMap.addMarker(new MarkerOptions().position(sydney).title("Yay"));
-        mMap.addMarker(new MarkerOptions().position(ithb).title(namaPet));
+        mMap.addMarker(new MarkerOptions().position(ithb).title(ChosePet.getName()));
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ithb, 16.0f));
 
 
     }
     public void testToast(View view) {
-        Toast.makeText(MapsRescueActivity.this, "Thank you. You will be notified when the rescue is available   ", Toast.LENGTH_SHORT).show();
-        PetRescueActivity.petRescueActivity.finish();
-        RescueInfoActivity.rescueInfoActivity.finish();
-        finish();
+        try {
+            Location findme = mMap.getMyLocation();
+            Call<Rescue> addRescue = API.Factory.getInstance().addRescue(
+                    ChosePet.getId(),
+                    ChosePet.getUserid(),
+                    findme.getLatitude(),
+                    findme.getLongitude(),
+                    desc
+            );
+            Toast.makeText(MapsRescueActivity.this, "Thank you. You will be notified when the rescue is available   ", Toast.LENGTH_SHORT).show();
+            PetRescueActivity.petRescueActivity.finish();
+            RescueInfoActivity.rescueInfoActivity.finish();
+            finish();
+        } catch (Exception e) {
+            Toast.makeText(MapsRescueActivity.this, "Please get your location first.", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

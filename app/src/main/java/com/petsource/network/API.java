@@ -81,6 +81,11 @@ public interface API {
                        @Field("longitude") double longitude, @Field("isCare") int isCare, @Field("price") String price);
 
     @FormUrlEncoded
+    @POST("rescue/")
+    Call<Rescue> addRescue(@Field("petid") String petid, @Field("userid") String userid, @Field("latitude") double latitude,
+                       @Field("longitude") double longitude, @Field("description") String description);
+
+    @FormUrlEncoded
     @POST("infouser/")
     Call<Info> registerAccount(@Field("userid") String uid, @Field("name") String name, @Field("email") String email,
                                @Field("url") String url, @Field("joindate") String date,  @Field("isStaff") int isStaff,

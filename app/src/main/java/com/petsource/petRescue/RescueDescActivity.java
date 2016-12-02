@@ -24,6 +24,7 @@ public class RescueDescActivity extends AppCompatActivity {
 
     public static String idPet;
     public static TextView name, gender, race, iscertified, birthdate, description;
+    public static Pet ChosePet;
     private TextView lblRescueDescTitle;
     public static double lat,lng;
     public static Activity rescueDescActivity;
@@ -59,7 +60,6 @@ public class RescueDescActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Pet> call, Response<Pet> response) {
                         name.setText(response.body().getName());
-                        MapsRescueActivity.namaPet=response.body().getName();
                         if (response.body().isMale() == 1) {
                             gender.setText("Male");
                         } else {
@@ -83,6 +83,8 @@ public class RescueDescActivity extends AppCompatActivity {
 
 
     public void gotoMaps(View view) {
+        MapsRescueActivity.ChosePet = this.ChosePet;
+        MapsRescueActivity.desc = description.getText().toString();
         Intent intent = new Intent(this, MapsAddRescueActivity.class);
         startActivity(intent);
     }

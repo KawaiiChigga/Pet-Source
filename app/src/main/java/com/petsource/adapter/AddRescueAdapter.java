@@ -79,21 +79,13 @@ public class AddRescueAdapter extends RecyclerView.Adapter<AddRescueAdapter.MyVi
                 mFirebaseAuth = FirebaseAuth.getInstance();
                 mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
-                PetRescueActivity.rescueName = data.get(Integer.valueOf(getAdapterPosition())).getName();
-                PetRescueActivity.rescueRace = data.get(Integer.valueOf(getAdapterPosition())).getRace();
-                PetRescueActivity.rescueCertified = data.get(Integer.valueOf(getAdapterPosition())).isCertified();
-                PetRescueActivity.rescueYear = data.get(Integer.valueOf(getAdapterPosition())).getBirthdate();
-                PetRescueActivity.rescueGender = data.get(Integer.valueOf(getAdapterPosition())).isMale();
-                PetRescueActivity.rescueIsDog = data.get(Integer.valueOf(getAdapterPosition())).isDog();
-                PetRescueActivity.rescuePetID = data.get(Integer.valueOf(getAdapterPosition())).getId();
-                PetRescueActivity.rescueUserID = data.get(Integer.valueOf(getAdapterPosition())).getUserid();
-
 //                PetRescueActivity.rescueDecript = data2.get(Integer.valueOf(getAdapterPosition())).getDescription();
 
                 Call<List<Pet>> a = API.Factory.getInstance().getPets(mFirebaseAuth.getCurrentUser().getUid());
                 a.enqueue(new Callback<List<Pet>>() {
                     @Override
                     public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
+                        RescueDescActivity.ChosePet = response.body().get(0);
                         Intent intent = new Intent(v.getContext(), RescueDescActivity.class);
                         v.getContext().startActivity(intent);
                     }

@@ -68,7 +68,6 @@ public class RescueInfoActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<Pet> call, Response<Pet> response) {
                         name.setText(response.body().getName());
-                        MapsRescueActivity.namaPet=response.body().getName();
                         if (response.body().isMale() == 1) {
                             gender.setText("Male");
                         } else {
