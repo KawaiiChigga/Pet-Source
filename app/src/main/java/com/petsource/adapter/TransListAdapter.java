@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
 import com.petsource.ViewTransActivity;
 import com.petsource.model.Info;
@@ -51,6 +52,7 @@ public class TransListAdapter extends RecyclerView.Adapter<TransListAdapter.MyVi
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView shopname, petname, transdate, status;
+        private FirebaseAuth mFirebaseAuth;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -92,10 +94,26 @@ public class TransListAdapter extends RecyclerView.Adapter<TransListAdapter.MyVi
         }
 
         @Override
-        public void onClick(View v) {
+        public void onClick(final View v) {
             if(v.getId()==itemView.getId()) {
-                Intent intent = new Intent(v.getContext(), ViewTransActivity.class);
-                v.getContext().startActivity(intent);
+
+                mFirebaseAuth = FirebaseAuth.getInstance();
+
+                Call<List<Transaction>> t = API.Factory.getInstance().getTransUser(mFirebaseAuth.getCurrentUser().getUid());
+
+                t.enqueue(new Callback<List<Transaction>>() {
+                    @Override
+                    public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        ViewTransActivity.tr = response.body().get(Integer.valueOf(getAdapterPosition()));
+                        Intent intent = new Intent(v.getContext(), ViewTransActivity.class);
+                        v.getContext().startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Transaction>> call, Throwable t) {
+
+                    }
+                });
             }
         }
     }

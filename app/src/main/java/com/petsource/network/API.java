@@ -65,15 +65,6 @@ public interface API {
     @GET("transaction/")
     Call<List<Transaction>> getTransShop(@Query ("idshop") String idshop);
 
-//    @FormUrlEncoded
-//    @POST("users/login")
-//    Call<Login> logIn(@Field("username") String email, @Field("password") String password);
-
-//    @FormUrlEncoded
-//    @POST("users/")
-//    Call<User> register(@Field("username") String email, @Field("password") String password, @Field("name") String name,
-//                         @Field("phonenum") String phonenum);
-
     @FormUrlEncoded
     @POST("shop/")
     Call<Shop> addShop(@Field("iduser") String uid, @Field("startdate") String startdate, @Field("starttime") String starttime,

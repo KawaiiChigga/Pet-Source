@@ -7,6 +7,159 @@
     android:fitsSystemWindows="true"
     tools:context="com.petsource.ViewTransActivity">
 
+    <ImageView
+        android:layout_width="119dp"
+        android:layout_height="94dp"
+        app:srcCompat="@drawable/paw"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="70dp"
+        android:id="@+id/imageView3" />
+
+    <TextView
+        android:text="Staff Name"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="18dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView15" />
+
+    <TextView
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:textSize="10pt"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3"
+        android:id="@+id/txtStaffName" />
+
+    <TextView
+        android:text="Type"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView15"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView17" />
+
+    <TextView
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:textSize="10pt"
+        android:id="@+id/txtType"
+        android:layout_alignBaseline="@+id/textView17"
+        android:layout_alignBottom="@+id/textView17"
+        android:layout_alignLeft="@+id/txtStaffName"
+        android:layout_alignStart="@+id/txtStaffName" />
+
+    <TextView
+        android:text="Pet Name"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView17"
+        android:layout_alignLeft="@+id/textView17"
+        android:layout_alignStart="@+id/textView17"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView19" />
+
+    <TextView
+        android:text="Trans Date"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/textView17"
+        android:id="@+id/textView21"
+        android:layout_below="@+id/textView19"/>
+
+    <TextView
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:textSize="10pt"
+        android:layout_alignTop="@+id/textView21"
+        android:layout_alignLeft="@+id/txtPetName"
+        android:layout_alignStart="@+id/txtPetName"
+        android:id="@+id/txtTransDate" />
+
+    <TextView
+        android:text="Price"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView21"
+        android:layout_alignLeft="@+id/textView21"
+        android:layout_alignStart="@+id/textView21"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView23" />
+
+    <TextView
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:textSize="10pt"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignRight="@+id/txtTransDate"
+        android:layout_alignEnd="@+id/txtTransDate"
+        android:id="@+id/txtPrice" />
+
+    <TextView
+        android:text="Status"
+        android:textSize="10pt"
+        android:textColor="#444545"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView23"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView25" />
+
+    <TextView
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:textSize="10pt"
+        android:layout_alignTop="@+id/textView25"
+        android:layout_alignLeft="@+id/txtPrice"
+        android:layout_alignStart="@+id/txtPrice"
+        android:id="@+id/txtStatus" />
+
+    <TextView
+        android:layout_width="210dp"
+        android:layout_height="35dp"
+        android:background="#444545"
+        android:textColor="#FDBD15"
+        android:textSize="10pt"
+        android:id="@+id/txtPetName"
+        android:layout_alignBaseline="@+id/textView19"
+        android:layout_alignBottom="@+id/textView19"
+        android:layout_alignLeft="@+id/txtType"
+        android:layout_alignStart="@+id/txtType" />
+
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,5 +197,18 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
+
+    <Button
+        android:text="Cancel"
+        android:layout_width="320dp"
+        android:layout_height="48dp"
+        android:textSize="25dp"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/button_shadow"
+        android:id="@+id/btnCANCEL"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/txtStatus"
+        android:layout_marginTop="25dp"/>
+
 
 </RelativeLayout>
