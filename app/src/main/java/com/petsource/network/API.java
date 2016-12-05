@@ -12,9 +12,11 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -28,9 +30,6 @@ import retrofit2.http.Query;
  */
 
 public interface API {
-
-//    @GET("users/{id}")
-//    Call<User> getUser(@Path("id") String id);
 
     @GET("pets/")
     Call<List<Pet>> getPets(@Query("userid") String userid);
@@ -59,6 +58,9 @@ public interface API {
     @GET("rescue/{id}")
     Call<Rescue> getRescueUser(@Path("id") String id);
 
+    @GET("transaction/{id}")
+    Call<Transaction> getATrans(@Path("id") String id);
+
     @GET("transaction/")
     Call<List<Transaction>> getTransUser(@Query ("iduser") String iduser);
 
@@ -75,6 +77,10 @@ public interface API {
     @POST("rescue/")
     Call<Rescue> addRescue(@Field("petid") String petid, @Field("userid") String userid, @Field("latitude") double latitude,
                        @Field("longitude") double longitude, @Field("description") String description);
+
+    @FormUrlEncoded
+    @PUT("pets/{id}")
+    Call<Pet> updatePet(@Path("id") String id, @Field("userid") String userid);
 
     @FormUrlEncoded
     @POST("infouser/")
@@ -105,7 +111,18 @@ public interface API {
     Call<Transaction> addTrans (@Field("iduser") String iduser, @Field("idpet") String idpet, @Field("date") String date,
                                 @Field("idshop") String idshop, @Field("price") String price, @Field("type") int type,
                                 @Field("isWashing") int isWashing, @Field("isNailclipping") int isNailclipping,
-                                @Field("isTrimming") int isTrimming, @Field("status") String status);
+                                @Field("isTrimming") int isTrimming, @Field("startCare") String startCare,
+                                @Field("endCare") String endCare, @Field("status") String status);
+
+    @FormUrlEncoded
+    @PUT("transaction/{id}")
+    Call<Transaction> updateTrans (@Path("id")  String id, @Field("status") String status);
+
+    @DELETE("transaction/{id}")
+    Call<ResponseBody> delTrans (@Path("id") String id);
+
+    @DELETE("rescue/{id}")
+    Call<ResponseBody> delRescue (@Path("id") String id);
 
     class Factory{
 

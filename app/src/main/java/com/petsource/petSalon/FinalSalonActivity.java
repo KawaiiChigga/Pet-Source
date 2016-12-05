@@ -77,6 +77,8 @@ public class FinalSalonActivity extends AppCompatActivity {
                 MapsActivity.isWashing,
                 MapsActivity.isClipping,
                 MapsActivity.isTrimming,
+                "",
+                "",
                 "Pending"
         );
         addTrans.enqueue(new Callback<Transaction>() {

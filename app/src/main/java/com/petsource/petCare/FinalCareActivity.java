@@ -73,6 +73,8 @@ public class FinalCareActivity extends AppCompatActivity {
                 0,
                 0,
                 0,
+                Maps2Activity.cusDateStart,
+                Maps2Activity.cusDateEnd,
                 "Pending"
         );
         PetCareActivity.petCareActivity.finish();

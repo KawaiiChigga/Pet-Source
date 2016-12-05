@@ -1,12 +1,16 @@
 package com.petsource.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
+import com.petsource.ViewTransActivity;
+import com.petsource.ViewTransStaffActivity;
 import com.petsource.model.Info;
 import com.petsource.model.Pet;
 import com.petsource.model.Transaction;
@@ -46,8 +50,9 @@ public class TransStaffListAdapter extends RecyclerView.Adapter<TransStaffListAd
         return data.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView customername, petname, transdate, status;
+        private FirebaseAuth mFirebaseAuth;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -55,6 +60,7 @@ public class TransStaffListAdapter extends RecyclerView.Adapter<TransStaffListAd
             customername = (TextView) itemView.findViewById(R.id.lblFHistoryCustomerName);
             transdate = (TextView) itemView.findViewById(R.id.lblFHistoryDate);
             status = (TextView) itemView.findViewById(R.id.lblFHistoryStatus);
+            itemView.setOnClickListener(this);
         }
 
         public void bind (final Transaction t) {
@@ -91,6 +97,30 @@ public class TransStaffListAdapter extends RecyclerView.Adapter<TransStaffListAd
 
             transdate.setText(t.getDate());
             status.setText(t.getStatus());
+        }
+
+        @Override
+        public void onClick(final View v) {
+            if(v.getId()==itemView.getId()) {
+
+                mFirebaseAuth = FirebaseAuth.getInstance();
+
+                Call<List<Transaction>> t = API.Factory.getInstance().getTransShop(mFirebaseAuth.getCurrentUser().getUid());
+
+                t.enqueue(new Callback<List<Transaction>>() {
+                    @Override
+                    public void onResponse(Call<List<Transaction>> call, Response<List<Transaction>> response) {
+                        ViewTransStaffActivity.tr = response.body().get(Integer.valueOf(getAdapterPosition()));
+                        Intent intent = new Intent(v.getContext(), ViewTransStaffActivity.class);
+                        v.getContext().startActivity(intent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Transaction>> call, Throwable t) {
+
+                    }
+                });
+            }
         }
     }
 }

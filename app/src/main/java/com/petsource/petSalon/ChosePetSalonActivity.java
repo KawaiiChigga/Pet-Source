@@ -90,8 +90,12 @@ public class ChosePetSalonActivity extends AppCompatActivity {
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
                 swipeRefresh.setRefreshing(false);
                 data.clear();
-                for (Pet p : response.body() ) {
-                    data.add(p);
+                if (response.body() == null) {
+                    Toast.makeText(getBaseContext(), "Please add your pets in Account Tab", Toast.LENGTH_SHORT).show();
+                } else {
+                    for (Pet p : response.body()) {
+                        data.add(p);
+                    }
                 }
                 adapter = new ChosePetSalonAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());

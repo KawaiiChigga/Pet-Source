@@ -5,6 +5,7 @@ package com.petsource.model;
  */
 
 public class Transaction {
+    private String id;
     private String iduser;
     private String idpet;
     private String date;
@@ -15,6 +16,14 @@ public class Transaction {
     private int isNailclipping;
     private int isTrimming;
     private String status;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getIduser() {
         return iduser;

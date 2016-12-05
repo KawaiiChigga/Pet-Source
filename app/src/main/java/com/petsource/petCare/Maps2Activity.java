@@ -40,6 +40,9 @@ public class Maps2Activity extends FragmentActivity implements OnMapReadyCallbac
 
     public static Shop staff;
     public static Info infoStaff;
+    public static String cusDateStart;
+    public static String cusDateEnd;
+
     public Maps2Activity() {
         maps2Activity = this;
     }

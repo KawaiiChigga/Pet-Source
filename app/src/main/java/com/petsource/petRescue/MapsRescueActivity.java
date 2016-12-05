@@ -18,7 +18,15 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.petsource.R;
+import com.petsource.model.Pet;
+import com.petsource.network.API;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,6 +39,7 @@ public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCa
 
     private Button btnNext;
     private TextView lblLocation;
+    private FirebaseAuth mFirebaseAuth;
 
     @Override
 
@@ -49,6 +58,8 @@ public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCa
 
         lblLocation = (TextView) findViewById(R.id.lblLocation);
         lblLocation.setTypeface(typeface);
+
+        mFirebaseAuth = FirebaseAuth.getInstance();
     }
 
 
@@ -94,10 +105,34 @@ public class MapsRescueActivity extends FragmentActivity implements OnMapReadyCa
 
     }
     public void testToast(View view) {
-        Toast.makeText(MapsRescueActivity.this, "Thank you. You will be notified when the rescue is available   ", Toast.LENGTH_SHORT).show();
-        PetRescueActivity.petRescueActivity.finish();
-        RescueInfoActivity.rescueInfoActivity.finish();
-        finish();
+        Call<Pet> changePet = API.Factory.getInstance().updatePet(RescueInfoActivity.rescue.getPetid(), mFirebaseAuth.getCurrentUser().getUid());
+        changePet.enqueue(new Callback<Pet>() {
+            @Override
+            public void onResponse(Call<Pet> call, Response<Pet> response) {
+                Call<ResponseBody> deleteRescue = API.Factory.getInstance().delRescue(RescueInfoActivity.rescue.getId());
+                deleteRescue.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Toast.makeText(MapsRescueActivity.this, "Thank you. Please check your pet list!", Toast.LENGTH_SHORT).show();
+                        PetRescueActivity.petRescueActivity.finish();
+                        RescueInfoActivity.rescueInfoActivity.finish();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                    }
+                });
+            }
+
+            @Override
+            public void onFailure(Call<Pet> call, Throwable t) {
+
+            }
+        });
+
+
     }
 
 }

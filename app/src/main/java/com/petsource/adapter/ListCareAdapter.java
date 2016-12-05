@@ -90,6 +90,8 @@ public class ListCareAdapter extends RecyclerView.Adapter<ListCareAdapter.MyView
                             public void onResponse(Call<List<Info>> call, Response<List<Info>> response) {
                                 Maps2Activity.ChosePet = ListCareActivity.ChosePet;
                                 Maps2Activity.infoStaff = response.body().get(0);
+                                Maps2Activity.cusDateStart = ListCareActivity.cusDateStart;
+                                Maps2Activity.cusDateEnd = ListCareActivity.cusDateEnd;
                                 Intent intent = new Intent(v.getContext(), Maps2Activity.class);
                                 v.getContext().startActivity(intent);
                             }
