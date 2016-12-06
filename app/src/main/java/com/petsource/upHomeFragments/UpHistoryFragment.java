@@ -44,7 +44,7 @@ public class UpHistoryFragment extends Fragment {
     TransStaffListAdapter adapterstaff;
     FirebaseAuth mFirebaseAuth;
     SwipeRefreshLayout swipeRefresh;
-    TextView myTrans, myShop;
+    TextView myTrans, myShop, isEmpty;
 
     public UpHistoryFragment() {
 
@@ -64,7 +64,8 @@ public class UpHistoryFragment extends Fragment {
         swipeRefresh = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshUpHistory);
         myTrans = (TextView) getActivity().findViewById(R.id.lblMyHistory);
         myShop = (TextView) getActivity().findViewById(R.id.lblMyShop);
-
+        isEmpty = (TextView) getActivity().findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -108,6 +109,7 @@ public class UpHistoryFragment extends Fragment {
                 for (Transaction t : response.body()) {
                     transdata.add(t);
                 }
+                check();
 
                 adapter = new TransListAdapter(transdata);
                 LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -139,6 +141,7 @@ public class UpHistoryFragment extends Fragment {
                 for (Transaction t : response.body()) {
                     transstaffdata.add(t);
                 }
+                check();
 
                 adapterstaff = new TransStaffListAdapter(transstaffdata);
                 LinearLayoutManager manager2 = new LinearLayoutManager(getContext());
@@ -154,5 +157,12 @@ public class UpHistoryFragment extends Fragment {
                 t.printStackTrace();
             }
         });
+    }
+    public void check() {
+        if (transdata.isEmpty() && transstaffdata.isEmpty()) {
+            isEmpty.setVisibility(View.VISIBLE);
+        } else {
+            isEmpty.setVisibility(View.GONE);
+        }
     }
 }

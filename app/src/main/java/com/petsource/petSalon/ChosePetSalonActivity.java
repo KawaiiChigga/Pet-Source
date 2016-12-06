@@ -33,6 +33,7 @@ public class ChosePetSalonActivity extends AppCompatActivity {
     private List<Pet> data;
     private RecyclerView petRV;
     private TextView lblChosePetSalonTitle;
+    private TextView isEmpty;
 
     public static Activity chosePetSalonActivity;
 
@@ -61,6 +62,8 @@ public class ChosePetSalonActivity extends AppCompatActivity {
         petRV = (RecyclerView) findViewById(R.id.rvChosePetSalon);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshChosePetSalon);
 
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -90,12 +93,13 @@ public class ChosePetSalonActivity extends AppCompatActivity {
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
                 swipeRefresh.setRefreshing(false);
                 data.clear();
-                if (response.body() == null) {
-                    Toast.makeText(getBaseContext(), "Please add your pets in Account Tab", Toast.LENGTH_SHORT).show();
+                for (Pet p : response.body()) {
+                    data.add(p);
+                }
+                if (data.isEmpty()) {
+                    isEmpty.setVisibility(View.VISIBLE);
                 } else {
-                    for (Pet p : response.body()) {
-                        data.add(p);
-                    }
+                    isEmpty.setVisibility(View.GONE);
                 }
                 adapter = new ChosePetSalonAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());

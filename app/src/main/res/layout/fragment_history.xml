@@ -3,8 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.petsource.homeFragments.HistoryFragment"
-    android:padding="10dp">
+    tools:context="com.petsource.homeFragments.HistoryFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="History is empty"
+        android:gravity="center"
+        android:background="@color/emptyColor"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:id="@+id/lblEmpty"/>
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_width="match_parent"

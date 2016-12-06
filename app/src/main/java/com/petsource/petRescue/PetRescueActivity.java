@@ -35,7 +35,7 @@ public class PetRescueActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
-    private TextView lblPetRescueTitle;
+    private TextView lblPetRescueTitle, isEmpty;
 
     public RescueListAdapter adapter;
     public SwipeRefreshLayout swipeRefresh;
@@ -59,7 +59,8 @@ public class PetRescueActivity extends AppCompatActivity {
 
         petRV = (RecyclerView) findViewById(R.id.rvpetrescue);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetrescue);
-
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         data = new ArrayList<>();
         prepareData();
 
@@ -113,6 +114,11 @@ public class PetRescueActivity extends AppCompatActivity {
                             Toast.makeText(PetRescueActivity.this, "Please check your network connection and internet permission", Toast.LENGTH_SHORT).show();
                         }
                     });
+                }
+                if (data.isEmpty()) {
+                    isEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    isEmpty.setVisibility(View.GONE);
                 }
             }
             @Override

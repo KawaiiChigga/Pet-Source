@@ -35,7 +35,7 @@ public class HistoryFragment extends Fragment{
     FirebaseAuth mFirebaseAuth;
 
     SwipeRefreshLayout swipeRefresh;
-    TextView myTrans;
+    TextView myTrans, isEmpty;
 
     public HistoryFragment() {
 
@@ -53,7 +53,8 @@ public class HistoryFragment extends Fragment{
         rvhistory = (RecyclerView) getActivity().findViewById(R.id.rvcustomerhistory);
         swipeRefresh = (SwipeRefreshLayout) getActivity().findViewById(R.id.refreshHistory);
         myTrans = (TextView) getActivity().findViewById(R.id.lblMyHistory);
-
+        isEmpty = (TextView) getActivity().findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -90,6 +91,11 @@ public class HistoryFragment extends Fragment{
                 for (Transaction t : response.body()) {
                     transdata.add(t);
                 }
+                if (transdata.isEmpty()) {
+                    isEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    isEmpty.setVisibility(View.GONE);
+                }
 
                 adapter = new TransListAdapter(transdata);
                 LinearLayoutManager manager = new LinearLayoutManager(getContext());
@@ -105,5 +111,6 @@ public class HistoryFragment extends Fragment{
                 t.printStackTrace();
             }
         });
+
     }
 }

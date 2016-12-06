@@ -5,4 +5,6 @@
     <color name="colorAccent">#444545</color>
     <color name="textColor">#FDBD15</color>
     <color name="hyperlinkColor">#0202ff</color>
+    <color name="emptyColor">#c3616161</color>
+
 </resources>

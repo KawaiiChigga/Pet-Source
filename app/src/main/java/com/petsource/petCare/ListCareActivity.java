@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ListCareActivity extends AppCompatActivity {
     private List<Shop> data;
     private RecyclerView petRV;
     private TextView lblPetCareTitle;
+    private TextView isEmpty;
 
     public ListCareAdapter adapter;
     public SwipeRefreshLayout swipeRefresh;
@@ -60,6 +62,8 @@ public class ListCareActivity extends AppCompatActivity {
         petRV = (RecyclerView) findViewById(R.id.rvListCare);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         data = new ArrayList<>();
         prepareData();
 
@@ -88,6 +92,11 @@ public class ListCareActivity extends AppCompatActivity {
                     data.clear();
                     for (Shop i : response.body()) {
                         data.add(i);
+                    }
+                    if (data.isEmpty()) {
+                        isEmpty.setVisibility(View.VISIBLE);
+                    } else {
+                        isEmpty.setVisibility(View.GONE);
                     }
                     adapter = new ListCareAdapter(data);
                     LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +34,7 @@ public class ChosePetCareActivity extends AppCompatActivity {
     private List<Pet> data;
     private RecyclerView petRV;
     private TextView lblChosePetCareTitle;
+    private TextView isEmpty;
 
     public static Activity chosePetCareActivity;
 
@@ -62,6 +64,8 @@ public class ChosePetCareActivity extends AppCompatActivity {
         petRV = (RecyclerView) findViewById(R.id.rvChosePetCare);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshChosePetCare);
 
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -91,12 +95,13 @@ public class ChosePetCareActivity extends AppCompatActivity {
             public void onResponse(Call<List<Pet>> call, Response<List<Pet>> response) {
                 swipeRefresh.setRefreshing(false);
                 data.clear();
-                if (response.body() == null) {
-                    Toast.makeText(getBaseContext(), "Please add your pets in Account Tab", Toast.LENGTH_SHORT).show();
+                for (Pet p : response.body()) {
+                    data.add(p);
+                }
+                if (data.isEmpty()) {
+                    isEmpty.setVisibility(View.VISIBLE);
                 } else {
-                    for (Pet p : response.body()) {
-                        data.add(p);
-                    }
+                    isEmpty.setVisibility(View.GONE);
                 }
                 adapter = new ChosePetCareAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());

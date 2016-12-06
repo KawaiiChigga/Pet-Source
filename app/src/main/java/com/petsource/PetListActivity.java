@@ -32,7 +32,7 @@ public class PetListActivity extends AppCompatActivity {
 
     private List<Pet> data;
     private RecyclerView petRV;
-    private TextView lblPetListTitle;
+    private TextView lblPetListTitle, isEmpty;
 
 
     private FirebaseAuth mFirebaseAuth;
@@ -57,6 +57,8 @@ public class PetListActivity extends AppCompatActivity {
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
 
@@ -97,6 +99,11 @@ public class PetListActivity extends AppCompatActivity {
                 data.clear();
                 for (Pet p : response.body() ) {
                     data.add(p);
+                }
+                if (data.isEmpty()) {
+                    isEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    isEmpty.setVisibility(View.GONE);
                 }
                 adapter = new PetListAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());

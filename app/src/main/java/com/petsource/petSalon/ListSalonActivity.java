@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +35,7 @@ public class ListSalonActivity extends AppCompatActivity {
     private List<Shop> data;
     private RecyclerView petRV;
     private TextView lblPetSalonTitle;
+    private TextView isEmpty;
 
     public ListSalonAdapter adapter;
     public SwipeRefreshLayout swipeRefresh;
@@ -58,6 +60,8 @@ public class ListSalonActivity extends AppCompatActivity {
         lblPetSalonTitle = (TextView) findViewById(R.id.lblSalonListTitle);
         lblPetSalonTitle.setTypeface(typeface);
 
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         petRV = (RecyclerView) findViewById(R.id.rvListSalon);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
@@ -89,6 +93,11 @@ public class ListSalonActivity extends AppCompatActivity {
                     data.clear();
                     for (Shop i : response.body()) {
                         data.add(i);
+                    }
+                    if (data.isEmpty()) {
+                        isEmpty.setVisibility(View.VISIBLE);
+                    } else {
+                        isEmpty.setVisibility(View.GONE);
                     }
                     adapter = new ListSalonAdapter(data);
                     LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());

@@ -38,6 +38,7 @@ public class AddRescueActivity extends AppCompatActivity {
     private List<Pet> data;
     private RecyclerView petRV;
     private TextView lblAddRescueTitle;
+    private TextView isEmpty;
 
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
@@ -68,6 +69,8 @@ public class AddRescueActivity extends AppCompatActivity {
         petRV = (RecyclerView) findViewById(R.id.rvpetlist);
         swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.refreshpetlist);
 
+        isEmpty = (TextView) findViewById(R.id.lblEmpty);
+        isEmpty.setVisibility(View.GONE);
         data = new ArrayList<>();
         prepareData();
 
@@ -96,6 +99,11 @@ public class AddRescueActivity extends AppCompatActivity {
                 data.clear();
                 for (Pet p : response.body() ) {
                     data.add(p);
+                }
+                if (data.isEmpty()) {
+                    isEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    isEmpty.setVisibility(View.GONE);
                 }
                 adapter = new AddRescueAdapter(data);
                 LinearLayoutManager manager = new LinearLayoutManager(getBaseContext());
